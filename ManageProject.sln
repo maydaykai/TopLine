@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conn", "Conn\Conn.csproj", "{4E8C3A41-9043-4D84-8290-886F9A5E3941}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APICloud", "APICloud\APICloud.csproj", "{A09A9BDC-99E0-4883-8F25-A72C6BA767CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{4E8C3A41-9043-4D84-8290-886F9A5E3941}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E8C3A41-9043-4D84-8290-886F9A5E3941}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E8C3A41-9043-4D84-8290-886F9A5E3941}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A09A9BDC-99E0-4883-8F25-A72C6BA767CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A09A9BDC-99E0-4883-8F25-A72C6BA767CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A09A9BDC-99E0-4883-8F25-A72C6BA767CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A09A9BDC-99E0-4883-8F25-A72C6BA767CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

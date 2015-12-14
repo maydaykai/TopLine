@@ -992,6 +992,7 @@
     <Content Include="js\Uploadify\uploadify-cancel.png" />
     <Content Include="js\Uploadify\uploadify.css" />
     <Content Include="js\Uploadify\uploadify.swf" />
+    <Content Include="test.aspx" />
     <Content Include="UserManage\ChanagePwd.aspx" />
     <Content Include="UserManage\RoleEdit.aspx" />
     <Content Include="UserManage\RoleManage.aspx" />
@@ -1189,6 +1190,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UserManage\ChanagePwd.aspx.cs">
       <DependentUpon>ChanagePwd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1328,6 +1336,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\APICloud\APICloud.csproj">
+      <Project>{a09a9bdc-99e0-4883-8f25-a72c6ba767cd}</Project>
+      <Name>APICloud</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bll\Bll.csproj">
       <Project>{163729c2-c615-42b0-9621-a1849eb93ff4}</Project>
       <Name>Bll</Name>
