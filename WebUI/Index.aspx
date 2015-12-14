@@ -36,11 +36,11 @@
     <!--头部信息end-->
     <!--底部信息start-->
 
-    <!--    <div region="south" split="true" style="height: 30px; background: #D2E0F2;">
-        <div class="footer">
-            网站底部
-        </div>
-    </div>-->
+        <%--<div region="south" split="true" style="height: 30px; background: #D2E0F2;">
+            <div class="footer">
+                网站底部
+            </div>
+        </div>--%>
 
     <!--底部信息end->
         <!--导航栏start-->
