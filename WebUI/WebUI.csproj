@@ -81,6 +81,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="API\Member.svc" />
     <Content Include="BasePage.aspx" />
     <Content Include="Basic\ColumnEdit.aspx" />
     <Content Include="Basic\ColumnManage.aspx" />
@@ -992,6 +993,7 @@
     <Content Include="js\Uploadify\uploadify-cancel.png" />
     <Content Include="js\Uploadify\uploadify.css" />
     <Content Include="js\Uploadify\uploadify.swf" />
+    <Content Include="MemberManage\MemberManage.aspx" />
     <Content Include="test.aspx" />
     <Content Include="UserManage\ChanagePwd.aspx" />
     <Content Include="UserManage\RoleEdit.aspx" />
@@ -1144,6 +1146,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\Member.svc.cs">
+      <DependentUpon>Member.svc</DependentUpon>
+    </Compile>
     <Compile Include="BasePage.aspx.cs">
       <DependentUpon>BasePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1184,6 +1189,13 @@
     </Compile>
     <Compile Include="js\Uploadify\UploadifyHandler.ashx.cs">
       <DependentUpon>UploadifyHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="MemberManage\MemberManage.aspx.cs">
+      <DependentUpon>MemberManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MemberManage\MemberManage.aspx.designer.cs">
+      <DependentUpon>MemberManage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
