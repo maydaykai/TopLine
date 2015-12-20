@@ -7,6 +7,7 @@ using Bll;
 using Model;
 using System.Data;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace WebUI.HanderAshx.UserManage
 {
@@ -72,7 +73,7 @@ namespace WebUI.HanderAshx.UserManage
                 Rows = orders//实体列表
             };
             var s = JsonHelper.ObjectToJson(jsonData);
-            return s;
+            return JsonConvert.SerializeObject(jsonData); ;
         }
 
         private string GetRoleName(DataSet dsRoles, string roleId)

@@ -7,15 +7,14 @@ using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
 using APICloud;
-using Common;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace WebUI.API
 {
-    [ServiceContract(Namespace = "WebUI.API")]
+    [ServiceContract(Namespace = "")]
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
-    public class Member
+    public class Article
     {
         // 要使用 HTTP GET，请添加 [WebGet] 特性。(默认 ResponseFormat 为 WebMessageFormat.Json)
         // 要创建返回 XML 的操作，
@@ -34,16 +33,15 @@ namespace WebUI.API
         [WebInvoke(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, Method = "GET")]
         public string GetList(string sidx, string sord, int page, int rows, int memberID, string startDate, string endDate, string title)
         {
-            var model = DataConstructor.Factory("user");
+            var model = DataConstructor.Factory("article");
             var data = model.Query();
             var parseData = JArray.Parse(data.Replace("\r", "").Replace("\n", ""));
             var jsonData = new
             {
                 TotalRows = parseData.Count,//记录数
-                Rows = data//实体列表
+                Rows = parseData//实体列表
             };
-            var jsetting = new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore};
-            return JsonConvert.SerializeObject(jsonData, Formatting.Indented, jsetting);
+            return JsonConvert.SerializeObject(jsonData);
         }
     }
 }

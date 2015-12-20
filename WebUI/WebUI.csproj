@@ -81,7 +81,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="API\Article.svc" />
     <Content Include="API\Member.svc" />
+    <Content Include="ArticleManage\ArticleManage.aspx" />
     <Content Include="BasePage.aspx" />
     <Content Include="Basic\ColumnEdit.aspx" />
     <Content Include="Basic\ColumnManage.aspx" />
@@ -1146,8 +1148,18 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\Article.svc.cs">
+      <DependentUpon>Article.svc</DependentUpon>
+    </Compile>
     <Compile Include="API\Member.svc.cs">
       <DependentUpon>Member.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ArticleManage\ArticleManage.aspx.cs">
+      <DependentUpon>ArticleManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ArticleManage\ArticleManage.aspx.designer.cs">
+      <DependentUpon>ArticleManage.aspx</DependentUpon>
     </Compile>
     <Compile Include="BasePage.aspx.cs">
       <DependentUpon>BasePage.aspx</DependentUpon>
