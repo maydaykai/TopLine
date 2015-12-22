@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticleBll.cs" />
     <Compile Include="ColumnBll.cs" />
     <Compile Include="ColumnRightBll.cs" />
     <Compile Include="UserBll.cs" />

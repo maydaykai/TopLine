@@ -50,9 +50,9 @@ namespace WebUI.HanderAshx.UserManage
             pagenum = pagenum + 1;
 
             int pageCount = 0;
-            var fcmsUserbll = new UserBll();
+            var userbll = new UserBll();
             DataSet dsRoles = new RoleBll().GetRoleList();
-            IList<UserModel> fcmsUserModelList = fcmsUserbll.GetFcmsUserList(filter, sortField, pagenum, pagesize, ref pageCount);
+            IList<UserModel> fcmsUserModelList = userbll.GetFcmsUserList(filter, sortField, pagenum, pagesize, ref pageCount);
             var orders = (from fcmsUserModel in fcmsUserModelList
                           select new
                           {

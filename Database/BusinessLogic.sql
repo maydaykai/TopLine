@@ -1,7 +1,7 @@
 USE [TopLine]
 GO
 
-/****** Object:  Table [dbo].[Article]    Script Date: 12/20/2015 23:22:25 ******/
+/****** Object:  Table [dbo].[Article]    Script Date: 12/22/2015 17:55:09 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -20,6 +20,9 @@ CREATE TABLE [dbo].[Article](
 	[IsHot] [bit] NULL,
 	[IsBot] [bit] NULL,
 	[Type] [varchar](50) NULL,
+	[Status] [smallint] NULL,
+	[CreateTime] [datetime] NULL,
+	[UpdateTime] [datetime] NULL,
  CONSTRAINT [PK_Article_1] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -47,6 +50,15 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'是否热门' , @l
 GO
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'类型：包括play、img、txt' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'Type'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'状态：1，添加成功；2，上传成功' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'Status'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'本地创建时间' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'CreateTime'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'服务器创建时间' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'UpdateTime'
 GO
 
 

@@ -7,6 +7,7 @@ using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
 using APICloud;
+using Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -33,15 +34,32 @@ namespace WebUI.API
         [WebInvoke(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, Method = "GET")]
         public string GetList(string sidx, string sord, int page, int rows, int memberID, string startDate, string endDate, string title)
         {
-            var model = DataConstructor.Factory("article");
-            var data = model.Query();
-            var parseData = JArray.Parse(data.Replace("\r", "").Replace("\n", ""));
+            //pagenum = pagenum + 1;
+
+            int pageCount = 0;
+            //var fcmsUserbll = new UserBll();
+            //DataSet dsRoles = new RoleBll().GetRoleList();
+            //IList<ArticleModel> fcmsUserModelList = fcmsUserbll.GetFcmsUserList(filter, sortField, pagenum, pagesize, ref pageCount);
+            //var orders = (from fcmsUserModel in fcmsUserModelList
+            //              select new
+            //              {
+            //                  ID = fcmsUserModel.ID,
+            //                  UserName = fcmsUserModel.UserName,
+            //                  RealName = fcmsUserModel.RealName,
+            //                  AnotherName = fcmsUserModel.AnotherName,
+            //                  Mobile = fcmsUserModel.Mobile,
+            //                  RegTime = fcmsUserModel.RegTime,
+            //                  LastLoginTime = fcmsUserModel.LastLoginTime,
+            //                  IsLock = fcmsUserModel.IsLock,
+            //                  UpdateTime = fcmsUserModel.UpdateTime,
+            //                  RoleId = GetRoleName(dsRoles, fcmsUserModel.RoleId)
+            //              });
             var jsonData = new
             {
-                TotalRows = parseData.Count,//记录数
-                Rows = parseData//实体列表
+                TotalRows = pageCount,//记录数
+                Rows = ""//实体列表
             };
-            return JsonConvert.SerializeObject(jsonData);
+            return JsonConvert.SerializeObject(jsonData); ;
         }
     }
 }

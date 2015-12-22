@@ -83,6 +83,7 @@
   <ItemGroup>
     <Content Include="API\Article.svc" />
     <Content Include="API\Member.svc" />
+    <Content Include="ArticleManage\ArticleEdit.aspx" />
     <Content Include="ArticleManage\ArticleManage.aspx" />
     <Content Include="BasePage.aspx" />
     <Content Include="Basic\ColumnEdit.aspx" />
@@ -137,7 +138,6 @@
     <Content Include="images\select_right.png" />
     <Content Include="images\tip_arrow.gif" />
     <Content Include="images\uploadify-cancel.png" />
-    <Content Include="js\Area.js" />
     <Content Include="js\datetime.js" />
     <Content Include="js\FormatDecimal.js" />
     <Content Include="js\jBox\i18n\jquery.jBox-zh-CN.js" />
@@ -1153,6 +1153,13 @@
     </Compile>
     <Compile Include="API\Member.svc.cs">
       <DependentUpon>Member.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ArticleManage\ArticleEdit.aspx.cs">
+      <DependentUpon>ArticleEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ArticleManage\ArticleEdit.aspx.designer.cs">
+      <DependentUpon>ArticleEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="ArticleManage\ArticleManage.aspx.cs">
       <DependentUpon>ArticleManage.aspx</DependentUpon>

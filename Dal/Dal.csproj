@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticleDal.cs" />
     <Compile Include="ColumnDal.cs" />
     <Compile Include="ColumnRightDal.cs" />
     <Compile Include="UserDal.cs" />
