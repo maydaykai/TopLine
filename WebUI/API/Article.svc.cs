@@ -29,7 +29,6 @@ namespace WebUI.API
             return;
         }
 
-        // 在此处添加更多操作并使用 [OperationContract] 标记它们
         [OperationContract]
         [WebInvoke(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, Method = "GET")]
         public string GetList(string sidx, string sord, int page, int rows, int memberID, string startDate, string endDate, string title)

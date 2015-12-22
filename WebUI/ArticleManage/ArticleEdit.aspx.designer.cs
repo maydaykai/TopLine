@@ -22,76 +22,13 @@ namespace WebUI.ArticleManage {
         protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
         
         /// <summary>
-        /// imgUserNameLeft 控件。
+        /// txtTitle 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage imgUserNameLeft;
-        
-        /// <summary>
-        /// txtUserName 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtUserName;
-        
-        /// <summary>
-        /// imgUserNameRight 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage imgUserNameRight;
-        
-        /// <summary>
-        /// txtPwd 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword txtPwd;
-        
-        /// <summary>
-        /// txtPwdConfirm 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword txtPwdConfirm;
-        
-        /// <summary>
-        /// txtRealName 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtRealName;
-        
-        /// <summary>
-        /// txtAnotherName 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtAnotherName;
-        
-        /// <summary>
-        /// rblSex 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblSex;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtTitle;
         
         /// <summary>
         /// ckbRoleList 控件。
@@ -103,93 +40,93 @@ namespace WebUI.ArticleManage {
         protected global::System.Web.UI.WebControls.CheckBoxList ckbRoleList;
         
         /// <summary>
-        /// txtPhone 控件。
+        /// txtPubTime 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPhone;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPubTime;
         
         /// <summary>
-        /// txtMobile 控件。
+        /// imgNewsImg 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtMobile;
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgNewsImg;
         
         /// <summary>
-        /// txtEmail 控件。
+        /// hiNewsImg 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtEmail;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hiNewsImg;
         
         /// <summary>
-        /// txtQQ 控件。
+        /// txtContent 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtQQ;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtContent;
         
         /// <summary>
-        /// litRegTime 控件。
+        /// Tr1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litRegTime;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow Tr1;
         
         /// <summary>
-        /// litLastLoginTime 控件。
+        /// cbRecommend 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litLastLoginTime;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbRecommend;
         
         /// <summary>
-        /// litLastLoginIP 控件。
+        /// trAudit 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litLastLoginIP;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trAudit;
         
         /// <summary>
-        /// litTimes 控件。
+        /// rdStatusY 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litTimes;
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdStatusY;
         
         /// <summary>
-        /// chkLock 控件。
+        /// rdStatusN 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chkLock;
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdStatusN;
         
         /// <summary>
-        /// Button1 控件。
+        /// btnSave1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton Button1;
+        protected global::System.Web.UI.WebControls.Button btnSave1;
     }
 }

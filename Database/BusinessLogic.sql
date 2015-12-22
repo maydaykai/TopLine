@@ -21,6 +21,7 @@ CREATE TABLE [dbo].[Article](
 	[IsBot] [bit] NULL,
 	[Type] [varchar](50) NULL,
 	[Status] [smallint] NULL,
+	[AuditStatus] [smallint] NULL,
 	[CreateTime] [datetime] NULL,
 	[UpdateTime] [datetime] NULL,
  CONSTRAINT [PK_Article_1] PRIMARY KEY CLUSTERED 
@@ -41,7 +42,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'文章标题' , @l
 GO
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'文章内容' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'Content'
-GO
+GO	
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'图片' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'Imgs'
 GO
@@ -52,7 +53,10 @@ GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'类型：包括play、img、txt' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'Type'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'状态：1，添加成功；2，上传成功' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'Status'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'状态：1，添加成功；2，上传失败；3上传成功' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'Status'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'审核状态：0，初审中；1，初审失败；2，复审中；3，复审失败；4，复审成功' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'AuditStatus'
 GO
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'本地创建时间' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'CreateTime'
