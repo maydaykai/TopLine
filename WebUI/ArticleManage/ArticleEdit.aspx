@@ -149,7 +149,7 @@
                 <tr>
                     <td style="text-align: right; ">操作：</td>
                     <td style="text-align: left; padding-left: 5px;">
-                        <asp:Button ID="btnSave1" runat="server" Text="提交" CssClass="inputButton" OnClick="Btn_Click" />&nbsp;&nbsp;<input type="button" class="inputButton" value="返回" onclick="location.href = 'InformationManage.aspx?columnId=<%=ColumnId%>    ';" />
+                        <asp:Button runat="server" Text="提交" CssClass="inputButton" OnClick="Btn_Click" />&nbsp;&nbsp;<input type="button" class="inputButton" value="返回" onclick="location.href = 'InformationManage.aspx?columnId=<%=ColumnId%>    ';" />
                     </td>
                 </tr>
             </table>

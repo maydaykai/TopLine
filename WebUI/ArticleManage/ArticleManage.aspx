@@ -49,7 +49,12 @@
                 datatype: "json",
                 root: 'Rows',
                 datafields: [
-                    { name: 'title', type: 'string' }
+                    { name: 'Title', type: 'string' },
+                    { name: 'Content', type: 'string' },
+                    { name: 'IsHot', type: 'string' },
+                    { name: 'Type', type: 'string' },
+                    { name: 'StatusStr', type: 'string' },
+                    { name: 'Type', type: 'string' },
                 ],
                 pagesize: 20,
                 formatdata: function (data) {

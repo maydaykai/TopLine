@@ -7,6 +7,7 @@ using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
 using APICloud;
+using Bll;
 using Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -36,23 +37,8 @@ namespace WebUI.API
             //pagenum = pagenum + 1;
 
             int pageCount = 0;
-            //var fcmsUserbll = new UserBll();
-            //DataSet dsRoles = new RoleBll().GetRoleList();
-            //IList<ArticleModel> fcmsUserModelList = fcmsUserbll.GetFcmsUserList(filter, sortField, pagenum, pagesize, ref pageCount);
-            //var orders = (from fcmsUserModel in fcmsUserModelList
-            //              select new
-            //              {
-            //                  ID = fcmsUserModel.ID,
-            //                  UserName = fcmsUserModel.UserName,
-            //                  RealName = fcmsUserModel.RealName,
-            //                  AnotherName = fcmsUserModel.AnotherName,
-            //                  Mobile = fcmsUserModel.Mobile,
-            //                  RegTime = fcmsUserModel.RegTime,
-            //                  LastLoginTime = fcmsUserModel.LastLoginTime,
-            //                  IsLock = fcmsUserModel.IsLock,
-            //                  UpdateTime = fcmsUserModel.UpdateTime,
-            //                  RoleId = GetRoleName(dsRoles, fcmsUserModel.RoleId)
-            //              });
+            var dt = new ArticleBll().GetList("", sidx + sord, page, rows, ref pageCount);
+
             var jsonData = new
             {
                 TotalRows = pageCount,//记录数

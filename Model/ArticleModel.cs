@@ -52,11 +52,47 @@ namespace Model
         /// 状态：1，添加成功；2，上传失败；3上传成功
         /// </summary>
         public int Status { get; set; }
+        public string StatusStr
+        {
+            get
+            {
+                switch (Status)
+                {
+                    case 1:
+                        return "添加成功";
+                    case 2:
+                        return "上传失败";
+                    case 3:
+                        return "上传成功";
+                }
+                return "添加成功";
+            }
+        }
 
         /// <summary>
-        /// 审核状态：0，初审中；1，初审失败；2，复审中；3，复审失败；4，复审成功
+        /// 审核状态：0，初审中；1，初审不通过；2，复审中；3，复审不通过；4，复审成功
         /// </summary>
         public int AuditStatus { get; set; }
+        public string AuditStatusStr
+        {
+            get
+            {
+                switch (Status)
+                {
+                    case 0:
+                        return "初审中";
+                    case 1:
+                        return "复审中";
+                    case 2:
+                        return "初审不通过";
+                    case 3:
+                        return "复审不通过";
+                    case 4:
+                        return "复审通过";
+                }
+                return "初审中";
+            }
+        }
 
         /// <summary>
         /// 本地创建时间
