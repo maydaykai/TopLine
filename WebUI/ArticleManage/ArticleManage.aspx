@@ -25,6 +25,8 @@
     <link href="/js/jqwidgets-ver3.1.0/jqwidgets/styles/jqx.arctic.css" rel="stylesheet" />
     <link href="../css/global.css" rel="stylesheet" />
     <link href="../css/icon.css" rel="stylesheet" />
+    <script src="../js/lhgdialog/lhgdialog.min.js"></script>
+    <script src="../js/lhgdialog/ShowDialog.js"></script>
     <script type="text/javascript">
         $(function () {
             //主题
@@ -89,6 +91,17 @@
                 theme: theme,
                 source: dataadapter,
                 width: 980,
+                renderstatusbar: function (statusbar) {
+                    var container = $("<div style='overflow: hidden; position: relative; margin: 5px;'></div>");
+                    var addButton = $("<div style='float: left; margin-left: 5px; cursor:pointer;'><img style='position: relative; margin-top: 2px;' src='/js/jqwidgets-ver3.1.0/images/add.png'/><span style='margin-left: 4px; position: relative; top: -3px;'>增加</span></div>");
+                    container.append(addButton);
+                    statusbar.append(container);
+                    addButton.jqxButton({ width: 60, height: 20 });
+                    addButton.click(function (event) {
+                        window.location.href = "/ArticleManage/ArticleEdit.aspx?columnId=<%=ColumnId%>";
+                    });
+                },
+                showstatusbar: true,
                 sortable: true,
                 pageable: true,
                 autoheight: true,

@@ -1,7 +1,15 @@
 USE [TopLine]
 GO
 
-/****** Object:  Table [dbo].[Article]    Script Date: 12/22/2015 17:55:09 ******/
+/****** Object:  Table [dbo].[Article]    Script Date: 12/23/2015 23:39:02 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Article]') AND type in (N'U'))
+DROP TABLE [dbo].[Article]
+GO
+
+USE [TopLine]
+GO
+
+/****** Object:  Table [dbo].[Article]    Script Date: 12/23/2015 23:39:02 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -15,6 +23,7 @@ CREATE TABLE [dbo].[Article](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[OID] [varchar](50) NULL,
 	[Title] [nvarchar](100) NULL,
+	[Channel] [varchar](50) NULL,
 	[Content] [nvarchar](max) NULL,
 	[Imgs] [varchar](500) NULL,
 	[IsHot] [bit] NULL,
@@ -22,6 +31,8 @@ CREATE TABLE [dbo].[Article](
 	[Type] [varchar](50) NULL,
 	[Status] [smallint] NULL,
 	[AuditStatus] [smallint] NULL,
+	[AuditRecord] [nvarchar](100) NULL,
+	[PubTime] [datetime] NULL,
 	[CreateTime] [datetime] NULL,
 	[UpdateTime] [datetime] NULL,
  CONSTRAINT [PK_Article_1] PRIMARY KEY CLUSTERED 
@@ -41,13 +52,19 @@ GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Œƒ’¬±ÍÃ‚' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'Title'
 GO
 
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'À˘ Ù∆µµ¿' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'Channel'
+GO
+
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Œƒ’¬ƒ⁄»›' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'Content'
-GO	
+GO
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Õº∆¨' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'Imgs'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N' «∑Ò»»√≈' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'IsHot'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N' «∑ÒÕ∆ºˆ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'IsHot'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N' «∑Òæ´—°' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'IsBot'
 GO
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'¿‡–Õ£∫∞¸¿®play°¢img°¢txt' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'Type'
@@ -57,6 +74,12 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'◊¥Ã¨£∫1£¨ÃÌº”≥
 GO
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'…Û∫À◊¥Ã¨£∫0£¨≥ı…Û÷–£ª1£¨≥ı…Û ß∞‹£ª2£¨∏¥…Û÷–£ª3£¨∏¥…Û ß∞‹£ª4£¨∏¥…Û≥…π¶' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'AuditStatus'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'…Û∫Àº«¬º' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'AuditRecord'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'∑¢≤º ±º‰' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'PubTime'
 GO
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'±æµÿ¥¥Ω® ±º‰' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'CreateTime'
