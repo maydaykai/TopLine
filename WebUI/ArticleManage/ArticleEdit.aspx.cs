@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using APICloud;
+using Bll;
 using Common;
 using Model;
 using Newtonsoft.Json;
@@ -29,7 +30,7 @@ namespace WebUI.ArticleManage
         {
             var model = DataConstructor.Factory("channel");
             var data = model.Query();
-            List<ChannelModel> list = JsonConvert.DeserializeObject<List<ChannelModel>>(data);
+            var list = JsonConvert.DeserializeObject<List<ChannelModel>>(data);
             ckbChannelList.DataSource = list;
             ckbChannelList.DataValueField = "id";
             ckbChannelList.DataTextField = "title";
@@ -38,9 +39,12 @@ namespace WebUI.ArticleManage
         protected void Btn_Click(object sender, EventArgs e)
         {
             StringBuilder strxml = new StringBuilder();
-            if (string.IsNullOrEmpty(txtTitle.Value.Trim()))
+            var title = txtTitle.Value.Trim();
+            var content = txtContent.Value.Trim();
+            var channels = ckbChannelList.SelectedValue;
+            if (string.IsNullOrEmpty(title))
             {
-                ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入资讯标题','warning', '');", true);
+                ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入文章标题','warning', '');", true);
                 return;
             }
             if (string.IsNullOrEmpty(txtPubTime.Value.Trim()))
@@ -50,8 +54,33 @@ namespace WebUI.ArticleManage
             }
             if (string.IsNullOrEmpty(txtContent.Value.Trim()))
             {
-                ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入资讯正文','warning', '');", true);
+                ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入文章正文','warning', '');", true);
                 return;
+            }
+            var model = new ArticleModel
+            {
+                Title = title,
+                Content = Server.HtmlEncode(content),
+                Imgs = "",
+                IsHot = ckbHot.Checked,
+                IsBot = ckbBot.Checked,
+                Type = selArticleType.Value
+            };
+            var id = new ArticleBll().Add(model);
+            if (id > 0)
+            {
+                var pushData = new
+                {
+                    title,
+                    content = Server.HtmlEncode(content),
+                    imgs = "",
+                    rela_chan = channels,
+                    is_hot = ckbHot.Checked ? "1" : "0",
+                    is_bot = ckbBot.Checked ? "1" : "0",
+                };
+                var articleModel = DataConstructor.Factory("article");
+                var resultData = articleModel.Create(pushData);
+
             }
 //            if (_columnId == 138)
 //            {

@@ -1,4 +1,4 @@
-﻿﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ArticleEdit.aspx.cs" Inherits="WebUI.ArticleManage.ArticleEdit" %>
+﻿﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ArticleEdit.aspx.cs" Inherits="WebUI.ArticleManage.ArticleEdit" ValidateRequest="false" %>
 
 <!DOCTYPE html>
 
@@ -42,7 +42,6 @@
     </style>
     <script type="text/javascript">  
         $(function () {
-            //$("#<%=cbRecommend.ClientID%>").tzCheckbox({ labels: ['Enable', 'Disable'] });
             $(':checkbox').tzCheckbox({ labels: ['Enable', 'Disable'] });
             var editor;
             KindEditor.ready(function (K) {
@@ -95,6 +94,24 @@
                     </td>
                 </tr>
                 <tr>
+                    <td style="text-align: right">文章类型：</td>
+                    <td style="text-align: left; padding-left: 5px; padding-top:5px;">
+                        <div class="selectDiv">
+                            <span class="fl">
+                                <img src="/images/input_left.png" width="4" height="29" alt="" />
+                            </span>
+                            <select id="selArticleType" name="selArticleType" runat="server" class="fl">
+                                <option value="txt">文本</option>
+                                <option value="img">带图文本</option>
+                                <option value="play">视频</option>
+                            </select>
+                            <span class="fl" style="margin-left: -5px; cursor: pointer;">
+                                <img src="../images/select_right.png" width="31" height="29" alt="" id="img_selArticleType" />
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
                     <td style="text-align: right; ">文章所属栏目：</td>
                     <td style="text-align: left; padding-left: 5px;">
                         <asp:CheckBoxList ID="ckbChannelList" runat="server" RepeatDirection="Horizontal" BorderColor="White" RepeatLayout="Flow" CssClass="checkList">
@@ -134,10 +151,16 @@
                         <textarea id="txtContent" runat="server" style="width:700px;height:400px;" name="content"></textarea>
                     </td>
                 </tr>
-                <tr id="Tr1" runat="server">
-                    <td style="text-align: right; ">是否为推荐资讯：</td>
+                <tr runat="server">
+                    <td style="text-align: right; ">是否为推荐文章：</td>
                     <td style="text-align: left; padding-left: 5px;">
-                        <input type="checkbox" id="cbRecommend" runat="server" />
+                        <input type="checkbox" id="ckbHot" runat="server" />
+                    </td>
+                </tr>
+                <tr runat="server">
+                    <td style="text-align: right; ">是否为精选文章：</td>
+                    <td style="text-align: left; padding-left: 5px;">
+                        <input type="checkbox" id="ckbBot" runat="server" />
                     </td>
                 </tr>
                 <tr runat="server" id="trAudit" style="display:none">

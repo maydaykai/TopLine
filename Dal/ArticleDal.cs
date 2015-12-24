@@ -27,7 +27,7 @@ namespace Dal
             SqlParameter[] paras = {
 			            new SqlParameter("@AuditStatus", SqlDbType.SmallInt,2){Value = 0},
                         new SqlParameter("@CreateTime", SqlDbType.DateTime){Value = DateTime.Now},            
-                        new SqlParameter("@UpdateTime", SqlDbType.DateTime){Value = model.UpdateTime},         
+                        new SqlParameter("@UpdateTime", SqlDbType.DateTime){Value = DateTime.Now},         
                         new SqlParameter("@Title", SqlDbType.NVarChar,100){Value = model.Title},            
                         new SqlParameter("@Content", SqlDbType.NVarChar,-1){Value = model.Content},            
                         new SqlParameter("@Imgs", SqlDbType.VarChar,500){Value = model.Imgs},            

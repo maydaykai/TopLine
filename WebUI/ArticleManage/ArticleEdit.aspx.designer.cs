@@ -31,6 +31,15 @@ namespace WebUI.ArticleManage {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtTitle;
         
         /// <summary>
+        /// selArticleType 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect selArticleType;
+        
+        /// <summary>
         /// ckbChannelList 控件。
         /// </summary>
         /// <remarks>
@@ -76,22 +85,22 @@ namespace WebUI.ArticleManage {
         protected global::System.Web.UI.HtmlControls.HtmlTextArea txtContent;
         
         /// <summary>
-        /// Tr1 控件。
+        /// ckbHot 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableRow Tr1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox ckbHot;
         
         /// <summary>
-        /// cbRecommend 控件。
+        /// ckbBot 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbRecommend;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox ckbBot;
         
         /// <summary>
         /// trAudit 控件。
