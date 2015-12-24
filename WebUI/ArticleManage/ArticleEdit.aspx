@@ -42,22 +42,23 @@
     </style>
     <script type="text/javascript">  
         $(function () {
-            $("#<%=cbRecommend.ClientID%>").tzCheckbox({ labels: ['Enable', 'Disable'] });
+            //$("#<%=cbRecommend.ClientID%>").tzCheckbox({ labels: ['Enable', 'Disable'] });
+            $(':checkbox').tzCheckbox({ labels: ['Enable', 'Disable'] });
             var editor;
             KindEditor.ready(function (K) {
                 editor = K.create('#<%=txtContent.ClientID%>', {
                     cssPath: '/js/kindeditor-4.1.10/plugins/code/prettify.css',
                     uploadJson: '/js/kindeditor-4.1.10/asp.net/upload_json.ashx',
-                    items: [
-		                'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
-		                'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
-		                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
-		                'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
-		                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
-		                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',
-		                'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
-		                'anchor', 'link', 'unlink', '|', 'about'
-                    ],
+                    //items: [
+		            //    'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
+		            //    'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+		            //    'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+		            //    'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+		            //    'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+		            //    'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',
+		            //    'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+		            //    'anchor', 'link', 'unlink', '|', 'about'
+                    //],
                     afterCreate: function () {
                         var self = this;
                         K.ctrl(document, 13, function () {
@@ -94,9 +95,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align: right; ">文章栏目：</td>
+                    <td style="text-align: right; ">文章所属栏目：</td>
                     <td style="text-align: left; padding-left: 5px;">
-                        <asp:CheckBoxList ID="ckbRoleList" runat="server" RepeatDirection="Horizontal" BorderColor="White" RepeatLayout="Flow" CssClass="checkList">
+                        <asp:CheckBoxList ID="ckbChannelList" runat="server" RepeatDirection="Horizontal" BorderColor="White" RepeatLayout="Flow" CssClass="checkList">
                         </asp:CheckBoxList>
                     </td>
                 </tr>

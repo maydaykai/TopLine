@@ -32,7 +32,7 @@ namespace WebUI.API
 
         [OperationContract]
         [WebInvoke(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, Method = "GET")]
-        public string GetList(string sidx, string sord, int page, int rows, int memberID, string startDate, string endDate, string title)
+        public string GetList(string sidx, string sord, int page, int rows)
         {
             //pagenum = pagenum + 1;
 
@@ -42,9 +42,9 @@ namespace WebUI.API
             var jsonData = new
             {
                 TotalRows = pageCount,//记录数
-                Rows = ""//实体列表
+                Rows = JsonConvert.SerializeObject(dt)//实体列表
             };
-            return JsonConvert.SerializeObject(jsonData); ;
+            return JsonConvert.SerializeObject(jsonData);
         }
     }
 }

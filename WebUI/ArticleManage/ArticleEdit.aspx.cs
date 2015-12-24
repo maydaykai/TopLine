@@ -5,7 +5,10 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using APICloud;
 using Common;
+using Model;
+using Newtonsoft.Json;
 
 namespace WebUI.ArticleManage
 {
@@ -17,8 +20,21 @@ namespace WebUI.ArticleManage
         {
             _id = ConvertHelper.QueryString(Request, "id", 0);
             _columnId = ConvertHelper.QueryString(Request, "columnId", 0);
+            if (!IsPostBack)
+            {
+                InitChannel();
+            }
         }
-
+        private void InitChannel()
+        {
+            var model = DataConstructor.Factory("channel");
+            var data = model.Query();
+            List<ChannelModel> list = JsonConvert.DeserializeObject<List<ChannelModel>>(data);
+            ckbChannelList.DataSource = list;
+            ckbChannelList.DataValueField = "id";
+            ckbChannelList.DataTextField = "title";
+            ckbChannelList.DataBind();
+        }
         protected void Btn_Click(object sender, EventArgs e)
         {
             StringBuilder strxml = new StringBuilder();
