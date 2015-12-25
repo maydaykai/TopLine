@@ -10,6 +10,7 @@ using Bll;
 using Common;
 using Model;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace WebUI.ArticleManage
 {
@@ -61,6 +62,7 @@ namespace WebUI.ArticleManage
             {
                 Title = title,
                 Content = Server.HtmlEncode(content),
+                ChannelID = channels,
                 Imgs = "",
                 IsHot = ckbHot.Checked,
                 IsBot = ckbBot.Checked,
@@ -80,7 +82,8 @@ namespace WebUI.ArticleManage
                 };
                 var articleModel = DataConstructor.Factory("article");
                 var resultData = articleModel.Create(pushData);
-
+                var jObj = JObject.Parse(resultData);
+                model.OID = jObj["id"].ToString();
             }
 //            if (_columnId == 138)
 //            {

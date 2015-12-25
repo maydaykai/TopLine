@@ -17,11 +17,11 @@ namespace Dal
         /// </summary>
         public int Add(ArticleModel model)
         {
-            var strSql = new StringBuilder();
+            StringBuilder strSql = new StringBuilder();
             strSql.Append("INSERT INTO Article(");
-            strSql.Append("AuditStatus,CreateTime,UpdateTime,Title,Content,Imgs,IsHot,IsBot,Type,Status");
+            strSql.Append("Status,AuditStatus,CreateTime,UpdateTime,Title,Channel,Content,Imgs,IsHot,IsBot,Type");
             strSql.Append(") VALUES (");
-            strSql.Append("@AuditStatus,@CreateTime,@UpdateTime,@Title,@Content,@Imgs,@IsHot,@IsBot,@Type,@Status");
+            strSql.Append("@Status,@AuditStatus,@AuditRecord,@PubTime,@CreateTime,@UpdateTime,@OID,@Title,@Channel,@Content,@Imgs,@IsHot,@IsBot,@Type");
             strSql.Append(") ");
             strSql.Append(";SELECT @@IDENTITY");
             SqlParameter[] paras = {
@@ -29,7 +29,8 @@ namespace Dal
                         new SqlParameter("@CreateTime", SqlDbType.DateTime){Value = DateTime.Now},            
                         new SqlParameter("@UpdateTime", SqlDbType.DateTime){Value = DateTime.Now},         
                         new SqlParameter("@Title", SqlDbType.NVarChar,100){Value = model.Title},            
-                        new SqlParameter("@Content", SqlDbType.NVarChar,-1){Value = model.Content},            
+                        new SqlParameter("@Content", SqlDbType.NVarChar,-1){Value = model.Content},
+                        new SqlParameter("@Channel", SqlDbType.VarChar,50){Value= model.ChannelID},
                         new SqlParameter("@Imgs", SqlDbType.VarChar,500){Value = model.Imgs},            
                         new SqlParameter("@IsHot", SqlDbType.Bit,1){Value = model.IsHot},            
                         new SqlParameter("@IsBot", SqlDbType.Bit,1){Value = model.IsBot},            

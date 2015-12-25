@@ -32,17 +32,17 @@ namespace WebUI.API
 
         [OperationContract]
         [WebInvoke(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, Method = "GET")]
-        public string GetList(string sidx, string sord, int page, int rows)
+        public object GetList(string sortdatafield, string sortorder, int pagenum, int pagesize)
         {
-            //pagenum = pagenum + 1;
+            pagenum = pagenum + 1;
 
             int pageCount = 0;
-            var dt = new ArticleBll().GetList("", sidx + sord, page, rows, ref pageCount);
-
+            var dt = new ArticleBll().GetList("", sortdatafield + " " + sortorder, pagenum, pagesize, ref pageCount);
+            var str = "[{ID:3,Title:admin},{ID:4,Title:admin222}]";
             var jsonData = new
             {
                 TotalRows = pageCount,//记录数
-                Rows = JsonConvert.SerializeObject(dt)//实体列表
+                Rows = str//JsonConvert.SerializeObject(dt)//实体列表
             };
             return JsonConvert.SerializeObject(jsonData);
         }

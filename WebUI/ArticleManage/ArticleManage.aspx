@@ -49,26 +49,28 @@
                 url: '/API/Article.svc/GetList',
                 cache: false,
                 datatype: "json",
-                root: 'Rows',
+                root: "Rows",
                 datafields: [
+                    { name: 'ID', type: 'int' },
                     { name: 'Title', type: 'string' },
                     { name: 'Content', type: 'string' },
                     { name: 'IsHot', type: 'string' },
                     { name: 'Type', type: 'string' },
-                    { name: 'StatusStr', type: 'string' },
-                    { name: 'Type', type: 'string' },
+                    { name: 'StatusStr', type: 'string' }
                 ],
                 pagesize: 20,
                 formatdata: function (data) {
                     data.pagenum = data.pagenum || 0;
                     data.pagesize = data.pagesize || 20;
                     data.sortdatafield = data.sortdatafield || 'ID';
-                    data.sortorder = data.sortorder || 'desc';
+                    data.sortorder = data.sortorder || 'DESC';
                     formatedData = buildQueryString(data);
                     return formatedData;
                 },
                 sort: function () { $("#jqxgrid").jqxGrid('updatebounddata', 'sort'); },
-                beforeprocessing: function (data) { source.totalrecords = data.TotalRows; }
+                beforeprocessing: function (data) {
+                    source.totalrecords = JSON.parse(data.d).TotalRows;
+                }
             };
 
             //数据处理
@@ -76,6 +78,9 @@
                 contentType: "application/json; charset=utf-8",
                 loadError: function (xhr, status, error) {
                     alert(error);
+                },
+                beforeLoadComplete: function (records) {
+                    return JSON.parse(records.d).Rows;
                 }
             });
 
@@ -108,7 +113,7 @@
                 sorttogglestates: 1,
                 pagesizeoptions: ['10', '20', '30'],
                 columns: [
-                        { text: '<b>用户名</b>', dataField: 'title', width: 120, cellsalign: 'center', align: 'center' }
+                        { text: '<b>用户名</b>', dataField: 'ID', width: 120, cellsalign: 'center', align: 'center' }
                 ]
             });
 

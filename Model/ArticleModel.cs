@@ -24,6 +24,11 @@ namespace Model
         public string Title { get; set; }
 
         /// <summary>
+        /// 频道ID
+        /// </summary>
+        public string ChannelID { get; set; }
+
+        /// <summary>
         /// 文章内容
         /// </summary>
         public string Content { get; set; }
