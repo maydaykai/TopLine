@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.UI;
@@ -11,20 +13,39 @@ using Common;
 using Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using NPOI.SS.Formula.Functions;
 
 namespace WebUI.ArticleManage
 {
     public partial class ArticleEdit : BasePage
     {
         private int _id;
-        private int _columnId;
+        readonly ArticleBll _bll = new ArticleBll();
         protected void Page_Load(object sender, EventArgs e)
         {
             _id = ConvertHelper.QueryString(Request, "id", 0);
-            _columnId = ConvertHelper.QueryString(Request, "columnId", 0);
             if (!IsPostBack)
             {
                 InitChannel();
+                trAudit.Visible = false;
+                if (_id > 0)
+                {
+                    var model = _bll.GetModel(_id);
+                    txtTitle.Value = model.Title;
+                    selArticleType.Value = model.Type;
+                    ControlHelper.SetChecked(ckbChannelList, model.ChannelID);
+                    ckbChannelList.Enabled = false;
+                    txtPubTime.Value = model.PubTime.ToString("yyyy-MM-dd HH:mm:ss");
+                    txtContent.InnerHtml = model.Content;
+                    ckbHot.Checked = model.IsHot;
+                    ckbBot.Checked = model.IsBot;
+                    trAudit.Visible = true;
+                    switch (model.AuditStatus)
+                    {
+                        case 1: rdStatusY.Checked = true; break;
+                        case 2: rdStatusN.Checked = true; break;
+                    }
+                }
             }
         }
         private void InitChannel()
@@ -39,199 +60,132 @@ namespace WebUI.ArticleManage
         }
         protected void Btn_Click(object sender, EventArgs e)
         {
-            StringBuilder strxml = new StringBuilder();
-            var title = txtTitle.Value.Trim();
-            var content = txtContent.Value.Trim();
-            var channels = ckbChannelList.SelectedValue;
-            if (string.IsNullOrEmpty(title))
+            try
             {
-                ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入文章标题','warning', '');", true);
-                return;
-            }
-            if (string.IsNullOrEmpty(txtPubTime.Value.Trim()))
-            {
-                ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入发布时间','warning', '');", true);
-                return;
-            }
-            if (string.IsNullOrEmpty(txtContent.Value.Trim()))
-            {
-                ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入文章正文','warning', '');", true);
-                return;
-            }
-            var model = new ArticleModel
-            {
-                Title = title,
-                Content = Server.HtmlEncode(content),
-                ChannelID = channels,
-                Imgs = "",
-                IsHot = ckbHot.Checked,
-                IsBot = ckbBot.Checked,
-                Type = selArticleType.Value
-            };
-            var id = new ArticleBll().Add(model);
-            if (id > 0)
-            {
-                var pushData = new
+                var title = txtTitle.Value.Trim();
+                var content = txtContent.Value.Trim();
+                var channels = ControlHelper.GetCheckBoxList(ckbChannelList);
+                if (string.IsNullOrEmpty(title))
                 {
-                    title,
-                    content = Server.HtmlEncode(content),
-                    imgs = "",
-                    rela_chan = channels,
-                    is_hot = ckbHot.Checked ? "1" : "0",
-                    is_bot = ckbBot.Checked ? "1" : "0",
+                    ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入文章标题','warning', '');", true);
+                    return;
+                }
+                if (string.IsNullOrEmpty(txtPubTime.Value.Trim()))
+                {
+                    ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入发布时间','warning', '');", true);
+                    return;
+                }
+                if (string.IsNullOrEmpty(txtContent.Value.Trim()))
+                {
+                    ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入文章正文','warning', '');", true);
+                    return;
+                }
+                var model = new ArticleModel
+                {
+                    Title = title,
+                    Content = Server.HtmlEncode(content),
+                    ChannelID = channels,
+                    Imgs = "",
+                    IsHot = ckbHot.Checked,
+                    IsBot = ckbBot.Checked,
+                    Type = selArticleType.Value
                 };
-                var articleModel = DataConstructor.Factory("article");
-                var resultData = articleModel.Create(pushData);
-                var jObj = JObject.Parse(resultData);
-                model.OID = jObj["id"].ToString();
+                if (_id > 0)
+                {
+                    model.ID = _id;
+                    if (!rdStatusY.Checked && !rdStatusN.Checked)
+                    {
+                        ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请审核该文章','warning', '');",
+                            true);
+                        return;
+                    }
+                    var oldModel = _bll.GetModel(_id);
+
+                    var srcPath = HtmlHelper.GetHtmlImageUrlList(content);
+                    if (srcPath.Length > 0)
+                    {
+                        var uploadPath = DESStringHelper.EncryptString(_id.ToString());
+                        var localPath = ImageHelper.GetSaveImgNames(srcPath, uploadPath, 2);
+                        for (var i = 0; i < localPath.Length; i++)
+                        {
+                            model.Content = model.Content.Replace(srcPath[i], localPath[i]);
+                            model.Imgs += localPath[i] + ",";
+                        }
+                        model.Imgs = model.Imgs.Substring(0, model.Imgs.Length - 1);
+                    }
+
+
+                    model.AuditRecord = oldModel.AuditRecord;
+                    model.AuditStatus = rdStatusY.Checked ? 2 : 1;
+                    if (!string.IsNullOrEmpty(model.AuditRecord))
+                        model.AuditRecord += "|";
+                    var userName = new UserBll().GetModel(MemberId).UserName;
+                    var tipStr = new StringBuilder();
+                    if (oldModel.AuditStatus == 0) //审核
+                    {
+                        model.AuditRecord += (rdStatusY.Checked ? "审核通过—" : "审核不通过") + userName + "—" +
+                                             DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                        if (!_bll.Update(model))
+                        {
+                            tipStr.Append("审核失败；");
+                            ClientScript.RegisterClientScriptBlock(GetType(), "",
+                                "MessageAlert('" + tipStr + "','error', '');", true);
+                            return;
+                        }
+                        tipStr.Append("审核成功；");
+
+                        var pushData = new
+                        {
+                            title,
+                            content,
+                            type = model.Type,
+                            imgs = "",
+                            rela_chan = channels,
+                            is_hot = ckbHot.Checked ? "1" : "0",
+                            is_bot = ckbBot.Checked ? "1" : "0",
+                        };
+                        var articleModel = DataConstructor.Factory("article");
+                        var resultData = articleModel.Create(pushData);
+                        var jObj = JObject.Parse(resultData);
+                        if (jObj["id"] != null)
+                        {
+                            model.OID = jObj["id"].ToString();
+                            model.Status = 3;
+                            tipStr.Append("上传成功；");
+                        }
+                        else
+                        {
+                            model.OID = "";
+                            model.Status = 2;
+                            tipStr.Append("上传失败；");
+                        }
+                        _bll.Upload(model);
+                        ClientScript.RegisterClientScriptBlock(GetType(), "",
+                            jObj["id"] != null
+                                ? "MessageAlert('" + tipStr +
+                                  "','success', '/ArticleManage/ArticleManage.aspx?columnId=" +
+                                  ColumnId + "');"
+                                : "MessageAlert('" + tipStr + "','error', '');", true);
+                        return;
+                    }
+                    model.AuditRecord += "修改成功—" + userName + "—" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(GetType(), "",
+                        new ArticleBll().Add(model) > 0
+                            ? "MessageAlert('添加成功','success', '/ArticleManage/ArticleManage.aspx?columnId=" + ColumnId +
+                              "');"
+                            : "MessageAlert('添加失败','error', '');", true);
+                }
             }
-//            if (_columnId == 138)
-//            {
-//                //Convert.ToInt32(SelectMediaType.Value) <= 0
-//                if (string.IsNullOrEmpty(SelectMediaType.Value))
-//                {
-//
-//                    ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请先选择标题小类类别','warning', '');", true);
-//                    return;
-//                }
-//                //上传图片
-//                if (hiNewsImg_logo.Value.Length < 1)
-//                {
-//                    ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请上传媒体报道新闻的logo','warning', '');", true);
-//                    return;
-//                }
-//                if (txt_Author.Value.Length < 1)
-//                {
-//                    ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入作者','warning', '');", true);
-//                    return;
-//                }
-//                if (txt_Source.Value.Length < 1)
-//                {
-//                    ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入来源连接地址','warning', '');", true);
-//                    return;
-//                }
-//                //作者跟来源
-//
-//
-//                strxml.Append("<MediaTypeList><List");
-//                strxml.Append(" SourceUrl=\"" + txt_Source.Value + "\" Author=\"" + txt_Author.Value + "\"  Source=\"" + hie_source.Value + "\">");
-//                strxml.Append("</List> </MediaTypeList>");
-//
-//
-//            }
-//            //_columnId=媒体报道显示小类标题跟logo
-//
-//            var informationBll = new InformationBll();
-//
-//            //如果设为推荐
-//            if (cbRecommend.Checked && _columnId == 138)
-//            {
-//                informationBll.UpdateAllStatus(_columnId);
-//            }
-//
-//            if (_id > 0)
-//            {
-//
-//                if (!rdStatusY.Checked && !rdStatusN.Checked)
-//                {
-//                    ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请审核该资讯','warning', '');", true);
-//                    return;
-//                }
-//                var informationModel = informationBll.GetModel(_id);
-//
-//                //资讯图片
-//                if (hiNewsImg.Value.Trim().Length > 0)
-//                {
-//                    informationModel.NewsImage = hiNewsImg.Value.Trim();
-//
-//                }
-//                //
-//                informationModel.url = "";
-//                informationModel.ExtendedContent = strxml.ToString();
-//                informationModel.PubTime = DateTime.Parse(txtPubTime.Value.Trim());
-//                informationModel.Recommend = cbRecommend.Checked;
-//                informationModel.SectionID = int.Parse(selSections.Value.Trim());
-//                informationModel.Title = txtTitle.Value.Trim();
-//                informationModel.Content = Server.HtmlEncode(txtContent.Value);
-//                informationModel.UpdateTime = DateTime.Now;
-//
-//                informationModel.Image_value = Convert.ToInt32(hie_Image_value.Value.Length > 0 ? hie_Image_value.Value : "0");
-//                informationModel.SummaryCount = txt_SummaryCount.Value;
-//                if (!string.IsNullOrEmpty(SelectMediaType.Value))
-//                {
-//                    informationModel.MediaTypeId = Convert.ToInt32(SelectMediaType.Value);
-//                }
-//                else
-//                {
-//                    informationModel.MediaTypeId = 0;
-//                }
-//                int relust = 0;
-//                if (int.TryParse(txt_ShowDesc.Value, out relust))
-//                {
-//                    informationModel.ShowDesc = Convert.ToInt32(txt_ShowDesc.Value);
-//                }
-//                else
-//                {
-//                    informationModel.ShowDesc = 0;
-//                }
-//
-//                int status = 0;
-//                if (rdStatusY.Checked) status = 1;
-//                else if (rdStatusN.Checked) status = 2;
-//                else status = 0;
-//                informationModel.Status = status;
-//                ClientScript.RegisterClientScriptBlock(GetType(), "",
-//                                     informationBll.Update(informationModel)
-//                                         ? "MessageAlert('修改成功','success', '/Information/InformationManage.aspx?columnId=" + ColumnId + "');"
-//                                         : "MessageAlert('修改失败','error', '');", true);
-//                // 数据推送
-//                if (informationModel.Status == 1 && informationModel.SectionID == 32)
-//                {
-//                    var content = HtmlHelper.DeleteHtml(txtContent.Value);
-//                    new MobilePushBll().Add(new MobilePushModel { CreateTime = informationModel.PubTime, EventID = informationModel.ID, MessageType = 1, PushContent = content.Length >= 50 ? content.Substring(0, 51) : content, PushStatus = false, PushTitle = informationModel.Title, UpdateTime = DateTime.Now });
-//                }
-//            }
-//            else
-//            {
-//                int relust = 0;
-//                if (int.TryParse(txt_ShowDesc.Value, out relust))
-//                {
-//                    relust = Convert.ToInt32(txt_ShowDesc.Value);
-//                }
-//
-//                int SelectMediaTypeId = 0;
-//                int Image_value = 0;
-//                if (!string.IsNullOrEmpty(SelectMediaType.Value))
-//                {
-//                    SelectMediaTypeId = Convert.ToInt32(SelectMediaType.Value);
-//                }
-//                if (!string.IsNullOrEmpty(hie_Image_value.Value))
-//                {
-//                    Image_value = Convert.ToInt32(hie_Image_value.Value);
-//                }
-//
-//                var informationModel = new InformationModel
-//                {
-//                    Content = HtmlHelper.ReplaceHtml(txtContent.Value.Trim()),
-//                    SummaryCount = txt_SummaryCount.Value,
-//                    NewsImage = hiNewsImg.Value.Trim(),
-//                    PubTime = DateTime.Parse(txtPubTime.Value.Trim()),
-//                    Recommend = cbRecommend.Checked,
-//                    SectionID = int.Parse(selSections.Value),
-//                    Status = 0,
-//                    ShowDesc = relust,
-//                    Title = txtTitle.Value.Trim(),
-//                    MediaTypeId = SelectMediaTypeId,
-//                    Image_value = Image_value,
-//                    UpdateTime = DateTime.Now,
-//                    url = "",
-//                    ExtendedContent = strxml.ToString()
-//                };
-//                ClientScript.RegisterClientScriptBlock(GetType(), "",
-//                                      informationBll.Add(informationModel) > 0
-//                                          ? "MessageAlert('添加成功','success', '/Information/InformationManage.aspx?columnId=" + ColumnId + "');"
-//                                          : "MessageAlert('添加失败','error', '');", true);
-//            }
+            catch (Exception ex)
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "",
+                                "MessageAlert('服务器错误，请联系开发人员！','error', '');", true);
+                Log4NetHelper.WriteError(ex);
+            }
         }
     }
 }

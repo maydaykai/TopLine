@@ -75,7 +75,7 @@ namespace Model
         }
 
         /// <summary>
-        /// 审核状态：0，初审中；1，初审不通过；2，复审中；3，复审不通过；4，复审成功
+        /// 审核状态：0，审核中；1，审核不通过；2，审核通过；
         /// </summary>
         public int AuditStatus { get; set; }
         public string AuditStatusStr
@@ -85,19 +85,25 @@ namespace Model
                 switch (Status)
                 {
                     case 0:
-                        return "初审中";
+                        return "审核中";
                     case 1:
-                        return "复审中";
+                        return "审核不通过";
                     case 2:
-                        return "初审不通过";
-                    case 3:
-                        return "复审不通过";
-                    case 4:
-                        return "复审通过";
+                        return "审核通过";
                 }
-                return "初审中";
+                return "审核中";
             }
         }
+
+        /// <summary>
+        /// 审核记录
+        /// </summary>
+        public string AuditRecord { get; set; }
+
+        /// <summary>
+        /// 发布时间
+        /// </summary>
+        public DateTime PubTime { get; set; }
 
         /// <summary>
         /// 本地创建时间

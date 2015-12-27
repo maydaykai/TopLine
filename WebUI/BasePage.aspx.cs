@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Bll;
 using Common;
 
@@ -13,8 +8,50 @@ namespace WebUI
     {
         protected int MemberId;
         protected int ColumnId;
-        protected static string RightArray = string.Empty;
-        public bool RightSearch = false;//查询、查看权限
+
+        protected string RightArray
+        {
+            get
+            {
+                var roleRightBll = new RoleRightBll();
+                return "|" + roleRightBll.GetRightListByRoleIdAndCid(SessionHelper.Get("Role").ToString(), ColumnId) +"|";
+            }
+        }
+        public bool RightSearch//查询、查看权限
+        {
+            get
+            {
+                return RightArray.IndexOf("|1|", StringComparison.Ordinal) >= 0;
+            }
+        }
+        public bool RightAdd//添加权限
+        {
+            get
+            {
+                return RightArray.IndexOf("|2|", StringComparison.Ordinal) >= 0;
+            }
+        }
+        public bool RightEdit//修改权限
+        {
+            get
+            {
+                return RightArray.IndexOf("|3|", StringComparison.Ordinal) >= 0;
+            }
+        }
+        public bool RightDelete//删除权限
+        {
+            get
+            {
+                return RightArray.IndexOf("|4|", StringComparison.Ordinal) >= 0;
+            }
+        }
+        public bool RightAudit//审核权限
+        {
+            get
+            {
+                return RightArray.IndexOf("|7|", StringComparison.Ordinal) >= 0;
+            }
+        }
 
         protected override void OnLoad(EventArgs e)
         {
@@ -32,11 +69,6 @@ namespace WebUI
                     {
                         if (SessionHelper.Exists("Role"))
                         {
-                            var roleRightBll = new RoleRightBll();
-                            RightArray = roleRightBll.GetRightListByRoleIdAndCid(SessionHelper.Get("Role").ToString(), ColumnId);
-                            RightArray = "|" + RightArray + "|";
-
-                            RightSearch = RightArray.IndexOf("|1|", StringComparison.Ordinal) >= 0;
                             if (!RightSearch)//查看
                             {
                                 Response.Write("没有查看权限！");

@@ -90,9 +90,6 @@
     <Content Include="Basic\ColumnManage.aspx" />
     <Content Include="Basic\KindEditor.aspx" />
     <Content Include="Basic\ParameterConfiguration.aspx" />
-    <Content Include="Config\upload.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="css\ContractTemp.css" />
     <Content Include="css\table1.css" />
     <Content Include="images\chanage_pwd.png" />
@@ -1203,6 +1200,9 @@
     <Compile Include="Basic\ParameterConfiguration.aspx.designer.cs">
       <DependentUpon>ParameterConfiguration.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HanderAshx\ArticleManage\ArticleHandler.ashx.cs">
+      <DependentUpon>ArticleHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="HanderAshx\UserManage\RoleRightHandler.ashx.cs">
       <DependentUpon>RoleRightHandler.ashx</DependentUpon>
     </Compile>
@@ -1348,6 +1348,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </Content>
+    <Content Include="HanderAshx\ArticleManage\ArticleHandler.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

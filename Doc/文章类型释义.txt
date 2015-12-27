@@ -16,3 +16,130 @@ play：视频
   "is_hot": "1",
   "is_bot": "1"
 }
+
+<div class="recipe_De_imgBox" id="recipe_De_imgBox" style="margin:0px;padding:0px;text-align:center;color:#585858;font-family:'Hiragino Sans GB', STHeiti, 微软雅黑, 'Microsoft YaHei', Helvetica, Arial, serif;background:url(&quot;">
+	<a class="J_photo"><img src="http://i3.meishichina.com/attachment/recipe/2015/12/21/p800_2015122116z7k74zri4wp8rd.jpg" alt="香蕉梨饮的做法" /></a> 
+</div>
+<blockquote class="block_txt" id="block_txt" style="font-size:14px;color:#585858;font-family:'Hiragino Sans GB', STHeiti, 微软雅黑, 'Microsoft YaHei', Helvetica, Arial, serif;background-color:#FFFFFF;">
+	<div id="block_txt1" style="margin:0px;padding:0px;">
+		<span class="txt_tart" style="font-size:40px;font-family:宋体, 'Hiragino Sans GB', STHeiti, 微软雅黑, 'Microsoft YaHei';color:#BFBFBF;line-height:40px;">“</span>梨味甘微酸、性凉，入肺、胃经；具有生津、润燥、清热、化痰，解酒的作用；用于热病伤阴或阴虚所致的干咳、口渴、便秘等症，也可用于内热所致的烦渴、咳喘、痰黄等症。最近天气不正常，又不想吃药，所以就想到了梨，可是又不想直接吃，就出现了这个饮料，味道还不错值得一试。<span class="txt_end" style="font-size:40px;font-family:宋体, 'Hiragino Sans GB', STHeiti, 微软雅黑, 'Microsoft YaHei';color:#BFBFBF;line-height:40px;">”</span> 
+	</div>
+</blockquote>
+<div class="recipeCategory clear" style="margin:20px 0px;padding:0px;color:#333333;font-family:'Hiragino Sans GB', STHeiti, 微软雅黑, 'Microsoft YaHei', Helvetica, Arial, serif;background-color:#FFFFFF;">
+	<div class="recipeCategory_sub clear" style="margin:0px;padding:0px;background:#F4F4F4;">
+		<div class="recipeCategory_sub_L" style="margin:0px;padding:10px;font-size:14px;text-align:center;">
+			主料
+		</div>
+		<div class="recipeCategory_sub_R" style="margin:0px;padding:10px;background:#FFFFFF;">
+			<ul class="ingred1">
+				<li>
+					<span class="category_s1" style="font-size:14px;"><a target="_blank" href="http://www.meishichina.com/YuanLiao/Li/">梨</a>&nbsp;</span><span class="category_s2" style="color:#999999;">(半个)</span> 
+				</li>
+				<li>
+					<span class="category_s1" style="font-size:14px;"><a target="_blank" href="http://www.meishichina.com/YuanLiao/XiangJiao/">香蕉</a>&nbsp;</span><span class="category_s2" style="color:#999999;">(半根)</span> 
+				</li>
+				<li>
+					<span class="category_s1" style="font-size:14px;"><a target="_blank" href="http://www.meishichina.com/YuanLiao/NiuNai/">牛奶</a>&nbsp;</span><span class="category_s2" style="color:#999999;">(200g)</span> 
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="recipeCategory_sub clear" style="margin:0px;padding:0px;background:#F4F4F4;">
+		<div class="recipeCategory_sub_L" style="margin:0px;padding:10px;font-size:14px;text-align:center;">
+			辅料
+		</div>
+		<div class="recipeCategory_sub_R" style="margin:0px;padding:10px;background:#FFFFFF;">
+			<ul>
+				<li>
+					<span class="category_s1" style="font-size:14px;">无</span> 
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="recipeCategory_sub clear" style="margin:0px;padding:0px;background:#F4F4F4;">
+		<div class="recipeCategory_sub_L" style="margin:0px;padding:10px;font-size:14px;text-align:center;">
+			厨具
+		</div>
+		<div class="recipeCategory_sub_R" style="margin:0px;padding:10px;background:#FFFFFF;">
+			<div style="margin:0px;padding:1px 0px;font-size:14px;">
+				搅拌机
+			</div>
+		</div>
+	</div>
+	<div class="recipeCategory_sub clear" style="margin:0px;padding:0px;background:#F4F4F4;">
+		<div class="recipeCategory_sub_L" style="margin:0px;padding:10px;font-size:14px;text-align:center;">
+			分类
+		</div>
+		<div class="recipeCategory_sub_R" style="margin:0px;padding:10px;background:#FFFFFF;">
+			<div style="margin:0px;padding:1px 0px;font-size:14px;">
+				<a href="http://home.meishichina.com/recipe/yinpin/" target="_blank">饮品</a>&nbsp;<a href="http://home.meishichina.com/recipe-type-do-cuisine-view-10.html" target="_blank">甜味</a>&nbsp;<a href="http://home.meishichina.com/recipe-type-do-during-view-1.html" target="_blank">十分钟</a>&nbsp;<a href="http://home.meishichina.com/recipe-type-do-level-view-1.html" target="_blank">简单难度</a> 
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+&lt;div class=&quot;recipe_De_imgBox&quot; id=&quot;recipe_De_imgBox&quot; style=&quot;margin:0px;padding:0px;text-align:center;color:#585858;font-family:&#39;Hiragino Sans GB&#39;, STHeiti, 微软雅黑, &#39;Microsoft YaHei&#39;, Helvetica, Arial, serif;background:url(&amp;quot;&quot;&gt;   &lt;a class=&quot;J_photo&quot;&gt;&lt;img src=&quot;http://i3.meishichina.com/attachment/recipe/2015/12/21/p800_2015122116z7k74zri4wp8rd.jpg&quot; alt=&quot;香蕉梨饮的做法&quot; /&gt;&lt;/a&gt;   &lt;/div&gt;  &lt;blockquote class=&quot;block_txt&quot; id=&quot;block_txt&quot; style=&quot;font-size:14px;color:#585858;font-family:&#39;Hiragino Sans GB&#39;, STHeiti, 微软雅黑, &#39;Microsoft YaHei&#39;, Helvetica, Arial, serif;background-color:#FFFFFF;&quot;&gt;   &lt;div id=&quot;block_txt1&quot; style=&quot;margin:0px;padding:0px;&quot;&gt;    &lt;span class=&quot;txt_tart&quot; style=&quot;font-size:40px;font-family:宋体, &#39;Hiragino Sans GB&#39;, STHeiti, 微软雅黑, &#39;Microsoft YaHei&#39;;color:#BFBFBF;line-height:40px;&quot;&gt;“&lt;/span&gt;梨味甘微酸、性凉，入肺、胃经；具有生津、润燥、清热、化痰，解酒的作用；用于热病伤阴或阴虚所致的干咳、口渴、便秘等症，也可用于内热所致的烦渴、咳喘、痰黄等症。最近天气不正常，又不想吃药，所以就想到了梨，可是又不想直接吃，就出现了这个饮料，味道还不错值得一试。&lt;span class=&quot;txt_end&quot; style=&quot;font-size:40px;font-family:宋体, &#39;Hiragino Sans GB&#39;, STHeiti, 微软雅黑, &#39;Microsoft YaHei&#39;;color:#BFBFBF;line-height:40px;&quot;&gt;”&lt;/span&gt;    &lt;/div&gt;  &lt;/blockquote&gt;  &lt;div class=&quot;recipeCategory clear&quot; style=&quot;margin:20px 0px;padding:0px;color:#333333;font-family:&#39;Hiragino Sans GB&#39;, STHeiti, 微软雅黑, &#39;Microsoft YaHei&#39;, Helvetica, Arial, serif;background-color:#FFFFFF;&quot;&gt;   &lt;div class=&quot;recipeCategory_sub clear&quot; style=&quot;margin:0px;padding:0px;background:#F4F4F4;&quot;&gt;    &lt;div class=&quot;recipeCategory_sub_L&quot; style=&quot;margin:0px;padding:10px;font-size:14px;text-align:center;&quot;&gt;     主料    &lt;/div&gt;    &lt;div class=&quot;recipeCategory_sub_R&quot; style=&quot;margin:0px;padding:10px;background:#FFFFFF;&quot;&gt;     &lt;ul class=&quot;ingred1&quot;&gt;      &lt;li&gt;       &lt;span class=&quot;category_s1&quot; style=&quot;font-size:14px;&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://www.meishichina.com/YuanLiao/Li/&quot;&gt;梨&lt;/a&gt;&amp;nbsp;&lt;/span&gt;&lt;span class=&quot;category_s2&quot; style=&quot;color:#999999;&quot;&gt;(半个)&lt;/span&gt;       &lt;/li&gt;      &lt;li&gt;       &lt;span class=&quot;category_s1&quot; style=&quot;font-size:14px;&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://www.meishichina.com/YuanLiao/XiangJiao/&quot;&gt;香蕉&lt;/a&gt;&amp;nbsp;&lt;/span&gt;&lt;span class=&quot;category_s2&quot; style=&quot;color:#999999;&quot;&gt;(半根)&lt;/span&gt;       &lt;/li&gt;      &lt;li&gt;       &lt;span class=&quot;category_s1&quot; style=&quot;font-size:14px;&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://www.meishichina.com/YuanLiao/NiuNai/&quot;&gt;牛奶&lt;/a&gt;&amp;nbsp;&lt;/span&gt;&lt;span class=&quot;category_s2&quot; style=&quot;color:#999999;&quot;&gt;(200g)&lt;/span&gt;       &lt;/li&gt;     &lt;/ul&gt;    &lt;/div&gt;   &lt;/div&gt;   &lt;div class=&quot;recipeCategory_sub clear&quot; style=&quot;margin:0px;padding:0px;background:#F4F4F4;&quot;&gt;    &lt;div class=&quot;recipeCategory_sub_L&quot; style=&quot;margin:0px;padding:10px;font-size:14px;text-align:center;&quot;&gt;     辅料    &lt;/div&gt;    &lt;div class=&quot;recipeCategory_sub_R&quot; style=&quot;margin:0px;padding:10px;background:#FFFFFF;&quot;&gt;     &lt;ul&gt;      &lt;li&gt;       &lt;span class=&quot;category_s1&quot; style=&quot;font-size:14px;&quot;&gt;无&lt;/span&gt;       &lt;/li&gt;     &lt;/ul&gt;    &lt;/div&gt;   &lt;/div&gt;   &lt;div class=&quot;recipeCategory_sub clear&quot; style=&quot;margin:0px;padding:0px;background:#F4F4F4;&quot;&gt;    &lt;div class=&quot;recipeCategory_sub_L&quot; style=&quot;margin:0px;padding:10px;font-size:14px;text-align:center;&quot;&gt;     厨具    &lt;/div&gt;    &lt;div class=&quot;recipeCategory_sub_R&quot; style=&quot;margin:0px;padding:10px;background:#FFFFFF;&quot;&gt;     &lt;div style=&quot;margin:0px;padding:1px 0px;font-size:14px;&quot;&gt;      搅拌机     &lt;/div&gt;    &lt;/div&gt;   &lt;/div&gt;   &lt;div class=&quot;recipeCategory_sub clear&quot; style=&quot;margin:0px;padding:0px;background:#F4F4F4;&quot;&gt;    &lt;div class=&quot;recipeCategory_sub_L&quot; style=&quot;margin:0px;padding:10px;font-size:14px;text-align:center;&quot;&gt;     分类    &lt;/div&gt;    &lt;div class=&quot;recipeCategory_sub_R&quot; style=&quot;margin:0px;padding:10px;background:#FFFFFF;&quot;&gt;     &lt;div style=&quot;margin:0px;padding:1px 0px;font-size:14px;&quot;&gt;      &lt;a href=&quot;http://home.meishichina.com/recipe/yinpin/&quot; target=&quot;_blank&quot;&gt;饮品&lt;/a&gt;&amp;nbsp;&lt;a href=&quot;http://home.meishichina.com/recipe-type-do-cuisine-view-10.html&quot; target=&quot;_blank&quot;&gt;甜味&lt;/a&gt;&amp;nbsp;&lt;a href=&quot;http://home.meishichina.com/recipe-type-do-during-view-1.html&quot; target=&quot;_blank&quot;&gt;十分钟&lt;/a&gt;&amp;nbsp;&lt;a href=&quot;http://home.meishichina.com/recipe-type-do-level-view-1.html&quot; target=&quot;_blank&quot;&gt;简单难度&lt;/a&gt;      &lt;/div&gt;    &lt;/div&gt;   &lt;/div&gt;  &lt;/div&gt;
+
+
+&lt;div class=&quot;recipe_De_imgBox&quot; id=&quot;recipe_De_imgBox&quot; style=&quot;margin:0px;padding:0px;text-align:center;color:#585858;font-family:&#39;Hiragino Sans GB&#39;, STHeiti, 微软雅黑, &#39;Microsoft YaHei&#39;, Helvetica, Arial, serif;background:url(&amp;quot;&quot;&gt;
+	&lt;a class=&quot;J_photo&quot;&gt;&lt;img src=&quot;http://i3.meishichina.com/attachment/recipe/2015/12/21/p800_2015122116z7k74zri4wp8rd.jpg&quot; alt=&quot;香蕉梨饮的做法&quot; /&gt;&lt;/a&gt; 
+&lt;/div&gt;
+&lt;blockquote class=&quot;block_txt&quot; id=&quot;block_txt&quot; style=&quot;font-size:14px;color:#585858;font-family:&#39;Hiragino Sans GB&#39;, STHeiti, 微软雅黑, &#39;Microsoft YaHei&#39;, Helvetica, Arial, serif;background-color:#FFFFFF;&quot;&gt;
+	&lt;div id=&quot;block_txt1&quot; style=&quot;margin:0px;padding:0px;&quot;&gt;
+		&lt;span class=&quot;txt_tart&quot; style=&quot;font-size:40px;font-family:宋体, &#39;Hiragino Sans GB&#39;, STHeiti, 微软雅黑, &#39;Microsoft YaHei&#39;;color:#BFBFBF;line-height:40px;&quot;&gt;“&lt;/span&gt;梨味甘微酸、性凉，入肺、胃经；具有生津、润燥、清热、化痰，解酒的作用；用于热病伤阴或阴虚所致的干咳、口渴、便秘等症，也可用于内热所致的烦渴、咳喘、痰黄等症。最近天气不正常，又不想吃药，所以就想到了梨，可是又不想直接吃，就出现了这个饮料，味道还不错值得一试。&lt;span class=&quot;txt_end&quot; style=&quot;font-size:40px;font-family:宋体, &#39;Hiragino Sans GB&#39;, STHeiti, 微软雅黑, &#39;Microsoft YaHei&#39;;color:#BFBFBF;line-height:40px;&quot;&gt;”&lt;/span&gt; 
+	&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;div class=&quot;recipeCategory clear&quot; style=&quot;margin:20px 0px;padding:0px;color:#333333;font-family:&#39;Hiragino Sans GB&#39;, STHeiti, 微软雅黑, &#39;Microsoft YaHei&#39;, Helvetica, Arial, serif;background-color:#FFFFFF;&quot;&gt;
+	&lt;div class=&quot;recipeCategory_sub clear&quot; style=&quot;margin:0px;padding:0px;background:#F4F4F4;&quot;&gt;
+		&lt;div class=&quot;recipeCategory_sub_L&quot; style=&quot;margin:0px;padding:10px;font-size:14px;text-align:center;&quot;&gt;
+			主料
+		&lt;/div&gt;
+		&lt;div class=&quot;recipeCategory_sub_R&quot; style=&quot;margin:0px;padding:10px;background:#FFFFFF;&quot;&gt;
+			&lt;ul class=&quot;ingred1&quot;&gt;
+				&lt;li&gt;
+					&lt;span class=&quot;category_s1&quot; style=&quot;font-size:14px;&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://www.meishichina.com/YuanLiao/Li/&quot;&gt;梨&lt;/a&gt;&amp;nbsp;&lt;/span&gt;&lt;span class=&quot;category_s2&quot; style=&quot;color:#999999;&quot;&gt;(半个)&lt;/span&gt; 
+				&lt;/li&gt;
+				&lt;li&gt;
+					&lt;span class=&quot;category_s1&quot; style=&quot;font-size:14px;&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://www.meishichina.com/YuanLiao/XiangJiao/&quot;&gt;香蕉&lt;/a&gt;&amp;nbsp;&lt;/span&gt;&lt;span class=&quot;category_s2&quot; style=&quot;color:#999999;&quot;&gt;(半根)&lt;/span&gt; 
+				&lt;/li&gt;
+				&lt;li&gt;
+					&lt;span class=&quot;category_s1&quot; style=&quot;font-size:14px;&quot;&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://www.meishichina.com/YuanLiao/NiuNai/&quot;&gt;牛奶&lt;/a&gt;&amp;nbsp;&lt;/span&gt;&lt;span class=&quot;category_s2&quot; style=&quot;color:#999999;&quot;&gt;(200g)&lt;/span&gt; 
+				&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;recipeCategory_sub clear&quot; style=&quot;margin:0px;padding:0px;background:#F4F4F4;&quot;&gt;
+		&lt;div class=&quot;recipeCategory_sub_L&quot; style=&quot;margin:0px;padding:10px;font-size:14px;text-align:center;&quot;&gt;
+			辅料
+		&lt;/div&gt;
+		&lt;div class=&quot;recipeCategory_sub_R&quot; style=&quot;margin:0px;padding:10px;background:#FFFFFF;&quot;&gt;
+			&lt;ul&gt;
+				&lt;li&gt;
+					&lt;span class=&quot;category_s1&quot; style=&quot;font-size:14px;&quot;&gt;无&lt;/span&gt; 
+				&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;recipeCategory_sub clear&quot; style=&quot;margin:0px;padding:0px;background:#F4F4F4;&quot;&gt;
+		&lt;div class=&quot;recipeCategory_sub_L&quot; style=&quot;margin:0px;padding:10px;font-size:14px;text-align:center;&quot;&gt;
+			厨具
+		&lt;/div&gt;
+		&lt;div class=&quot;recipeCategory_sub_R&quot; style=&quot;margin:0px;padding:10px;background:#FFFFFF;&quot;&gt;
+			&lt;div style=&quot;margin:0px;padding:1px 0px;font-size:14px;&quot;&gt;
+				搅拌机
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;recipeCategory_sub clear&quot; style=&quot;margin:0px;padding:0px;background:#F4F4F4;&quot;&gt;
+		&lt;div class=&quot;recipeCategory_sub_L&quot; style=&quot;margin:0px;padding:10px;font-size:14px;text-align:center;&quot;&gt;
+			分类
+		&lt;/div&gt;
+		&lt;div class=&quot;recipeCategory_sub_R&quot; style=&quot;margin:0px;padding:10px;background:#FFFFFF;&quot;&gt;
+			&lt;div style=&quot;margin:0px;padding:1px 0px;font-size:14px;&quot;&gt;
+				&lt;a href=&quot;http://home.meishichina.com/recipe/yinpin/&quot; target=&quot;_blank&quot;&gt;饮品&lt;/a&gt;&amp;nbsp;&lt;a href=&quot;http://home.meishichina.com/recipe-type-do-cuisine-view-10.html&quot; target=&quot;_blank&quot;&gt;甜味&lt;/a&gt;&amp;nbsp;&lt;a href=&quot;http://home.meishichina.com/recipe-type-do-during-view-1.html&quot; target=&quot;_blank&quot;&gt;十分钟&lt;/a&gt;&amp;nbsp;&lt;a href=&quot;http://home.meishichina.com/recipe-type-do-level-view-1.html&quot; target=&quot;_blank&quot;&gt;简单难度&lt;/a&gt; 
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;

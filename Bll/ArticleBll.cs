@@ -19,6 +19,31 @@ namespace Bll
         {
             return _dal.Add(model);
         }
+
+        /// <summary>
+        /// 更新一条数据
+        /// </summary>
+        public bool Update(ArticleModel model)
+        {
+            return _dal.Update(model);
+        }
+
+        /// <summary>
+        /// 上传成功
+        /// </summary>
+        public bool Upload(ArticleModel model)
+        {
+            return _dal.Upload(model);
+        }
+
+        /// <summary>
+        /// 得到一个对象实体
+        /// </summary>
+        public ArticleModel GetModel(int id)
+        {
+            return _dal.GetModel(id);
+        }
+
         /// <summary>
         /// 获取数据列表
         /// </summary>

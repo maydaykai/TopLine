@@ -68,6 +68,7 @@
     <Compile Include="ExcelHelper.cs" />
     <Compile Include="FeeType.cs" />
     <Compile Include="HtmlHelper.cs" />
+    <Compile Include="ImageHelper.cs" />
     <Compile Include="ImageWatermark.cs" />
     <Compile Include="JsonHelper.cs" />
     <Compile Include="Log4NetHelper.cs" />

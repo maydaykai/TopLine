@@ -53,6 +53,13 @@ namespace Common
             {
                 return "";
             }
-        }     
+        }
+    }
+    public static class CommonHelper
+    {
+        public static string GetSubString(this string str, int startIndex, int length)
+        {
+            return str.Substring(startIndex, str.Length > length ? length : str.Length);
+        }
     }
 }

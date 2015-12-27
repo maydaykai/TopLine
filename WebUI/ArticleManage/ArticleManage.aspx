@@ -46,17 +46,16 @@
 
             //数据源
             var source = {
-                url: '/API/Article.svc/GetList',
+                url: '/HanderAshx/ArticleManage/ArticleHandler.ashx',
                 cache: false,
                 datatype: "json",
                 root: "Rows",
                 datafields: [
-                    { name: 'ID', type: 'int' },
+                    { name: 'ID', type: 'string' },
                     { name: 'Title', type: 'string' },
                     { name: 'Content', type: 'string' },
-                    { name: 'IsHot', type: 'string' },
-                    { name: 'Type', type: 'string' },
-                    { name: 'StatusStr', type: 'string' }
+                    { name: 'IsHot', type: 'bool' },
+                    { name: 'Type', type: 'string' }
                 ],
                 pagesize: 20,
                 formatdata: function (data) {
@@ -68,9 +67,7 @@
                     return formatedData;
                 },
                 sort: function () { $("#jqxgrid").jqxGrid('updatebounddata', 'sort'); },
-                beforeprocessing: function (data) {
-                    source.totalrecords = JSON.parse(data.d).TotalRows;
-                }
+                beforeprocessing: function (data) { source.totalrecords = data.TotalRows; }
             };
 
             //数据处理
@@ -78,24 +75,48 @@
                 contentType: "application/json; charset=utf-8",
                 loadError: function (xhr, status, error) {
                     alert(error);
-                },
-                beforeLoadComplete: function (records) {
-                    return JSON.parse(records.d).Rows;
                 }
             });
 
             var linkrenderer = function (row, column, value) {
                 var parm = column + "=" + value + "&columnId=<%=ColumnId%>";
-                var link = "<a href='UserEdit.aspx?" + parm + "'  target='_self' style='margin-left:10px;height:25px;line-height:25px;'>修改</a>";
+                var link = "<a href='ArticleEdit.aspx?" + parm + "'  target='_self' style='margin-left:10px;height:25px;line-height:25px;'>修改</a>";
                 var html = $.jqx.dataFormat.formatlink(link);
                 return html;
+            };
+
+            var isHotrenderer = function (row, column, value) {
+                var strHtml = '<div style="text-overflow: ellipsis; overflow: hidden; padding-bottom: 2px; text-align: center; margin-top: 5px;">';
+                if (value) {
+                    strHtml += "是";
+                } else {
+                    strHtml += "否";
+                }
+                strHtml += "</div>";
+                return strHtml;
+            };
+            
+            var typerenderer = function (row, column, value) {
+                var strHtml = '<div style="text-overflow: ellipsis; overflow: hidden; padding-bottom: 2px; text-align: center; margin-top: 5px;">';
+                if (value == "txt") {
+                    strHtml += "文本";
+                } else if (value == "img") {
+                    strHtml += "图文";
+                } else {
+                    strHtml += "视频";
+                }
+                strHtml += "</div>";
+                return strHtml;
             };
 
             //数据绑定
             $("#jqxgrid").jqxGrid({
                 theme: theme,
                 source: dataadapter,
-                width: 980,
+                width: 1580,
+                rendergridrows: function (args) {
+                    return args.data;
+                },
                 renderstatusbar: function (statusbar) {
                     var container = $("<div style='overflow: hidden; position: relative; margin: 5px;'></div>");
                     var addButton = $("<div style='float: left; margin-left: 5px; cursor:pointer;'><img style='position: relative; margin-top: 2px;' src='/js/jqwidgets-ver3.1.0/images/add.png'/><span style='margin-left: 4px; position: relative; top: -3px;'>增加</span></div>");
@@ -110,10 +131,15 @@
                 sortable: true,
                 pageable: true,
                 autoheight: true,
+                virtualmode: true,  
                 sorttogglestates: 1,
                 pagesizeoptions: ['10', '20', '30'],
                 columns: [
-                        { text: '<b>用户名</b>', dataField: 'ID', width: 120, cellsalign: 'center', align: 'center' }
+                        { text: '<b>操作</b>', dataField: 'ID', width: 80, cellsalign: 'center', align: 'center', cellsrenderer: linkrenderer },
+                        { text: '<b>文章标题</b>', dataField: 'Title', width: 250, cellsalign: 'center', align: 'center' },
+                        { text: '<b>文章类型</b>', dataField: 'Type', width: 120, cellsalign: 'center', align: 'center', cellsrenderer: typerenderer },
+                        { text: '<b>文章内容</b>', dataField: 'Content', width: 500, cellsalign: 'center', align: 'center' },
+                        { text: '<b>是否推荐</b>', dataField: 'IsHot', width: 120, cellsalign: 'center', align: 'center', cellsrenderer: isHotrenderer }
                 ]
             });
 

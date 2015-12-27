@@ -1,7 +1,7 @@
 USE [TopLine]
 GO
 
-/****** Object:  Table [dbo].[Article]    Script Date: 12/23/2015 23:39:02 ******/
+/****** Object:  Table [dbo].[Article]    Script Date: 12/27/2015 23:48:10 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Article]') AND type in (N'U'))
 DROP TABLE [dbo].[Article]
 GO
@@ -9,7 +9,7 @@ GO
 USE [TopLine]
 GO
 
-/****** Object:  Table [dbo].[Article]    Script Date: 12/23/2015 23:39:02 ******/
+/****** Object:  Table [dbo].[Article]    Script Date: 12/27/2015 23:48:10 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -23,7 +23,7 @@ CREATE TABLE [dbo].[Article](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[OID] [varchar](50) NULL,
 	[Title] [nvarchar](100) NULL,
-	[Channel] [varchar](50) NULL,
+	[ChannelID] [varchar](500) NULL,
 	[Content] [nvarchar](max) NULL,
 	[Imgs] [varchar](500) NULL,
 	[IsHot] [bit] NULL,
@@ -52,7 +52,7 @@ GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'文章标题' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'Title'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'所属频道' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'Channel'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'所属频道' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'ChannelID'
 GO
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'文章内容' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'Content'
@@ -73,7 +73,7 @@ GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'状态：1，添加成功；2，上传失败；3上传成功' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'Status'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'审核状态：0，初审中；1，初审失败；2，复审中；3，复审失败；4，复审成功' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'AuditStatus'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'审核状态：0，审核中；1，审核失败；2，审核成功' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'AuditStatus'
 GO
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'审核记录' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Article', @level2type=N'COLUMN',@level2name=N'AuditRecord'

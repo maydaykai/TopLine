@@ -48,16 +48,6 @@
                 editor = K.create('#<%=txtContent.ClientID%>', {
                     cssPath: '/js/kindeditor-4.1.10/plugins/code/prettify.css',
                     uploadJson: '/js/kindeditor-4.1.10/asp.net/upload_json.ashx',
-                    //items: [
-		            //    'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
-		            //    'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
-		            //    'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
-		            //    'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
-		            //    'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
-		            //    'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',
-		            //    'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
-		            //    'anchor', 'link', 'unlink', '|', 'about'
-                    //],
                     afterCreate: function () {
                         var self = this;
                         K.ctrl(document, 13, function () {
@@ -133,19 +123,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align: right; ">资讯图片：</td>
-                    <td style="text-align: left; padding-left: 5px;">
-                        <table class="noBorderTable">
-                            <tr>
-                                <td> <img class="fl imgS" src="../images/news_con_title.png" style="margin:3px 3px 6px 0px; display:inline-block;" id="imgNewsImg" runat="server" /></td>
-                            </tr>
-                            <tr>
-                                <td><div id="btnUpload" style="text-align:center;" class="fl inputButton"><span></span></div><div id="uploadTip" style=" margin-top:10px; margin-left:10px;" class="fl">请选择文件</div><input type="hidden" id="hiNewsImg" runat="server" /></td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
                     <td style="text-align: right; ">资讯正文：</td>
                     <td style="text-align: left; padding-left: 5px;">
                         <textarea id="txtContent" runat="server" style="width:700px;height:400px;" name="content"></textarea>
@@ -163,67 +140,21 @@
                         <input type="checkbox" id="ckbBot" runat="server" />
                     </td>
                 </tr>
-                <tr runat="server" id="trAudit" style="display:none">
+                <tr runat="server" id="trAudit">
                     <td style="text-align: right; ">审核状态：</td>
                     <td style="text-align: left; padding-left: 5px;">
-                        <input type="radio" value="1" id="rdStatusY" runat="server" name="status" />审核通过
-                        <input type="radio" value="2" id="rdStatusN" runat="server" name="status" />审核不通过
+                        <label><input type="radio" value="1" id="rdStatusY" runat="server" name="status" />审核通过</label>
+                        <label><input type="radio" value="2" id="rdStatusN" runat="server" name="status" />审核不通过</label>
                     </td>
                 </tr>
                 <tr>
                     <td style="text-align: right; ">操作：</td>
                     <td style="text-align: left; padding-left: 5px;">
-                        <asp:Button runat="server" Text="提交" CssClass="inputButton" OnClick="Btn_Click" />&nbsp;&nbsp;<input type="button" class="inputButton" value="返回" onclick="location.href = 'InformationManage.aspx?columnId=<%=ColumnId%>    ';" />
+                        <asp:Button runat="server" Text="提交" CssClass="inputButton" OnClick="Btn_Click" />&nbsp;&nbsp;<input type="button" class="inputButton" value="返回" onclick="location.href = 'ArticleManage.aspx?columnId=<%=ColumnId%>';" />
                     </td>
                 </tr>
             </table>
         </div>
     </form>
-    <script type="text/javascript">
-        // 设置上传配置
-        $.jUploader.setDefaults({
-            cancelable: true,
-            allowedExtensions: ['jpg', 'png', 'gif','jpeg'],
-            messages: {
-                upload: '上传',
-                cancel: '取消',
-                emptyFile: "{file} 为空，请选择一个文件.",
-                invalidExtension: "{file} 后缀名不合法. 只有 {extensions} 是允许的.",
-                onLeave: "文件正在上传，如果你现在离开，上传将会被取消。"
-            }
-        });
-
-        $.jUploader({
-            button: 'btnUpload', // 这里设置按钮id
-            action: '/js/kindeditor-4.1.10/asp.net/upload_json.ashx', // 这里设置上传处理接口
-
-            // 开始上传事件
-            onUpload: function (fileName) {
-                $('#uploadTip').text('正在上传 ' + fileName + ' ...');
-            },
-
-            // 上传完成事件
-            onComplete: function (fileName, response) {
-                if (response.error == "0" || response.error == 0) {
-                    $('#<%=imgNewsImg.ClientID%>').attr('src', response.url);
-                    $('#<%=hiNewsImg.ClientID%>').val(response.fileName);
-                    $('#uploadTip').text(fileName + ' 上传成功');
-                } else {
-                    $('#uploadTip').text('上传失败');
-                }
-            },
-
-            // 取消上传事件
-            onCancel: function (fileName) {
-                $('#uploadTip').text(fileName + ' 上传取消');
-            },
-
-            // 系统信息显示
-            showMessage: function (message) {
-                $('#uploadTip').text(message);
-            }
-        });
-
-    </script>
 </body>
 </html>
