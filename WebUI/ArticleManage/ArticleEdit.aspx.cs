@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -45,6 +46,8 @@ namespace WebUI.ArticleManage
                         case 1: rdStatusY.Checked = true; break;
                         case 2: rdStatusN.Checked = true; break;
                     }
+                    if (model.AuditStatus > 0)
+                        rdStatusY.Disabled = rdStatusN.Disabled = true;
                 }
             }
         }
@@ -64,10 +67,15 @@ namespace WebUI.ArticleManage
             {
                 var title = txtTitle.Value.Trim();
                 var content = txtContent.Value.Trim();
-                var channels = ControlHelper.GetCheckBoxList(ckbChannelList);
+                var channelId = ControlHelper.GetCheckBoxList(ckbChannelList);
                 if (string.IsNullOrEmpty(title))
                 {
                     ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入文章标题','warning', '');", true);
+                    return;
+                }
+                if (string.IsNullOrEmpty(channelId))
+                {
+                    ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请选择频道','warning', '');", true);
                     return;
                 }
                 if (string.IsNullOrEmpty(txtPubTime.Value.Trim()))
@@ -75,7 +83,7 @@ namespace WebUI.ArticleManage
                     ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入发布时间','warning', '');", true);
                     return;
                 }
-                if (string.IsNullOrEmpty(txtContent.Value.Trim()))
+                if (string.IsNullOrEmpty(content))
                 {
                     ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入文章正文','warning', '');", true);
                     return;
@@ -84,12 +92,47 @@ namespace WebUI.ArticleManage
                 {
                     Title = title,
                     Content = Server.HtmlEncode(content),
-                    ChannelID = channels,
+                    ChannelID = channelId,
                     Imgs = "",
                     IsHot = ckbHot.Checked,
                     IsBot = ckbBot.Checked,
                     Type = selArticleType.Value
                 };
+
+                var srcPath = HtmlHelper.GetHtmlImageUrlList(content);
+                ArrayList arrayList = new ArrayList();//srcPath中的网络地址
+                ArrayList localArrayList = new ArrayList();//srcPath中的本地地址
+                if (srcPath.Length > 0)
+                {
+                    foreach (string str in srcPath)
+                    {
+                        if(ConfigHelper.ImgVirtualPath.IndexOf(str) == -1)
+                            arrayList.Add(str);
+                        else
+                            localArrayList.Add(str);
+                    }
+                    var uploadPath = DESStringHelper.EncryptString(_id.ToString());
+                    if (localArrayList.Count > 0)
+                    {
+                        foreach (object str in localArrayList)
+                        {
+                            model.Imgs += (str + ",");
+                        }
+                        model.Imgs = model.Imgs.Substring(0, model.Imgs.Length - 1);
+                    }
+                    if (arrayList.Count > 0)
+                    {
+                        var localPath = ImageHelper.GetSaveImgNames((string[]) arrayList.ToArray(), uploadPath, 2);
+                        if (!string.IsNullOrEmpty(model.Imgs))
+                            model.Imgs += ",";
+                        for (var i = 0; i < localPath.Length; i++)
+                        {
+                            model.Content = model.Content.Replace(srcPath[i], localPath[i]);
+                            model.Imgs += (localPath[i] + ",");
+                        }
+                        model.Imgs = model.Imgs.Substring(0, model.Imgs.Length - 1);
+                    }
+                }
                 if (_id > 0)
                 {
                     model.ID = _id;
@@ -100,19 +143,6 @@ namespace WebUI.ArticleManage
                         return;
                     }
                     var oldModel = _bll.GetModel(_id);
-
-                    var srcPath = HtmlHelper.GetHtmlImageUrlList(content);
-                    if (srcPath.Length > 0)
-                    {
-                        var uploadPath = DESStringHelper.EncryptString(_id.ToString());
-                        var localPath = ImageHelper.GetSaveImgNames(srcPath, uploadPath, 2);
-                        for (var i = 0; i < localPath.Length; i++)
-                        {
-                            model.Content = model.Content.Replace(srcPath[i], localPath[i]);
-                            model.Imgs += localPath[i] + ",";
-                        }
-                        model.Imgs = model.Imgs.Substring(0, model.Imgs.Length - 1);
-                    }
 
 
                     model.AuditRecord = oldModel.AuditRecord;
@@ -129,21 +159,29 @@ namespace WebUI.ArticleManage
                         {
                             tipStr.Append("审核失败；");
                             ClientScript.RegisterClientScriptBlock(GetType(), "",
-                                "MessageAlert('" + tipStr + "','error', '');", true);
+                                                                   "MessageAlert('" + tipStr + "','error', '');", true);
                             return;
                         }
                         tipStr.Append("审核成功；");
-
-                        var pushData = new
+                        if (rdStatusN.Checked) //审核不通过
                         {
-                            title,
-                            content,
-                            type = model.Type,
-                            imgs = "",
-                            rela_chan = channels,
-                            is_hot = ckbHot.Checked ? "1" : "0",
-                            is_bot = ckbBot.Checked ? "1" : "0",
-                        };
+                            ClientScript.RegisterClientScriptBlock(GetType(), "",
+                                                                   "MessageAlert('" + tipStr +
+                                                                   "','success', '/ArticleManage/ArticleManage.aspx?columnId=" +
+                                                                   ColumnId + "');", true);
+                            return;
+                        }
+                        //审核通过
+                        var pushData = new
+                            {
+                                title,
+                                content,
+                                type = model.Type,
+                                imgs = "",
+                                rela_chan = channelId,
+                                is_hot = ckbHot.Checked ? "1" : "0",
+                                is_bot = ckbBot.Checked ? "1" : "0",
+                            };
                         var articleModel = DataConstructor.Factory("article");
                         var resultData = articleModel.Create(pushData);
                         var jObj = JObject.Parse(resultData);
@@ -161,24 +199,27 @@ namespace WebUI.ArticleManage
                         }
                         _bll.Upload(model);
                         ClientScript.RegisterClientScriptBlock(GetType(), "",
-                            jObj["id"] != null
-                                ? "MessageAlert('" + tipStr +
-                                  "','success', '/ArticleManage/ArticleManage.aspx?columnId=" +
-                                  ColumnId + "');"
-                                : "MessageAlert('" + tipStr + "','error', '');", true);
+                                                               jObj["id"] != null
+                                                                   ? "MessageAlert('" + tipStr +
+                                                                     "','success', '/ArticleManage/ArticleManage.aspx?columnId=" +
+                                                                     ColumnId + "');"
+                                                                   : "MessageAlert('" + tipStr + "','error', '');", true);
                         return;
                     }
                     model.AuditRecord += "修改成功—" + userName + "—" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
-                }
-                else
-                {
                     ClientScript.RegisterClientScriptBlock(GetType(), "",
-                        new ArticleBll().Add(model) > 0
-                            ? "MessageAlert('添加成功','success', '/ArticleManage/ArticleManage.aspx?columnId=" + ColumnId +
-                              "');"
-                            : "MessageAlert('添加失败','error', '');", true);
+                                                           _bll.Update(model)
+                                                               ? "MessageAlert('修改成功','success', '/ArticleManage/ArticleManage.aspx?columnId=" +
+                                                                 ColumnId +
+                                                                 "');"
+                                                               : "MessageAlert('修改失败','error', '');", true);
+                    return;
                 }
+                ClientScript.RegisterClientScriptBlock(GetType(), "",
+                                                       new ArticleBll().Add(model) > 0
+                                                           ? "MessageAlert('添加成功','success', '/ArticleManage/ArticleManage.aspx?columnId=" + ColumnId +
+                                                             "');"
+                                                           : "MessageAlert('添加失败','error', '');", true);
             }
             catch (Exception ex)
             {

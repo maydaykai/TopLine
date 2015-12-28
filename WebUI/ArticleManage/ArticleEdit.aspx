@@ -128,13 +128,13 @@
                         <textarea id="txtContent" runat="server" style="width:700px;height:400px;" name="content"></textarea>
                     </td>
                 </tr>
-                <tr runat="server">
+                <tr>
                     <td style="text-align: right; ">是否为推荐文章：</td>
                     <td style="text-align: left; padding-left: 5px;">
                         <input type="checkbox" id="ckbHot" runat="server" />
                     </td>
                 </tr>
-                <tr runat="server">
+                <tr>
                     <td style="text-align: right; ">是否为精选文章：</td>
                     <td style="text-align: left; padding-left: 5px;">
                         <input type="checkbox" id="ckbBot" runat="server" />
@@ -150,7 +150,7 @@
                 <tr>
                     <td style="text-align: right; ">操作：</td>
                     <td style="text-align: left; padding-left: 5px;">
-                        <asp:Button runat="server" Text="提交" CssClass="inputButton" OnClick="Btn_Click" />&nbsp;&nbsp;<input type="button" class="inputButton" value="返回" onclick="location.href = 'ArticleManage.aspx?columnId=<%=ColumnId%>';" />
+                        <asp:Button runat="server" Text="提交" CssClass="inputButton" OnClick="Btn_Click" OnClientClick="javascript:$.dialog.tips('数据加载中...',6000,'loading.gif');" />&nbsp;&nbsp;<input type="button" class="inputButton" value="返回" onclick="location.href = 'ArticleManage.aspx?columnId=<%=ColumnId%>';" />
                     </td>
                 </tr>
             </table>

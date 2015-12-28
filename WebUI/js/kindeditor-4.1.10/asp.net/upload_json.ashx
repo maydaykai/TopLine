@@ -33,20 +33,19 @@ public class Upload : IHttpHandler
         //String saveUrl = aspxUrl + "/attached/";
 
         //文件保存目录路径
-	    String savePath = ManageFcmsCommon.ConfigHelper.ImgPhysicallPath;
+	    String savePath = Common.ConfigHelper.ImgPhysicallPath;
 
         //文件保存目录URL
-        String saveUrl = ManageFcmsCommon.ConfigHelper.ImgVirtualPath;
+        String saveUrl = Common.ConfigHelper.ImgVirtualPath;
 
 		//定义允许上传的文件扩展名
-		Hashtable extTable = new Hashtable();
-		extTable.Add("image", "gif,jpg,jpeg,png,bmp");
-        //extTable.Add("flash", "swf,flv");
+		Hashtable extTable = new Hashtable {{"image", "gif,jpg,jpeg,png,bmp"}};
+	    //extTable.Add("flash", "swf,flv");
         //extTable.Add("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
         //extTable.Add("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");
 
 		//最大文件大小
-		int maxSize = 1000000;
+		const int maxSize = 1000000;
 		this.context = context;
 
         //HttpPostedFile imgFile = context.Request.Files["imgFile"];
@@ -74,7 +73,7 @@ public class Upload : IHttpHandler
 		String fileName = imgFile.FileName;
 		String fileExt = Path.GetExtension(fileName).ToLower();
 
-		if (imgFile.InputStream == null || imgFile.InputStream.Length > maxSize)
+		if (imgFile.InputStream.Length > maxSize)
 		{
 			showError("上传文件大小超过限制。");
 		}
