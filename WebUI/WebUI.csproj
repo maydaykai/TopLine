@@ -1203,6 +1203,9 @@
     <Compile Include="HanderAshx\ArticleManage\ArticleHandler.ashx.cs">
       <DependentUpon>ArticleHandler.ashx</DependentUpon>
     </Compile>
+    <Compile Include="HanderAshx\MemberManage\MemberHandler.ashx.cs">
+      <DependentUpon>MemberHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="HanderAshx\UserManage\RoleRightHandler.ashx.cs">
       <DependentUpon>RoleRightHandler.ashx</DependentUpon>
     </Compile>
@@ -1349,6 +1352,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </Content>
     <Content Include="HanderAshx\ArticleManage\ArticleHandler.ashx" />
+    <Content Include="HanderAshx\MemberManage\MemberHandler.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

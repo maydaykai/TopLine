@@ -44,16 +44,15 @@
 
             //数据源
             var source = {
-                url: '/API/Member.svc/GetList',
+                url: '/HanderAshx/MemberManage/MemberHandler.ashx',
                 cache: false,
                 datatype: "json",
-                root: 'd.Rows',
+                root: 'Rows',
                 datafields: [
-                    { name: 'id', type: 'string' },
-                    { name: 'username', type: 'string' },
-                    { name: 'email', type: 'string' },
-                    { name: 'createdAt', type: 'date' },
-                    { name: 'updatedAt', type: 'date' }
+                    { name: 'ID', type: 'string' },
+                    { name: 'Name', type: 'string' },
+                    { name: 'Email', type: 'string' },
+                    { name: 'CreateTime', type: 'date' }
                 ],
                 pagesize: 20,
                 formatdata: function (data) {
@@ -94,11 +93,10 @@
                 sorttogglestates: 1,
                 pagesizeoptions: ['10', '20', '30'],
                 columns: [
-                        { text: '<b>操作</b>', dataField: 'id', width: 50, cellsalign: 'center', align: 'center', cellsrenderer: linkrenderer },
-                        { text: '<b>用户名</b>', dataField: 'username', width: 120, cellsalign: 'center', align: 'center' },
-                        { text: '<b>邮箱</b>', dataField: 'email', width: 120, cellsalign: 'center', align: 'center' },
-                        { text: '<b>注册时间</b>', dataField: 'createdAt', width: 180, cellsformat: "yyyy-MM-dd HH:mm:ss", cellsalign: 'center', align: 'center' },
-                        { text: '<b>更新时间</b>', dataField: 'updatedAt', width: 180, cellsformat: "yyyy-MM-dd HH:mm:ss", cellsalign: 'center', align: 'center' }
+                        { text: '<b>操作</b>', dataField: 'ID', width: 50, cellsalign: 'center', align: 'center', cellsrenderer: linkrenderer },
+                        { text: '<b>用户名</b>', dataField: 'Name', width: 120, cellsalign: 'center', align: 'center' },
+                        { text: '<b>邮箱</b>', dataField: 'Email', width: 120, cellsalign: 'center', align: 'center' },
+                        { text: '<b>注册时间</b>', dataField: 'CreatedTime', width: 180, cellsformat: "yyyy-MM-dd HH:mm:ss", cellsalign: 'center', align: 'center' }
                 ]
             });
 

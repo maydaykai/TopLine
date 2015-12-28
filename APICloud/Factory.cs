@@ -81,7 +81,7 @@ namespace APICloud.Rest
         {
             string url = UrlBase + "/" + ClassName;
 
-            byte[] Data = System.Text.Encoding.GetEncoding("UTF-8").GetBytes(JsonDataStr);
+            byte[] Data = Encoding.GetEncoding("UTF-8").GetBytes(JsonDataStr);
             return Ajax(url, Data);
         }
         public string Create(Object body)
