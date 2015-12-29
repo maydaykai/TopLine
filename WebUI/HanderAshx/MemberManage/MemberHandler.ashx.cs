@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using APICloud;
@@ -51,22 +52,14 @@ namespace WebUI.HanderAshx.MemberManage
         {
             var model = DataConstructor.Factory("user");
             var data = model.Query(filter);
-            var timeConverter = new IsoDateTimeConverter
-            {
-                DateTimeFormat = "yyyy-MM-dd HH:mm:ss.SSS"
-            };
-            var js = new JsonSerializerSettings()
-            {
-                DateTimeZoneHandling = DateTimeZoneHandling.Utc
-            };
-            var list = JsonConvert.DeserializeObject<List<MemberModel>>(data, timeConverter);
+            var list = JsonConvert.DeserializeObject<List<MemberModel>>(data);
             var modelData = (from memberModel in list
                              select new
                              {
                                  ID = memberModel.id,
                                  Name = memberModel.username,
                                  Email = memberModel.email,
-                                 CreateTime = memberModel.createAt
+                                 CreateTime = memberModel.createdAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss")
                              });
             var jsonData = new
             {

@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MemberManage.aspx.cs" Inherits="WebUI.MemberManage.MemberManage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ChannelManage.aspx.cs" Inherits="WebUI.ArticleManage.ChannelManage" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>会员管理</title>
+    <title>文章管理</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="/js/jqwidgets-ver3.1.0/jqwidgets/styles/jqx.base.css" type="text/css" />
     <script type="text/javascript" src="/js/jqwidgets-ver3.1.0/scripts/jquery-1.10.2.min.js"></script>
@@ -25,44 +25,24 @@
     <link href="/js/jqwidgets-ver3.1.0/jqwidgets/styles/jqx.arctic.css" rel="stylesheet" />
     <link href="../css/global.css" rel="stylesheet" />
     <link href="../css/icon.css" rel="stylesheet" />
+    <script src="../js/lhgdialog/lhgdialog.min.js"></script>
+    <script src="../js/lhgdialog/ShowDialog.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(function () {
             //主题
             var theme = "arctic";
 
-            //参数组装
-            function buildQueryString(data) {
-                var str = ''; for (var prop in data) {
-                    if (data.hasOwnProperty(prop)) {
-                        str += prop + '=' + data[prop] + '&';
-                    }
-                }
-                return str.substr(0, str.length - 1);
-            }
-
-            var formatedData = '';
-
             //数据源
             var source = {
-                url: '/HanderAshx/MemberManage/MemberHandler.ashx',
+                url: '/HanderAshx/ArticleManage/ChannelHandler.ashx',
                 cache: false,
                 datatype: "json",
-                root: 'Rows',
+                root: "Rows",
                 datafields: [
                     { name: 'ID', type: 'string' },
-                    { name: 'Name', type: 'string' },
-                    { name: 'Email', type: 'string' },
-                    { name: 'CreateTime', type: 'date' }
+                    { name: 'Title', type: 'string' }
                 ],
                 pagesize: 20,
-                formatdata: function (data) {
-                    data.pagenum = data.pagenum || 0;
-                    data.pagesize = data.pagesize || 20;
-                    data.sortdatafield = data.sortdatafield || 'ID';
-                    data.sortorder = data.sortorder || 'desc';
-                    formatedData = buildQueryString(data);
-                    return formatedData;
-                },
                 sort: function () { $("#jqxgrid").jqxGrid('updatebounddata', 'sort'); },
                 beforeprocessing: function (data) { source.totalrecords = data.TotalRows; }
             };
@@ -75,20 +55,41 @@
                 }
             });
 
+            var linkrenderer = function (row, column, value) {
+                var parm = column + "=" + value + "&columnId=<%=ColumnId%>";
+                var link = "<a href='ArticleEdit.aspx?" + parm + "'  target='_self' style='margin-left:10px;height:25px;line-height:25px;'>修改</a>";
+                var html = $.jqx.dataFormat.formatlink(link);
+                return html;
+            };
+
             //数据绑定
             $("#jqxgrid").jqxGrid({
                 theme: theme,
                 source: dataadapter,
-                width: 980,
+                width: 1580,
+                rendergridrows: function (args) {
+                    return args.data;
+                },
+                renderstatusbar: function (statusbar) {
+                    var container = $("<div style='overflow: hidden; position: relative; margin: 5px;'></div>");
+                    var addButton = $("<div style='float: left; margin-left: 5px; cursor:pointer;'><img style='position: relative; margin-top: 2px;' src='/js/jqwidgets-ver3.1.0/images/add.png'/><span style='margin-left: 4px; position: relative; top: -3px;'>增加</span></div>");
+                    container.append(addButton);
+                    statusbar.append(container);
+                    addButton.jqxButton({ width: 60, height: 20 });
+                    addButton.click(function (event) {
+                        window.location.href = "/ArticleManage/ArticleEdit.aspx?columnId=<%=ColumnId%>";
+                    });
+                },
+                showstatusbar: true,
                 sortable: true,
                 pageable: true,
                 autoheight: true,
+                virtualmode: true,
                 sorttogglestates: 1,
                 pagesizeoptions: ['10', '20', '30'],
                 columns: [
-                        { text: '<b>用户名</b>', dataField: 'Name', width: 120, cellsalign: 'center', align: 'center' },
-                        { text: '<b>邮箱</b>', dataField: 'Email', width: 150, cellsalign: 'center', align: 'center' },
-                        { text: '<b>注册时间</b>', dataField: 'CreateTime', width: 180, cellsformat: "yyyy-MM-dd HH:mm:ss", cellsalign: 'center', align: 'center' }
+                        { text: '<b>操作</b>', dataField: 'ID', width: 80, cellsalign: 'center', align: 'center', cellsrenderer: linkrenderer },
+                        { text: '<b>名称</b>', dataField: 'Title', width: 250, cellsalign: 'center', align: 'center' }
                 ]
             });
 

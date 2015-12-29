@@ -26,6 +26,6 @@ namespace Model
         /// <summary>
         /// 创建时间
         /// </summary>
-        public DateTime createAt { get; set; }
+        public DateTime createdAt { get; set; }
     }
 }
