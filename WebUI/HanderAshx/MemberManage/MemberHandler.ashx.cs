@@ -40,15 +40,15 @@ namespace WebUI.HanderAshx.MemberManage
                 filter += ",\"skip\":" + _currentPage*_pageSize;
             if (!string.IsNullOrEmpty(_uName) && _uName != "undefined")
             {
-                filter += " and UserName like '%" + _uName + "%'";
+                //filter += " and UserName like '%" + _uName + "%'";
             }
             filter += "}";
-            context.Response.Write(GetFcmsUserList(filter));
+            context.Response.Write(GetMemberList(filter));
 
         }
 
         //获取数据
-        public Object GetFcmsUserList(string filter)
+        public Object GetMemberList(string filter)
         {
             var model = DataConstructor.Factory("user");
             var data = model.Query(filter);

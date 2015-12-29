@@ -24,8 +24,8 @@ namespace Common
             for (var i = 0; i < srcPath.Length; i++)
             {
                 var wc = new WebClient();
-                returnPhysicalPath[i] = ConfigHelper.ImgPhysicallPath + uploadPath + "/" + Path.GetFileName(srcPath[i]);
-                returnVirtualPath[i] = ConfigHelper.ImgVirtualPath + uploadPath + "/" + Path.GetFileName(srcPath[i]);
+                returnPhysicalPath[i] = ConfigHelper.ImgPhysicallPath + uploadPath + "/" + Guid.NewGuid() + Path.GetExtension(srcPath[i]);
+                returnVirtualPath[i] = ConfigHelper.ImgVirtualPath + uploadPath + "/" + Guid.NewGuid() + Path.GetExtension(srcPath[i]);
                 if (!Directory.Exists(ConfigHelper.ImgPhysicallPath + uploadPath))
                 {
                     Directory.CreateDirectory(ConfigHelper.ImgPhysicallPath + uploadPath);

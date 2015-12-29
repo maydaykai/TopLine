@@ -43,8 +43,8 @@ namespace WebUI.ArticleManage
                     trAudit.Visible = true;
                     switch (model.AuditStatus)
                     {
-                        case 1: rdStatusY.Checked = true; break;
-                        case 2: rdStatusN.Checked = true; break;
+                        case 1: rdStatusN.Checked = true; break;
+                        case 2: rdStatusY.Checked = true; break;
                     }
                     if (model.AuditStatus > 0)
                         rdStatusY.Disabled = rdStatusN.Disabled = true;
@@ -65,7 +65,7 @@ namespace WebUI.ArticleManage
         {
             var title = txtTitle.Value.Trim();
             var content = txtContent.Value.Trim();
-            var channelId = ControlHelper.GetCheckBoxList(ckbChannelList);
+            var channelId = ckbChannelList.SelectedValue;
             var pubTime = txtPubTime.Value.Trim();
             if (string.IsNullOrEmpty(title))
             {
@@ -102,12 +102,13 @@ namespace WebUI.ArticleManage
             var srcPath = HtmlHelper.GetHtmlImageUrlList(content);
             var arrayList = new ArrayList();//srcPath中的网络地址
             var localArrayList = new ArrayList();//srcPath中的本地地址
-            var uploadPath = DESStringHelper.EncryptString(_id.ToString());
+            var uploadPath = DateTime.Now.ToString("yyyyMMdd");
+            var virtualPath = ConfigHelper.ImgVirtualPath;
             if (srcPath.Length > 0)
             {
                 foreach (string str in srcPath)
                 {
-                    if ((ConfigHelper.ImgVirtualPath + uploadPath).IndexOf(str) == -1)
+                    if (str.IndexOf(virtualPath) == -1)
                         arrayList.Add(str);
                     else
                         localArrayList.Add(str);
@@ -217,12 +218,37 @@ namespace WebUI.ArticleManage
                     }
                 }
                 model.AuditRecord += "修改成功—" + userName + "—" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                var editData = new
+                {
+                    title,
+                    content,
+                    type = model.Type,
+                    imgs = model.Imgs,
+                    rela_chan = channelId,
+                    is_hot = ckbHot.Checked ? "1" : "0",
+                    is_bot = ckbBot.Checked ? "1" : "0",
+                };
+                var editModel = DataConstructor.Factory("article");
+                var result = editModel.Edit(oldModel.OID,editData);
+                var bj = JObject.Parse(result);
+                if (bj["id"] != null)
+                {
+                    model.OID = bj["id"].ToString();
+                    model.Status = 3;
+                    tipStr.Append("上传成功；");
+                }
+                else
+                {
+                    model.OID = "";
+                    model.Status = 2;
+                    tipStr.Append("上传失败；");
+                }
                 ClientScript.RegisterClientScriptBlock(GetType(), "",
                                                        _bll.Update(model)
-                                                           ? "MessageAlert('修改成功','success', '/ArticleManage/ArticleManage.aspx?columnId=" +
+                                                           ? "MessageAlert('修改成功；" + tipStr + "','success', '/ArticleManage/ArticleManage.aspx?columnId=" +
                                                              ColumnId +
                                                              "');"
-                                                           : "MessageAlert('修改失败','error', '');", true);
+                                                           : "MessageAlert('修改失败；" + tipStr + "','error', '');", true);
                 return;
             }
             ClientScript.RegisterClientScriptBlock(GetType(), "",

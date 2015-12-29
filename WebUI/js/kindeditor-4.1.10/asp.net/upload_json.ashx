@@ -39,9 +39,9 @@ public class Upload : IHttpHandler
         String saveUrl = Common.ConfigHelper.ImgVirtualPath;
 
 		//定义允许上传的文件扩展名
-		Hashtable extTable = new Hashtable {{"image", "gif,jpg,jpeg,png,bmp"}};
+		var extTable = new Hashtable {{"image", "gif,jpg,jpeg,png,bmp"}, {"media", "mp4"}};
 	    //extTable.Add("flash", "swf,flv");
-        //extTable.Add("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
+	    //extTable.Add("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
         //extTable.Add("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");
 
 		//最大文件大小

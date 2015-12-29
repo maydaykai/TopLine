@@ -134,7 +134,7 @@
                         <input type="checkbox" id="ckbHot" runat="server" />
                     </td>
                 </tr>
-                <tr>
+                <tr style="display: none">
                     <td style="text-align: right; ">是否为精选文章：</td>
                     <td style="text-align: left; padding-left: 5px;">
                         <input type="checkbox" id="ckbBot" runat="server" />

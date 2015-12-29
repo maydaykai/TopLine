@@ -85,6 +85,7 @@
     <Content Include="API\Member.svc" />
     <Content Include="ArticleManage\ArticleEdit.aspx" />
     <Content Include="ArticleManage\ArticleManage.aspx" />
+    <Content Include="ArticleManage\ChannelManage.aspx" />
     <Content Include="BasePage.aspx" />
     <Content Include="Basic\ColumnEdit.aspx" />
     <Content Include="Basic\ColumnManage.aspx" />
@@ -1165,6 +1166,12 @@
     <Compile Include="ArticleManage\ArticleManage.aspx.designer.cs">
       <DependentUpon>ArticleManage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ArticleManage\ChannelManage.aspx.cs">
+      <DependentUpon>ChannelManage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ArticleManage\ChannelManage.aspx.designer.cs">
+      <DependentUpon>ChannelManage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BasePage.aspx.cs">
       <DependentUpon>BasePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1202,6 +1209,9 @@
     </Compile>
     <Compile Include="HanderAshx\ArticleManage\ArticleHandler.ashx.cs">
       <DependentUpon>ArticleHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="HanderAshx\ArticleManage\ChannelHandler.ashx.cs">
+      <DependentUpon>ChannelHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="HanderAshx\MemberManage\MemberHandler.ashx.cs">
       <DependentUpon>MemberHandler.ashx</DependentUpon>
@@ -1353,6 +1363,7 @@
     </Content>
     <Content Include="HanderAshx\ArticleManage\ArticleHandler.ashx" />
     <Content Include="HanderAshx\MemberManage\MemberHandler.ashx" />
+    <Content Include="HanderAshx\ArticleManage\ChannelHandler.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
