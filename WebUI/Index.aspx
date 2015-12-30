@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>融金宝平台管理系统</title>
+    <title>新闻后台管理系统</title>
     <link href="css/icon.css" rel="stylesheet" />
     <link href="js/easyUi/themes/icon.css" rel="stylesheet" />
     <link href="js/easyUi/themes/default/easyui.css" rel="stylesheet" />

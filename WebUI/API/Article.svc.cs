@@ -51,5 +51,18 @@ namespace WebUI.API
             };
             return JsonConvert.SerializeObject(jsonData);
         }
+        [OperationContract]
+        [WebInvoke(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, Method = "GET")]
+        public object DeleteChannel(string id)
+        {
+            var channelModel = DataConstructor.Factory("channel");
+            var resultData = channelModel.Delete(id);
+            var jObj = JObject.Parse(resultData);
+            if (jObj != null)
+            {
+                
+            }
+            return JsonConvert.SerializeObject("");
+        }
     }
 }

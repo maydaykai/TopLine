@@ -85,6 +85,7 @@
     <Content Include="API\Member.svc" />
     <Content Include="ArticleManage\ArticleEdit.aspx" />
     <Content Include="ArticleManage\ArticleManage.aspx" />
+    <Content Include="ArticleManage\ChannelEdit.aspx" />
     <Content Include="ArticleManage\ChannelManage.aspx" />
     <Content Include="BasePage.aspx" />
     <Content Include="Basic\ColumnEdit.aspx" />
@@ -138,178 +139,6 @@
     <Content Include="images\uploadify-cancel.png" />
     <Content Include="js\datetime.js" />
     <Content Include="js\FormatDecimal.js" />
-    <Content Include="js\jBox\i18n\jquery.jBox-zh-CN.js" />
-    <Content Include="js\jBox\jquery-1.4.2.min.js" />
-    <Content Include="js\jBox\jquery.jBox-2.3.min.js" />
-    <Content Include="js\jBox\Skins\Blue\images\jbox-button1.png" />
-    <Content Include="js\jBox\Skins\Blue\images\jbox-button2.png" />
-    <Content Include="js\jBox\Skins\Blue\images\jbox-close1.gif" />
-    <Content Include="js\jBox\Skins\Blue\images\jbox-close2.gif" />
-    <Content Include="js\jBox\Skins\Blue\images\jbox-content-loading.gif" />
-    <Content Include="js\jBox\Skins\Blue\images\jbox-icons-ie6.gif" />
-    <Content Include="js\jBox\Skins\Blue\images\jbox-icons.png" />
-    <Content Include="js\jBox\Skins\Blue\images\jbox-loading1.gif" />
-    <Content Include="js\jBox\Skins\Blue\images\jbox-loading2.gif" />
-    <Content Include="js\jBox\Skins\Blue\images\jbox-loading3.gif" />
-    <Content Include="js\jBox\Skins\Blue\images\jbox-title-icon.gif" />
-    <Content Include="js\jBox\Skins\Blue\jbox.css" />
-    <Content Include="js\jBox\Skins\Brown\images\jbox-button1.png" />
-    <Content Include="js\jBox\Skins\Brown\images\jbox-button2.png" />
-    <Content Include="js\jBox\Skins\Brown\images\jbox-close1.gif" />
-    <Content Include="js\jBox\Skins\Brown\images\jbox-close2.gif" />
-    <Content Include="js\jBox\Skins\Brown\images\jbox-content-loading.gif" />
-    <Content Include="js\jBox\Skins\Brown\images\jbox-icons-ie6.gif" />
-    <Content Include="js\jBox\Skins\Brown\images\jbox-icons.png" />
-    <Content Include="js\jBox\Skins\Brown\images\jbox-loading1.gif" />
-    <Content Include="js\jBox\Skins\Brown\images\jbox-loading2.gif" />
-    <Content Include="js\jBox\Skins\Brown\images\jbox-loading3.gif" />
-    <Content Include="js\jBox\Skins\Brown\images\jbox-title-icon.gif" />
-    <Content Include="js\jBox\Skins\Brown\jbox.css" />
-    <Content Include="js\jBox\Skins\Default\images\jbox-button1.png" />
-    <Content Include="js\jBox\Skins\Default\images\jbox-button2.png" />
-    <Content Include="js\jBox\Skins\Default\images\jbox-close1.gif" />
-    <Content Include="js\jBox\Skins\Default\images\jbox-close2.gif" />
-    <Content Include="js\jBox\Skins\Default\images\jbox-content-loading.gif" />
-    <Content Include="js\jBox\Skins\Default\images\jbox-icons-ie6.gif" />
-    <Content Include="js\jBox\Skins\Default\images\jbox-icons.png" />
-    <Content Include="js\jBox\Skins\Default\images\jbox-loading1.gif" />
-    <Content Include="js\jBox\Skins\Default\images\jbox-loading2.gif" />
-    <Content Include="js\jBox\Skins\Default\images\jbox-loading3.gif" />
-    <Content Include="js\jBox\Skins\Default\images\jbox-title-icon.gif" />
-    <Content Include="js\jBox\Skins\Default\jbox.css" />
-    <Content Include="js\jBox\Skins\GrayCool\images\jbox-button1.png" />
-    <Content Include="js\jBox\Skins\GrayCool\images\jbox-button2.png" />
-    <Content Include="js\jBox\Skins\GrayCool\images\jbox-close1.gif" />
-    <Content Include="js\jBox\Skins\GrayCool\images\jbox-close2.gif" />
-    <Content Include="js\jBox\Skins\GrayCool\images\jbox-content-loading.gif" />
-    <Content Include="js\jBox\Skins\GrayCool\images\jbox-icons-ie6.gif" />
-    <Content Include="js\jBox\Skins\GrayCool\images\jbox-icons.png" />
-    <Content Include="js\jBox\Skins\GrayCool\images\jbox-loading1.gif" />
-    <Content Include="js\jBox\Skins\GrayCool\images\jbox-loading2.gif" />
-    <Content Include="js\jBox\Skins\GrayCool\images\jbox-loading3.gif" />
-    <Content Include="js\jBox\Skins\GrayCool\images\jbox-title-icon.gif" />
-    <Content Include="js\jBox\Skins\GrayCool\jbox.css" />
-    <Content Include="js\jBox\Skins\Gray\images\jbox-button1.png" />
-    <Content Include="js\jBox\Skins\Gray\images\jbox-button2.png" />
-    <Content Include="js\jBox\Skins\Gray\images\jbox-close1.gif" />
-    <Content Include="js\jBox\Skins\Gray\images\jbox-close2.gif" />
-    <Content Include="js\jBox\Skins\Gray\images\jbox-content-loading.gif" />
-    <Content Include="js\jBox\Skins\Gray\images\jbox-icons-ie6.gif" />
-    <Content Include="js\jBox\Skins\Gray\images\jbox-icons.png" />
-    <Content Include="js\jBox\Skins\Gray\images\jbox-loading1.gif" />
-    <Content Include="js\jBox\Skins\Gray\images\jbox-loading2.gif" />
-    <Content Include="js\jBox\Skins\Gray\images\jbox-loading3.gif" />
-    <Content Include="js\jBox\Skins\Gray\images\jbox-title-icon.gif" />
-    <Content Include="js\jBox\Skins\Gray\jbox.css" />
-    <Content Include="js\jBox\Skins\Green\images\jbox-button1.png" />
-    <Content Include="js\jBox\Skins\Green\images\jbox-button2.png" />
-    <Content Include="js\jBox\Skins\Green\images\jbox-close1.gif" />
-    <Content Include="js\jBox\Skins\Green\images\jbox-close2.gif" />
-    <Content Include="js\jBox\Skins\Green\images\jbox-content-loading.gif" />
-    <Content Include="js\jBox\Skins\Green\images\jbox-icons-ie6.gif" />
-    <Content Include="js\jBox\Skins\Green\images\jbox-icons.png" />
-    <Content Include="js\jBox\Skins\Green\images\jbox-loading1.gif" />
-    <Content Include="js\jBox\Skins\Green\images\jbox-loading2.gif" />
-    <Content Include="js\jBox\Skins\Green\images\jbox-loading3.gif" />
-    <Content Include="js\jBox\Skins\Green\images\jbox-title-icon.gif" />
-    <Content Include="js\jBox\Skins\Green\jbox.css" />
-    <Content Include="js\jBox\Skins\GreyBlue\images\jbox-button1.png" />
-    <Content Include="js\jBox\Skins\GreyBlue\images\jbox-button2.png" />
-    <Content Include="js\jBox\Skins\GreyBlue\images\jbox-close1.gif" />
-    <Content Include="js\jBox\Skins\GreyBlue\images\jbox-close2.gif" />
-    <Content Include="js\jBox\Skins\GreyBlue\images\jbox-content-loading.gif" />
-    <Content Include="js\jBox\Skins\GreyBlue\images\jbox-icons-ie6.gif" />
-    <Content Include="js\jBox\Skins\GreyBlue\images\jbox-icons.png" />
-    <Content Include="js\jBox\Skins\GreyBlue\images\jbox-loading1.gif" />
-    <Content Include="js\jBox\Skins\GreyBlue\images\jbox-loading2.gif" />
-    <Content Include="js\jBox\Skins\GreyBlue\images\jbox-loading3.gif" />
-    <Content Include="js\jBox\Skins\GreyBlue\images\jbox-title-icon.gif" />
-    <Content Include="js\jBox\Skins\GreyBlue\jbox.css" />
-    <Content Include="js\jBox\Skins\Purple\images\jbox-button1.png" />
-    <Content Include="js\jBox\Skins\Purple\images\jbox-button2.png" />
-    <Content Include="js\jBox\Skins\Purple\images\jbox-close1.gif" />
-    <Content Include="js\jBox\Skins\Purple\images\jbox-close2.gif" />
-    <Content Include="js\jBox\Skins\Purple\images\jbox-content-loading.gif" />
-    <Content Include="js\jBox\Skins\Purple\images\jbox-icons-ie6.gif" />
-    <Content Include="js\jBox\Skins\Purple\images\jbox-icons.png" />
-    <Content Include="js\jBox\Skins\Purple\images\jbox-loading1.gif" />
-    <Content Include="js\jBox\Skins\Purple\images\jbox-loading2.gif" />
-    <Content Include="js\jBox\Skins\Purple\images\jbox-loading3.gif" />
-    <Content Include="js\jBox\Skins\Purple\images\jbox-title-icon.gif" />
-    <Content Include="js\jBox\Skins\Purple\jbox.css" />
-    <Content Include="js\jBox\Skins\Red\images\jbox-button1.png" />
-    <Content Include="js\jBox\Skins\Red\images\jbox-button2.png" />
-    <Content Include="js\jBox\Skins\Red\images\jbox-close1.gif" />
-    <Content Include="js\jBox\Skins\Red\images\jbox-close2.gif" />
-    <Content Include="js\jBox\Skins\Red\images\jbox-content-loading.gif" />
-    <Content Include="js\jBox\Skins\Red\images\jbox-icons-ie6.gif" />
-    <Content Include="js\jBox\Skins\Red\images\jbox-icons.png" />
-    <Content Include="js\jBox\Skins\Red\images\jbox-loading1.gif" />
-    <Content Include="js\jBox\Skins\Red\images\jbox-loading2.gif" />
-    <Content Include="js\jBox\Skins\Red\images\jbox-loading3.gif" />
-    <Content Include="js\jBox\Skins\Red\images\jbox-title-icon.gif" />
-    <Content Include="js\jBox\Skins\Red\jbox.css" />
-    <Content Include="js\jBox\Skins\ShareBlue\images\jbox-button1.png" />
-    <Content Include="js\jBox\Skins\ShareBlue\images\jbox-button2.png" />
-    <Content Include="js\jBox\Skins\ShareBlue\images\jbox-close1.gif" />
-    <Content Include="js\jBox\Skins\ShareBlue\images\jbox-close2.gif" />
-    <Content Include="js\jBox\Skins\ShareBlue\images\jbox-content-loading.gif" />
-    <Content Include="js\jBox\Skins\ShareBlue\images\jbox-icons-ie6.gif" />
-    <Content Include="js\jBox\Skins\ShareBlue\images\jbox-icons.png" />
-    <Content Include="js\jBox\Skins\ShareBlue\images\jbox-loading1.gif" />
-    <Content Include="js\jBox\Skins\ShareBlue\images\jbox-loading2.gif" />
-    <Content Include="js\jBox\Skins\ShareBlue\images\jbox-loading3.gif" />
-    <Content Include="js\jBox\Skins\ShareBlue\images\jbox-title-icon.gif" />
-    <Content Include="js\jBox\Skins\ShareBlue\jbox.css" />
-    <Content Include="js\jBox\Skins\ShareBrown\images\jbox-button1.png" />
-    <Content Include="js\jBox\Skins\ShareBrown\images\jbox-button2.png" />
-    <Content Include="js\jBox\Skins\ShareBrown\images\jbox-close1.gif" />
-    <Content Include="js\jBox\Skins\ShareBrown\images\jbox-close2.gif" />
-    <Content Include="js\jBox\Skins\ShareBrown\images\jbox-content-loading.gif" />
-    <Content Include="js\jBox\Skins\ShareBrown\images\jbox-icons-ie6.gif" />
-    <Content Include="js\jBox\Skins\ShareBrown\images\jbox-icons.png" />
-    <Content Include="js\jBox\Skins\ShareBrown\images\jbox-loading1.gif" />
-    <Content Include="js\jBox\Skins\ShareBrown\images\jbox-loading2.gif" />
-    <Content Include="js\jBox\Skins\ShareBrown\images\jbox-loading3.gif" />
-    <Content Include="js\jBox\Skins\ShareBrown\images\jbox-title-icon.gif" />
-    <Content Include="js\jBox\Skins\ShareBrown\jbox.css" />
-    <Content Include="js\jBox\Skins\ShareGreen\images\jbox-button1.png" />
-    <Content Include="js\jBox\Skins\ShareGreen\images\jbox-button2.png" />
-    <Content Include="js\jBox\Skins\ShareGreen\images\jbox-close1.gif" />
-    <Content Include="js\jBox\Skins\ShareGreen\images\jbox-close2.gif" />
-    <Content Include="js\jBox\Skins\ShareGreen\images\jbox-content-loading.gif" />
-    <Content Include="js\jBox\Skins\ShareGreen\images\jbox-icons-ie6.gif" />
-    <Content Include="js\jBox\Skins\ShareGreen\images\jbox-icons.png" />
-    <Content Include="js\jBox\Skins\ShareGreen\images\jbox-loading1.gif" />
-    <Content Include="js\jBox\Skins\ShareGreen\images\jbox-loading2.gif" />
-    <Content Include="js\jBox\Skins\ShareGreen\images\jbox-loading3.gif" />
-    <Content Include="js\jBox\Skins\ShareGreen\images\jbox-title-icon.gif" />
-    <Content Include="js\jBox\Skins\ShareGreen\jbox.css" />
-    <Content Include="js\jBox\Skins\SharePurple\images\jbox-button1.png" />
-    <Content Include="js\jBox\Skins\SharePurple\images\jbox-button2.png" />
-    <Content Include="js\jBox\Skins\SharePurple\images\jbox-close1.gif" />
-    <Content Include="js\jBox\Skins\SharePurple\images\jbox-close2.gif" />
-    <Content Include="js\jBox\Skins\SharePurple\images\jbox-content-loading.gif" />
-    <Content Include="js\jBox\Skins\SharePurple\images\jbox-icons-ie6.gif" />
-    <Content Include="js\jBox\Skins\SharePurple\images\jbox-icons.png" />
-    <Content Include="js\jBox\Skins\SharePurple\images\jbox-loading1.gif" />
-    <Content Include="js\jBox\Skins\SharePurple\images\jbox-loading2.gif" />
-    <Content Include="js\jBox\Skins\SharePurple\images\jbox-loading3.gif" />
-    <Content Include="js\jBox\Skins\SharePurple\images\jbox-title-icon.gif" />
-    <Content Include="js\jBox\Skins\SharePurple\jbox.css" />
-    <Content Include="js\jBox\Skins\ShareRed\images\jbox-button1.png" />
-    <Content Include="js\jBox\Skins\ShareRed\images\jbox-button2.png" />
-    <Content Include="js\jBox\Skins\ShareRed\images\jbox-close1.gif" />
-    <Content Include="js\jBox\Skins\ShareRed\images\jbox-close2.gif" />
-    <Content Include="js\jBox\Skins\ShareRed\images\jbox-content-loading.gif" />
-    <Content Include="js\jBox\Skins\ShareRed\images\jbox-icons-ie6.gif" />
-    <Content Include="js\jBox\Skins\ShareRed\images\jbox-icons.png" />
-    <Content Include="js\jBox\Skins\ShareRed\images\jbox-loading1.gif" />
-    <Content Include="js\jBox\Skins\ShareRed\images\jbox-loading2.gif" />
-    <Content Include="js\jBox\Skins\ShareRed\images\jbox-loading3.gif" />
-    <Content Include="js\jBox\Skins\ShareRed\images\jbox-title-icon.gif" />
-    <Content Include="js\jBox\Skins\ShareRed\jbox.css" />
-    <Content Include="js\jBox\Skins\样式说明%28以Default皮肤为例%29.css" />
     <Content Include="js\jqgrid\css\ellipsis-xbl.xml" />
     <Content Include="js\jqgrid\css\ui.jqgrid.css" />
     <Content Include="js\jqgrid\js\Changes.txt" />
@@ -1166,8 +995,16 @@
     <Compile Include="ArticleManage\ArticleManage.aspx.designer.cs">
       <DependentUpon>ArticleManage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ArticleManage\ChannelEdit.aspx.cs">
+      <DependentUpon>ChannelEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ArticleManage\ChannelEdit.aspx.designer.cs">
+      <DependentUpon>ChannelEdit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ArticleManage\ChannelManage.aspx.cs">
       <DependentUpon>ChannelManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ArticleManage\ChannelManage.aspx.designer.cs">
       <DependentUpon>ChannelManage.aspx</DependentUpon>
@@ -1325,8 +1162,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="js\easyUi\themes\default\images\Thumbs.db" />
-    <Content Include="js\easyUi\themes\icons\Thumbs.db" />
     <Content Include="HanderAshx\Basic\ColumnHander.ashx" />
     <Content Include="Config\log4net.config">
       <SubType>Designer</SubType>
@@ -1341,22 +1176,6 @@
     </Content>
     <Content Include="packages.config" />
     <Content Include="js\Uploadify\UploadifyHandler.ashx" />
-    <Content Include="js\jBox\Skins\Blue\Desktop.ini" />
-    <Content Include="js\jBox\Skins\Blue\images\OneNote 目录.onetoc2" />
-    <Content Include="js\jBox\Skins\Blue\OneNote 目录.onetoc2" />
-    <Content Include="js\jBox\Skins\Brown\Desktop.ini" />
-    <Content Include="js\jBox\Skins\Default\Desktop.ini" />
-    <Content Include="js\jBox\Skins\GrayCool\Desktop.ini" />
-    <Content Include="js\jBox\Skins\Gray\Desktop.ini" />
-    <Content Include="js\jBox\Skins\Green\Desktop.ini" />
-    <Content Include="js\jBox\Skins\GreyBlue\Desktop.ini" />
-    <Content Include="js\jBox\Skins\Purple\Desktop.ini" />
-    <Content Include="js\jBox\Skins\Red\Desktop.ini" />
-    <Content Include="js\jBox\Skins\ShareBlue\Desktop.ini" />
-    <Content Include="js\jBox\Skins\ShareBrown\Desktop.ini" />
-    <Content Include="js\jBox\Skins\ShareGreen\Desktop.ini" />
-    <Content Include="js\jBox\Skins\SharePurple\Desktop.ini" />
-    <Content Include="js\jBox\Skins\ShareRed\Desktop.ini" />
     <Content Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1364,6 +1183,7 @@
     <Content Include="HanderAshx\ArticleManage\ArticleHandler.ashx" />
     <Content Include="HanderAshx\MemberManage\MemberHandler.ashx" />
     <Content Include="HanderAshx\ArticleManage\ChannelHandler.ashx" />
+    <None Include="Properties\PublishProfiles\TopLineManage.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1374,7 +1194,6 @@
   <ItemGroup>
     <Folder Include="js\easyUi\themes\gray\images\" />
     <Folder Include="js\kindeditor-4.1.10\attached\" />
-    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
