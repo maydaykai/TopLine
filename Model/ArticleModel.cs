@@ -54,7 +54,7 @@ namespace Model
         public string Type { get; set; }
 
         /// <summary>
-        /// 状态：1，添加成功；2，上传失败；3上传成功
+        /// 状态：1，添加成功；2，上传失败；3，上传成功；4，已隐藏
         /// </summary>
         public int Status { get; set; }
         public string StatusStr

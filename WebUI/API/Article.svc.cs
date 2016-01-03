@@ -9,6 +9,7 @@ using System.ServiceModel.Web;
 using System.Text;
 using APICloud;
 using Bll;
+using Common;
 using Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -52,17 +53,24 @@ namespace WebUI.API
             return JsonConvert.SerializeObject(jsonData);
         }
         [OperationContract]
-        [WebInvoke(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, Method = "GET")]
-        public object DeleteChannel(string id)
+        [WebInvoke(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, Method = "POST")]
+        public string DeleteChannel(string id)
         {
-            var channelModel = DataConstructor.Factory("channel");
-            var resultData = channelModel.Delete(id);
+            var model = DataConstructor.Factory("channel");
+            var resultData = model.Delete(id);
             var jObj = JObject.Parse(resultData);
-            if (jObj != null)
-            {
-                
-            }
-            return JsonConvert.SerializeObject("");
+            return jObj["Error"] == null ? JsonTipHelper.SuccessMessage("删除成功") : JsonTipHelper.ErrorMessage("删除失败");
+        }
+        [OperationContract]
+        [WebInvoke(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, Method = "POST")]
+        public object DeleteArticle(string id)
+        {
+            var model = DataConstructor.Factory("article");
+            var resultData = model.Delete(id);
+            var jObj = JObject.Parse(resultData);
+            return (jObj["Error"] == null && new ArticleBll().Delete(id))
+                ? JsonTipHelper.SuccessMessage("删除成功")
+                : JsonTipHelper.ErrorMessage("删除失败");
         }
     }
 }

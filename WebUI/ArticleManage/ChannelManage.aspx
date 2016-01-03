@@ -30,10 +30,23 @@
     <script type="text/javascript">
         var deleteConfirm = function (id) {
             $.dialog.confirm("您确定要删除吗？", function () {
-                alert("hahaha");
-                //$.ajax({
-
-                //});
+                var obj = new Object();
+                obj.id = id;
+                var jsonobj = JSON.stringify(obj);
+                $.ajax({
+                    type: "POST",
+                    url: "../API/Article.svc/DeleteChannel",
+                    contentType: "application/json; charset=utf-8",
+                    data: jsonobj,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        $.dialog.tips('数据加载中...', 6000, 'loading.gif');
+                    },
+                    success: function (result) {
+                        var jsondatas = JSON.parse(result.d);
+                        MessageAlert(jsondatas.message, jsondatas.result, window.location.href);
+                    }
+                });
             });
         };
         $(function () {
@@ -64,8 +77,13 @@
             });
             var linkrenderer = function (row, column, value) {
                 var parm = "/ArticleManage/ChannelEdit.aspx?" + column + "=" + value + "&columnId=<%=ColumnId%>";
-                var link = "<a style='text-align:center;margin-left:30px;height:25px; line-height:25px;' href='javascript:void(0)' onclick=\"MessageWindow(270,100,'" + parm + "')\"; target='_self'>修改</a>" +
-                    "<a style='text-align:center;margin-left:15px;height:25px; line-height:25px;' href='javascript:void(0)' onclick=\"deleteConfirm('" + value + "')\"; target='_self'>删除</a>";
+                var rightEdit = '<%=RightEdit%>' === 'True';
+                var rightDelete = '<%=RightDelete%>' === 'True';
+                var link = "";
+                if (rightEdit)
+                    link += "<a style='text-align:center;margin-left:30px;height:25px; line-height:25px;' href='javascript:void(0)' onclick=\"MessageWindow(270,100,'" + parm + "')\"; target='_self'>修改</a>";
+                if (rightDelete)
+                    link += "<a style='text-align:center;margin-left:15px;height:25px; line-height:25px;' href='javascript:void(0)' onclick=\"deleteConfirm('" + value + "')\"; target='_self'>删除</a>";
                 return link;
             };
             //数据绑定

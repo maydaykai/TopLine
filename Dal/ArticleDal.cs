@@ -96,6 +96,22 @@ namespace Dal
             return rows > 0;
         }
         /// <summary>
+        /// 隐藏
+        /// </summary>
+        public bool Delete(string oid)
+        {
+            var strSql = new StringBuilder();
+            strSql.Append("UPDATE Article SET ");
+            strSql.Append(" Status = 4 ");
+            strSql.Append(" WHERE OID = @OID ");
+
+            SqlParameter[] paras = {                   
+                        new SqlParameter("@OID", SqlDbType.VarChar,50){Value = oid}     
+            };
+            var rows = SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionStringLocal, CommandType.Text, strSql.ToString(), paras);
+            return rows > 0;
+        }
+        /// <summary>
         /// 得到一个对象实体
         /// </summary>
         public ArticleModel GetModel(int id)
@@ -171,10 +187,7 @@ namespace Dal
 
                 return model;
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
     }
 }

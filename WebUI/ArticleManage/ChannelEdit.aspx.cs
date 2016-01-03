@@ -16,7 +16,7 @@ namespace WebUI.ArticleManage
     public partial class ChannelEdit : BasePage
     {
         private string _id;
-        Factory channelModel = DataConstructor.Factory("channel");
+        readonly Factory _channelModel = DataConstructor.Factory("channel");
         protected void Page_Load(object sender, EventArgs e)
         {
             _id = ConvertHelper.QueryString(Request, "id", "");
@@ -24,7 +24,7 @@ namespace WebUI.ArticleManage
             {
                 if (!string.IsNullOrEmpty(_id))
                 {
-                    var resultData = channelModel.Get(_id);
+                    var resultData = _channelModel.Get(_id);
                     var jObj = JObject.Parse(resultData);
                     if (jObj != null)
                     {
@@ -50,7 +50,7 @@ namespace WebUI.ArticleManage
                     title = txtChannelName.Value.Trim(),
                     updatedAt = DateTime.UtcNow
                 };
-                var resultData = channelModel.Edit(_id, pushData);
+                var resultData = _channelModel.Edit(_id, pushData);
                 var jObj = JObject.Parse(resultData);
                 ClientScript.RegisterClientScriptBlock(GetType(), "",
                     jObj != null
@@ -65,7 +65,7 @@ namespace WebUI.ArticleManage
                 {
                     title = txtChannelName.Value.Trim(),
                 };
-                var resultData = channelModel.Create(pushData);
+                var resultData = _channelModel.Create(pushData);
                 var jObj = JObject.Parse(resultData);
                 ClientScript.RegisterClientScriptBlock(GetType(), "",
                                        jObj != null

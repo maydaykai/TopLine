@@ -28,6 +28,27 @@
     <script src="../js/lhgdialog/lhgdialog.min.js"></script>
     <script src="../js/lhgdialog/ShowDialog.js"></script>
     <script type="text/javascript">
+        var deleteConfirm = function (id) {
+            $.dialog.confirm("您确定要删除吗？", function () {
+                var obj = new Object();
+                obj.id = id;
+                var jsonobj = JSON.stringify(obj);
+                $.ajax({
+                    type: "POST",
+                    url: "../API/Article.svc/DeleteArticle",
+                    contentType: "application/json; charset=utf-8",
+                    data: jsonobj,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        $.dialog.tips('数据加载中...', 6000, 'loading.gif');
+                    },
+                    success: function (result) {
+                        var jsondatas = JSON.parse(result.d);
+                        MessageAlert(jsondatas.message, jsondatas.result, window.location.href);
+                    }
+                });
+            });
+        };
         $(function () {
             //主题
             var theme = "arctic";
@@ -52,6 +73,7 @@
                 root: "Rows",
                 datafields: [
                     { name: 'ID', type: 'string' },
+                    { name: 'OID', type: 'string' },
                     { name: 'Title', type: 'string' },
                     { name: 'Content', type: 'string' },
                     { name: 'IsHot', type: 'bool' },
@@ -80,9 +102,15 @@
 
             var linkrenderer = function (row, column, value) {
                 var parm = column + "=" + value + "&columnId=<%=ColumnId%>";
-                var link = "<a href='ArticleEdit.aspx?" + parm + "'  target='_self' style='margin-left:10px;height:25px;line-height:25px;'>修改</a>";
-                var html = $.jqx.dataFormat.formatlink(link);
-                return html;
+                var data = $("#jqxgrid").jqxGrid('getrowdata', row);
+                var rightEdit = '<%=RightEdit%>' === 'True';
+                var rightDelete = '<%=RightDelete%>' === 'True';
+                var link = "";
+                if (rightEdit)
+                    link += "<a href='ArticleEdit.aspx?" + parm + "'  target='_self' style='margin-left:10px;height:25px;line-height:25px;'>修改</a>";
+                if (rightDelete)
+                    link += "<a style='text-align:center;margin-left:15px;height:25px; line-height:25px;' href='javascript:void(0)' onclick=\"deleteConfirm('" + data.OID + "')\"; target='_self'>删除</a>";
+                return link;
             };
 
             var isHotrenderer = function (row, column, value) {
@@ -135,11 +163,11 @@
                 sorttogglestates: 1,
                 pagesizeoptions: ['10', '20', '30'],
                 columns: [
-                        { text: '<b>操作</b>', dataField: 'ID', width: 80, cellsalign: 'center', align: 'center', cellsrenderer: linkrenderer },
-                        { text: '<b>文章标题</b>', dataField: 'Title', width: 250, cellsalign: 'center', align: 'center' },
-                        { text: '<b>文章类型</b>', dataField: 'Type', width: 120, cellsalign: 'center', align: 'center', cellsrenderer: typerenderer },
-                        { text: '<b>文章内容</b>', dataField: 'Content', width: 500, cellsalign: 'center', align: 'center' },
-                        { text: '<b>是否推荐</b>', dataField: 'IsHot', width: 120, cellsalign: 'center', align: 'center', cellsrenderer: isHotrenderer }
+                    { text: '<b>操作</b>', dataField: 'ID', width: 80, cellsalign: 'center', align: 'center', cellsrenderer: linkrenderer },
+                    { text: '<b>文章标题</b>', dataField: 'Title', width: 250, cellsalign: 'center', align: 'center' },
+                    { text: '<b>文章类型</b>', dataField: 'Type', width: 120, cellsalign: 'center', align: 'center', cellsrenderer: typerenderer },
+                    { text: '<b>文章内容</b>', dataField: 'Content', width: 500, cellsalign: 'center', align: 'center' },
+                    { text: '<b>是否推荐</b>', dataField: 'IsHot', width: 120, cellsalign: 'center', align: 'center', cellsrenderer: isHotrenderer }
                 ]
             });
 

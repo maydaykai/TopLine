@@ -33,33 +33,36 @@ namespace WebUI.HanderAshx.ArticleManage
             _sort = ConvertHelper.QueryString(context.Request, "sortOrder", "desc");
             _sortField = ConvertHelper.QueryString(context.Request, "sortdatafield", "id");
             _uName = ConvertHelper.QueryString(context.Request, "uname", "");
-            var filter = " 1=1";
+            var filter = " [Status]<4 ";
             if (!string.IsNullOrEmpty(_uName) && _uName != "undefined")
             {
                 filter += " and UserName like '%" + _uName + "%'";
             }
             var sortColumn = _sortField + " " + _sort;
-            context.Response.Write(GetFcmsUserList(_currentPage, _pageSize, sortColumn, filter));
-
+            context.Response.Write(GetUserList(_currentPage, _pageSize, sortColumn, filter));
         }
 
         //获取数据
-        public Object GetFcmsUserList(int pagenum, int pagesize, string sortField, string filter)
+        public Object GetUserList(int pagenum, int pagesize, string sortField, string filter)
         {
             pagenum += 1;
 
-            int pageCount = 0;
-            var dt = new ArticleBll().GetList("", sortField, pagenum, pagesize, ref pageCount);
+            var pageCount = 0;
+            var dt = new ArticleBll().GetList(filter, sortField, pagenum, pagesize, ref pageCount);
+            if (dt == null) return JsonConvert.SerializeObject(new {TotalRows = 0, Rows = new string[] {}});
             var modelData = (from DataRow dr in dt.Rows
-                             select new
-                              {
-                                  ID=dr["ID"],
-                                  Title = dr["Title"],
-                                  Content = HtmlHelper.DeleteHtml(HttpContext.Current.Server.HtmlDecode(dr["Content"].ToString())).GetSubString(0,36),
-                                  IsHot = dr["IsHot"],
-                                  IsBot = dr["ID"],
-                                  Type = dr["Type"]
-                              });
+                select new
+                {
+                    ID = dr["ID"],
+                    OID = dr["OID"],
+                    Title = dr["Title"],
+                    Content =
+                        HtmlHelper.DeleteHtml(HttpContext.Current.Server.HtmlDecode(dr["Content"].ToString()))
+                            .GetSubString(0, 36),
+                    IsHot = dr["IsHot"],
+                    IsBot = dr["IsBot"],
+                    Type = dr["Type"]
+                });
             var jsonData = new
             {
                 TotalRows = pageCount,//记录数

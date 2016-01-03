@@ -33,10 +33,10 @@ public class Upload : IHttpHandler
         //String saveUrl = aspxUrl + "/attached/";
 
         //文件保存目录路径
-	    String savePath = Common.ConfigHelper.ImgPhysicallPath;
+        String savePath = Common.ConfigHelper.ImgPhysicallPath + DateTime.Now.ToString("yyyyMMdd") + "/";
 
         //文件保存目录URL
-        String saveUrl = Common.ConfigHelper.ImgVirtualPath;
+        String saveUrl = Common.ConfigHelper.ImgVirtualPath + DateTime.Now.ToString("yyyyMMdd") + "/";
 
 		//定义允许上传的文件扩展名
 		var extTable = new Hashtable {{"image", "gif,jpg,jpeg,png,bmp"}, {"media", "mp4"}};
@@ -98,7 +98,7 @@ public class Upload : IHttpHandler
 			Directory.CreateDirectory(dirPath);
 		}
 
-		String newFileName = DateTime.Now.ToString("yyyyMMddHHmmss_ffff", DateTimeFormatInfo.InvariantInfo) + fileExt;
+        String newFileName = Guid.NewGuid() + fileExt;
         String filePath = dirPath + newFileName;
 
 		imgFile.SaveAs(filePath);
