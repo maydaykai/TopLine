@@ -37,6 +37,14 @@ namespace Bll
         }
 
         /// <summary>
+        /// 隐藏
+        /// </summary>
+        public bool Delete(string oid)
+        {
+            return _dal.Delete(oid);
+        }
+
+        /// <summary>
         /// 得到一个对象实体
         /// </summary>
         public ArticleModel GetModel(int id)
