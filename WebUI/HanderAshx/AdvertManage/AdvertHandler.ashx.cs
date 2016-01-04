@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Web;
 using APICloud;
-using Common;
 using Model;
 using Newtonsoft.Json;
 
-namespace WebUI.HanderAshx.ArticleManage
+namespace WebUI.HanderAshx.AdvertManage
 {
     /// <summary>
-    /// ChannelHandler 的摘要说明
+    /// AdvertHandler 的摘要说明
     /// </summary>
-    public class ChannelHandler : IHttpHandler
+    public class AdvertHandler : IHttpHandler
     {
+
         public void ProcessRequest(HttpContext context)
         {
             context.Response.Buffer = true;
@@ -29,14 +28,18 @@ namespace WebUI.HanderAshx.ArticleManage
         //获取数据
         public Object GetDataList()
         {
-            var model = DataConstructor.Factory("channel");
+            var model = DataConstructor.Factory("advert");
             var data = model.Query();
-            var list = JsonConvert.DeserializeObject<List<ChannelModel>>(data);
-            var modelData = (from channelModel in list
+            var list = JsonConvert.DeserializeObject<List<AdvertModel>>(data);
+            var modelData = (from advertModel in list
                              select new
                              {
-                                 ID = channelModel.id,
-                                 Title = channelModel.title
+                                 ID = advertModel.id,
+                                 Title = advertModel.title,
+                                 Img = advertModel.img,
+                                 LinkUrl = advertModel.linkUrl,
+                                 ChannelName = advertModel.channelModel.title,
+                                 StatusStr = advertModel.statusStr
                              });
             var jsonData = new
             {

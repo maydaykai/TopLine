@@ -39,11 +39,11 @@ namespace WebUI.HanderAshx.ArticleManage
                 filter += " and UserName like '%" + _uName + "%'";
             }
             var sortColumn = _sortField + " " + _sort;
-            context.Response.Write(GetUserList(_currentPage, _pageSize, sortColumn, filter));
+            context.Response.Write(GetDataList(_currentPage, _pageSize, sortColumn, filter));
         }
 
         //获取数据
-        public Object GetUserList(int pagenum, int pagesize, string sortField, string filter)
+        public Object GetDataList(int pagenum, int pagesize, string sortField, string filter)
         {
             pagenum += 1;
 

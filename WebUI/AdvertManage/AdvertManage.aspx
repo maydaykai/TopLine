@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ChannelManage.aspx.cs" Inherits="WebUI.ArticleManage.ChannelManage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdvertManage.aspx.cs" Inherits="WebUI.AdvertManage.AdvertManage" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>频道管理</title>
+    <title>广告管理</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="/js/jqwidgets-ver3.1.0/jqwidgets/styles/jqx.base.css" type="text/css" />
     <script type="text/javascript" src="/js/jqwidgets-ver3.1.0/scripts/jquery-1.10.2.min.js"></script>
@@ -35,7 +35,7 @@
                 var jsonobj = JSON.stringify(obj);
                 $.ajax({
                     type: "POST",
-                    url: "../API/Article.svc/DeleteChannel",
+                    url: "../API/Advert.svc/DeleteChannel",
                     contentType: "application/json; charset=utf-8",
                     data: jsonobj,
                     dataType: 'json',
@@ -55,13 +55,16 @@
 
             //数据源
             var source = {
-                url: '/HanderAshx/ArticleManage/ChannelHandler.ashx',
+                url: '/HanderAshx/AdvertManage/AdvertHandler.ashx',
                 cache: false,
                 datatype: "json",
                 root: "Rows",
                 datafields: [
                     { name: 'ID', type: 'string' },
-                    { name: 'Title', type: 'string' }
+                    { name: 'Title', type: 'string' },
+                    { name: 'LinkUrl', type: 'string' },
+                    { name: 'ChannelName', type: 'string' },
+                    { name: 'StatusStr', type: 'string' }
                 ],
                 pagesize: 20,
                 sort: function () { $("#jqxgrid").jqxGrid('updatebounddata', 'sort'); },
@@ -112,8 +115,11 @@
                 sorttogglestates: 1,
                 pagesizeoptions: ['10', '20', '30'],
                 columns: [
+                        { text: '<b>操作</b>', dataField: 'ID', width: 120, cellsalign: 'center', align: 'center', cellsrenderer: linkrenderer },
                         { text: '<b>名称</b>', dataField: 'Title', width: 250, cellsalign: 'center', align: 'center' },
-                        { text: '<b>操作</b>', dataField: 'ID', width: 120, cellsalign: 'center', align: 'center', cellsrenderer: linkrenderer }
+                        { text: '<b>链接地址</b>', dataField: 'LinkUrl', width: 250, cellsalign: 'center', align: 'center' },
+                        { text: '<b>所属频道</b>', dataField: 'ChannelName', width: 250, cellsalign: 'center', align: 'center' },
+                        { text: '<b>状态</b>', dataField: 'StatusStr', width: 250, cellsalign: 'center', align: 'center' }
                 ]
             });
 

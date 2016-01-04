@@ -81,6 +81,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdvertManage\AdvertManage.aspx" />
     <Content Include="API\Article.svc" />
     <Content Include="API\Member.svc" />
     <Content Include="ArticleManage\ArticleEdit.aspx" />
@@ -975,6 +976,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvertManage\AdvertManage.aspx.cs">
+      <DependentUpon>AdvertManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdvertManage\AdvertManage.aspx.designer.cs">
+      <DependentUpon>AdvertManage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="API\Article.svc.cs">
       <DependentUpon>Article.svc</DependentUpon>
     </Compile>
@@ -1043,6 +1051,9 @@
     </Compile>
     <Compile Include="Basic\ParameterConfiguration.aspx.designer.cs">
       <DependentUpon>ParameterConfiguration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HanderAshx\AdvertManage\AdvertHandler.ashx.cs">
+      <DependentUpon>AdvertHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="HanderAshx\ArticleManage\ArticleHandler.ashx.cs">
       <DependentUpon>ArticleHandler.ashx</DependentUpon>
@@ -1183,6 +1194,8 @@
     <Content Include="HanderAshx\ArticleManage\ArticleHandler.ashx" />
     <Content Include="HanderAshx\MemberManage\MemberHandler.ashx" />
     <Content Include="HanderAshx\ArticleManage\ChannelHandler.ashx" />
+    <Content Include="HanderAshx\AdvertManage\AdvertHandler.ashx" />
+    <None Include="Properties\PublishProfiles\topline.pubxml" />
     <None Include="Properties\PublishProfiles\TopLineManage.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

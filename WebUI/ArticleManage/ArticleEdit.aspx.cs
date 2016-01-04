@@ -1,20 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
 using System.Text;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using APICloud;
 using Bll;
 using Common;
 using Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using NPOI.SS.Formula.Functions;
 
 namespace WebUI.ArticleManage
 {
@@ -34,7 +27,7 @@ namespace WebUI.ArticleManage
                     var model = _bll.GetModel(_id);
                     txtTitle.Value = model.Title;
                     selArticleType.Value = model.Type;
-                    ControlHelper.SetChecked(ckbChannelList, model.ChannelID);
+                    ckbChannelList.SelectedValue = model.ChannelID;
                     ckbChannelList.Enabled = false;
                     txtPubTime.Value = model.PubTime.ToString("yyyy-MM-dd HH:mm:ss");
                     txtContent.InnerHtml = model.Content;
