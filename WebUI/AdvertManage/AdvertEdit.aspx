@@ -167,6 +167,14 @@
                     </td>
                 </tr>
                 <tr>
+                    <td style="text-align: right; width: 150px;">是否启用：</td>
+                    <td style="text-align: left; padding-left: 5px;">
+                        <div style="float: left; margin-bottom: -3px;">
+                            <asp:CheckBox runat="server" ID="ckbEnable" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
                     <td style="text-align: right;">操作：</td>
                     <td style="text-align: left; padding-left: 5px;">
                         <asp:Button ID="Button1" runat="server" Text="提交" CssClass="inputButton" OnClick="Btn_Click" OnClientClick="javascript:$.dialog.tips('数据加载中...',6000,'loading.gif');" />&nbsp;&nbsp;<input type="button" class="inputButton" value="返回" onclick="location.href = 'AdvertManage.aspx?columnId=<%=ColumnId%>    ';" />

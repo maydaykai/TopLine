@@ -79,12 +79,12 @@
                 }
             });
             var linkrenderer = function (row, column, value) {
-                var parm = "/ArticleManage/ChannelEdit.aspx?" + column + "=" + value + "&columnId=<%=ColumnId%>";
+                var parm = column + "=" + value + "&columnId=<%=ColumnId%>";
                 var rightEdit = '<%=RightEdit%>' === 'True';
                 var rightDelete = '<%=RightDelete%>' === 'True';
                 var link = "";
                 if (rightEdit)
-                    link += "<a style='text-align:center;margin-left:30px;height:25px; line-height:25px;' href='javascript:void(0)' onclick=\"MessageWindow(270,100,'" + parm + "')\"; target='_self'>修改</a>";
+                    link += "<a href='AdvertEdit.aspx?" + parm + "'  target='_self' style='margin-left:10px;height:25px;line-height:25px;'>修改</a>";
                 if (rightDelete)
                     link += "<a style='text-align:center;margin-left:15px;height:25px; line-height:25px;' href='javascript:void(0)' onclick=\"deleteConfirm('" + value + "')\"; target='_self'>删除</a>";
                 return link;

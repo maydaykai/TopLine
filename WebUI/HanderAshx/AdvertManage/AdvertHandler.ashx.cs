@@ -65,7 +65,7 @@ namespace WebUI.HanderAshx.AdvertManage
                     str.Append(model.title + ",");
                 }
             }
-            return str.Remove(str.Length, 1).ToString();
+            return str.Remove(str.Length - 1, 1).ToString();
         }
 
         public bool IsReusable

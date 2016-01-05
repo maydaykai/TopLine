@@ -26,6 +26,12 @@ namespace WebUI.AdvertManage
                     if (jObj != null)
                     {
                         txtTitle.Value = jObj["title"].ToString();
+                        txtLinkUrl.Value = jObj["linkUrl"].ToString();
+                        imgAdvertImg.Attributes["src"] = ConfigHelper.ImgVirtualPath + Convert.ToDateTime(jObj["createdAt"]).ToLocalTime().ToString("yyyyMMdd") + "/" + jObj["img"];
+                        hiAdvertImg.Value = jObj["img"].ToString();
+                        ControlHelper.SetChecked(ckbChannelList, jObj["channels"].ToString(), ",");
+                        txtLineNumber.Value = jObj["lineNumber"].ToString();
+                        ckbEnable.Checked = Convert.ToBoolean(jObj["status"]);
                     }
                 }
             }
@@ -47,9 +53,30 @@ namespace WebUI.AdvertManage
             var linkUrl = txtLinkUrl.Value.Trim();
             var channels = ControlHelper.GetCheckBoxList(ckbChannelList,",");
             var lineNumber = txtLineNumber.Value.Trim();
-            if (string.IsNullOrEmpty(txtTitle.Value.Trim()))
+            var status = ckbEnable.Checked;
+            if (string.IsNullOrEmpty(title))
             {
                 ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入标题','warning', '');", true);
+                return;
+            }
+            if (string.IsNullOrEmpty(img))
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请上传图片','warning', '');", true);
+                return;
+            }
+            if (string.IsNullOrEmpty(linkUrl))
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入链接','warning', '');", true);
+                return;
+            }
+            if (string.IsNullOrEmpty(channels))
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请选择频道','warning', '');", true);
+                return;
+            }
+            if (string.IsNullOrEmpty(lineNumber))
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入队列序号','warning', '');", true);
                 return;
             }
 
@@ -57,14 +84,19 @@ namespace WebUI.AdvertManage
             {
                 var pushData = new
                 {
-                    title = txtTitle.Value.Trim(),
+                    title,
+                    img,
+                    linkUrl,
+                    channels,
+                    lineNumber,
+                    status,
                     updatedAt = DateTime.UtcNow
                 };
                 var resultData = _model.Edit(_id, pushData);
                 var jObj = JObject.Parse(resultData);
                 ClientScript.RegisterClientScriptBlock(GetType(), "",
                     jObj != null && jObj["id"] != null
-                        ? "MessageAlert('修改成功','success', '/ArticleManage/ChannelManage.aspx?columnId=" + ColumnId +
+                        ? "MessageAlert('修改成功','success', '/AdvertManage/AdvertManage.aspx?columnId=" + ColumnId +
                           "');"
                         : "MessageAlert('修改失败','error', '');", true);
 
@@ -78,13 +110,13 @@ namespace WebUI.AdvertManage
                     linkUrl,
                     channels,
                     lineNumber,
-                    status = false
+                    status
                 };
                 var resultData = _model.Create(pushData);
                 var jObj = JObject.Parse(resultData);
                 ClientScript.RegisterClientScriptBlock(GetType(), "",
                                        jObj != null && jObj["id"] != null
-                                           ? "MessageAlert('添加成功','success', '/AvertManage/AvertManage.aspx?columnId=" + ColumnId + "');"
+                                           ? "MessageAlert('添加成功','success', '/AdvertManage/AdvertManage.aspx?columnId=" + ColumnId + "');"
                                            : "MessageAlert('添加失败','error', '');", true);
             }
         }

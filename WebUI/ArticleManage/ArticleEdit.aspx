@@ -108,7 +108,7 @@
                         </asp:CheckBoxList>
                     </td>
                 </tr>
-                <tr>
+                <%--<tr>
                     <td style="text-align: right; ">发布时间：</td>
                     <td style="text-align: left; padding-left: 5px;">
                         <div style="float: left; margin-bottom: -3px;">
@@ -121,7 +121,7 @@
                             </span>
                         </div>
                     </td>
-                </tr>
+                </tr>--%>
                 <tr>
                     <td style="text-align: right; ">资讯正文：</td>
                     <td style="text-align: left; padding-left: 5px;">
