@@ -31,8 +31,13 @@ namespace Model
         /// <summary>
         /// 所属频道
         /// </summary>		
-        public string channelId { get; set; }
-        
+        public string channels { get; set; }
+
+        /// <summary>
+        /// 队列序号
+        /// </summary>		
+        public string lineNumber { get; set; }
+
         /// <summary>
         /// 状态 0：禁用；1：启用
         /// </summary>		
@@ -42,9 +47,5 @@ namespace Model
         {
             get { return status ? "启用" : "禁用"; }
         }
-        /// <summary>
-        /// 关联频道
-        /// </summary>
-        public ChannelModel channelModel { get; set; }
     }
 }

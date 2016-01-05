@@ -1,0 +1,92 @@
+﻿using System;
+using System.Collections.Generic;
+using APICloud;
+using APICloud.Rest;
+using Common;
+using Model;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+namespace WebUI.AdvertManage
+{
+    public partial class AdvertEdit : BasePage
+    {
+        private string _id;
+        readonly Factory _model = DataConstructor.Factory("advert");
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            _id = ConvertHelper.QueryString(Request, "id", "");
+            if (!IsPostBack)
+            {
+                InitChannel();
+                if (!string.IsNullOrEmpty(_id))
+                {
+                    var resultData = _model.Get(_id);
+                    var jObj = JObject.Parse(resultData);
+                    if (jObj != null)
+                    {
+                        txtTitle.Value = jObj["title"].ToString();
+                    }
+                }
+            }
+        }
+        private void InitChannel()
+        {
+            var model = DataConstructor.Factory("channel");
+            var data = model.Query();
+            var list = JsonConvert.DeserializeObject<List<ChannelModel>>(data);
+            ckbChannelList.DataSource = list;
+            ckbChannelList.DataValueField = "id";
+            ckbChannelList.DataTextField = "title";
+            ckbChannelList.DataBind();
+        }
+        protected void Btn_Click(object sender, EventArgs e)
+        {
+            var title = txtTitle.Value.Trim();
+            var img = hiAdvertImg.Value.Trim();
+            var linkUrl = txtLinkUrl.Value.Trim();
+            var channels = ControlHelper.GetCheckBoxList(ckbChannelList,",");
+            var lineNumber = txtLineNumber.Value.Trim();
+            if (string.IsNullOrEmpty(txtTitle.Value.Trim()))
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入标题','warning', '');", true);
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(_id))
+            {
+                var pushData = new
+                {
+                    title = txtTitle.Value.Trim(),
+                    updatedAt = DateTime.UtcNow
+                };
+                var resultData = _model.Edit(_id, pushData);
+                var jObj = JObject.Parse(resultData);
+                ClientScript.RegisterClientScriptBlock(GetType(), "",
+                    jObj != null && jObj["id"] != null
+                        ? "MessageAlert('修改成功','success', '/ArticleManage/ChannelManage.aspx?columnId=" + ColumnId +
+                          "');"
+                        : "MessageAlert('修改失败','error', '');", true);
+
+            }
+            else
+            {
+                var pushData = new
+                {
+                    title,
+                    img,
+                    linkUrl,
+                    channels,
+                    lineNumber,
+                    status = false
+                };
+                var resultData = _model.Create(pushData);
+                var jObj = JObject.Parse(resultData);
+                ClientScript.RegisterClientScriptBlock(GetType(), "",
+                                       jObj != null && jObj["id"] != null
+                                           ? "MessageAlert('添加成功','success', '/AvertManage/AvertManage.aspx?columnId=" + ColumnId + "');"
+                                           : "MessageAlert('添加失败','error', '');", true);
+            }
+        }
+    }
+}

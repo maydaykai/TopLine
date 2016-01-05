@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using APICloud;
 using Model;
@@ -31,22 +32,40 @@ namespace WebUI.HanderAshx.AdvertManage
             var model = DataConstructor.Factory("advert");
             var data = model.Query();
             var list = JsonConvert.DeserializeObject<List<AdvertModel>>(data);
+
+            if (list.Count == 0) return JsonConvert.SerializeObject(new { TotalRows = 0, Rows = new string[] { } });
+            var channelModel = DataConstructor.Factory("channel");
+            var channelData = channelModel.Query();
+            var channelList = JsonConvert.DeserializeObject<List<ChannelModel>>(channelData);
             var modelData = (from advertModel in list
                              select new
-                             {
-                                 ID = advertModel.id,
-                                 Title = advertModel.title,
-                                 Img = advertModel.img,
-                                 LinkUrl = advertModel.linkUrl,
-                                 ChannelName = advertModel.channelModel.title,
-                                 StatusStr = advertModel.statusStr
-                             });
+                                 {
+                                     ID = advertModel.id,
+                                     Title = advertModel.title,
+                                     Img = advertModel.img,
+                                     LinkUrl = advertModel.linkUrl,
+                                     ChannelName = GetChannelsName(channelList, advertModel.channels),
+                                     StatusStr = advertModel.statusStr
+                                 });
             var jsonData = new
-            {
-                TotalRows = list.Count,//记录数
-                Rows = modelData//实体列表
-            };
+                {
+                    TotalRows = list.Count, //记录数
+                    Rows = modelData //实体列表
+                };
             return JsonConvert.SerializeObject(jsonData);
+        }
+        private string GetChannelsName(List<ChannelModel> channelList, string channels)
+        {
+            var str = new StringBuilder();
+            if (string.IsNullOrEmpty(channels)) return "";
+            foreach (var model in channelList)
+            {
+                if (channels.IndexOf(model.id) != -1)
+                {
+                    str.Append(model.title + ",");
+                }
+            }
+            return str.Remove(str.Length, 1).ToString();
         }
 
         public bool IsReusable

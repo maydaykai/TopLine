@@ -81,6 +81,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdvertManage\AdvertEdit.aspx" />
     <Content Include="AdvertManage\AdvertManage.aspx" />
     <Content Include="API\Article.svc" />
     <Content Include="API\Member.svc" />
@@ -976,6 +977,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvertManage\AdvertEdit.aspx.cs">
+      <DependentUpon>AdvertEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdvertManage\AdvertEdit.aspx.designer.cs">
+      <DependentUpon>AdvertEdit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdvertManage\AdvertManage.aspx.cs">
       <DependentUpon>AdvertManage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
