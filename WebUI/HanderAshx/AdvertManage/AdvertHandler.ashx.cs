@@ -54,13 +54,13 @@ namespace WebUI.HanderAshx.AdvertManage
                 };
             return JsonConvert.SerializeObject(jsonData);
         }
-        private string GetChannelsName(List<ChannelModel> channelList, string channels)
+        private string GetChannelsName(List<ChannelModel> channelList, string[] channels)
         {
             var str = new StringBuilder();
-            if (string.IsNullOrEmpty(channels)) return "";
+            if (channels.Length == 0) return "";
             foreach (var model in channelList)
             {
-                if (channels.IndexOf(model.id) != -1)
+                if (string.Join(",", channels).IndexOf(model.id) != -1)
                 {
                     str.Append(model.title + ",");
                 }

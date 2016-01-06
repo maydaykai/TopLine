@@ -27,9 +27,9 @@ namespace WebUI.AdvertManage
                     {
                         txtTitle.Value = jObj["title"].ToString();
                         txtLinkUrl.Value = jObj["linkUrl"].ToString();
-                        imgAdvertImg.Attributes["src"] = ConfigHelper.ImgVirtualPath + Convert.ToDateTime(jObj["createdAt"]).ToLocalTime().ToString("yyyyMMdd") + "/" + jObj["img"];
+                        imgAdvertImg.Attributes["src"] = ConfigHelper.ImgVirtualPath + jObj["img"];
                         hiAdvertImg.Value = jObj["img"].ToString();
-                        ControlHelper.SetChecked(ckbChannelList, jObj["channels"].ToString(), ",");
+                        ControlHelper.SetChecked(ckbChannelList, string.Join(",",jObj["channels"]), ",");
                         txtLineNumber.Value = jObj["lineNumber"].ToString();
                         ckbEnable.Checked = Convert.ToBoolean(jObj["status"]);
                     }
@@ -87,7 +87,7 @@ namespace WebUI.AdvertManage
                     title,
                     img,
                     linkUrl,
-                    channels,
+                    channels = channels.Split(','),
                     lineNumber,
                     status,
                     updatedAt = DateTime.UtcNow
@@ -108,7 +108,7 @@ namespace WebUI.AdvertManage
                     title,
                     img,
                     linkUrl,
-                    channels,
+                    channels = channels.Split(','),
                     lineNumber,
                     status
                 };

@@ -31,7 +31,7 @@ namespace Model
         /// <summary>
         /// 所属频道
         /// </summary>		
-        public string channels { get; set; }
+        public string[] channels { get; set; }
 
         /// <summary>
         /// 队列序号
