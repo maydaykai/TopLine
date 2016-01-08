@@ -48,7 +48,7 @@ namespace Bll
         /// <summary>
         /// 获取分页数据
         /// </summary>
-        public List<UserModel> GetFcmsUserList(string whereStr, string orderBy, int currentPage, int pageSize, ref int rowsCount)
+        public List<UserModel> GetUserList(string whereStr, string orderBy, int currentPage, int pageSize, ref int rowsCount)
         {
             return _dal.GetUserList(whereStr, orderBy, currentPage, pageSize, ref rowsCount);
         }

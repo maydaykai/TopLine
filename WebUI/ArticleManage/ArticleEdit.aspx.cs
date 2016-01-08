@@ -46,6 +46,7 @@ namespace WebUI.ArticleManage
         }
         private void InitChannel()
         {
+            var userModel = new UserBll().GetModel(MemberId);
             var model = DataConstructor.Factory("channel");
             var data = model.Query();
             var list = JsonConvert.DeserializeObject<List<ChannelModel>>(data);

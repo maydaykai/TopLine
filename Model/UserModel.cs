@@ -103,5 +103,9 @@ namespace Model
         /// </summary>		
         public string RoleId { get; set; }
 
+        /// <summary>
+        /// 频道权限ID
+        /// </summary>		
+        public string Channels { get; set; }
     }
 }

@@ -73,7 +73,7 @@ namespace Dal
         private UserModel GetUserByNameAndPwd(string userName, string passWord)
         {
             var strSql = new StringBuilder();
-            strSql.Append("select [ID], [Email], [QQ], [RegTime], [LastLoginTime], [LastIP], [Times], [IsLock], [UpdateTime], [RoleID], [ParentID], [UserName], [PassWord], [RealName],[AnotherName], [Sex], [Phone], [Mobile] ");
+            strSql.Append("select [ID], [Email], [QQ], [RegTime], [LastLoginTime], [LastIP], [Times], [IsLock], [UpdateTime], [RoleID], [Channels], [ParentID], [UserName], [PassWord], [RealName],[AnotherName], [Sex], [Phone], [Mobile] ");
             strSql.Append("  from [User] ");
             strSql.Append(" where UserName=@UserName ");
             strSql.Append(" AND PassWord=@PassWord ");
@@ -123,6 +123,7 @@ namespace Dal
                     model.UpdateTime = DateTime.Parse(ds.Tables[0].Rows[0]["UpdateTime"].ToString());
                 }
                 model.RoleId = ds.Tables[0].Rows[0]["RoleID"].ToString();
+                model.Channels = ds.Tables[0].Rows[0]["Channels"].ToString();
                 if (ds.Tables[0].Rows[0]["ParentID"].ToString() != "")
                 {
                     model.ParentID = int.Parse(ds.Tables[0].Rows[0]["ParentID"].ToString());
@@ -157,8 +158,8 @@ namespace Dal
             {
                 var strSql = new StringBuilder();
                 strSql.Append("insert into [User] ");
-                strSql.Append(" (UserName,Email,QQ ,LastLoginTime,RegTime,IsLock,UpdateTime,RoleID,ParentID,PassWord,RealName,AnotherName,Sex,Phone,Mobile,Times)");
-                strSql.Append(" Values(@UserName,@Email,@QQ ,@LastLoginTime,@RegTime,@IsLock,@UpdateTime,@RoleID,@ParentID,@PassWord,@RealName,@AnotherName,@Sex,@Phone,@Mobile,@Times)");
+                strSql.Append(" (UserName,Email,QQ ,LastLoginTime,RegTime,IsLock,UpdateTime,RoleID,Channels,ParentID,PassWord,RealName,AnotherName,Sex,Phone,Mobile,Times)");
+                strSql.Append(" Values(@UserName,@Email,@QQ ,@LastLoginTime,@RegTime,@IsLock,@UpdateTime,@RoleID,@Channels,@ParentID,@PassWord,@RealName,@AnotherName,@Sex,@Phone,@Mobile,@Times)");
                 strSql.Append(";select SCOPE_IDENTITY()");
                 SqlParameter[] parameters =
                     {
@@ -169,7 +170,8 @@ namespace Dal
                         new SqlParameter("@RegTime", SqlDbType.DateTime) {Value = model.RegTime},
                         new SqlParameter("@IsLock", SqlDbType.Bit, 1) {Value = model.IsLock},
                         new SqlParameter("@UpdateTime", SqlDbType.DateTime) {Value = model.UpdateTime},
-                        new SqlParameter("@RoleID", SqlDbType.VarChar, 100) {Value = model.RoleId},
+                        new SqlParameter("@RoleID", SqlDbType.VarChar, 100) {Value = model.RoleId},           
+                        new SqlParameter("@Channels", SqlDbType.VarChar,100){Value = model.Channels} ,  
                         new SqlParameter("@ParentID", SqlDbType.Int, 4) {Value = model.ParentID},
                         new SqlParameter("@PassWord", SqlDbType.VarChar, 50) {Value = model.PassWord},
                         new SqlParameter("@RealName", SqlDbType.NVarChar, 50) {Value = model.RealName},
@@ -230,6 +232,7 @@ namespace Dal
                 strSql.Append(" IsLock = @IsLock , ");
                 strSql.Append(" UpdateTime = @UpdateTime , ");
                 strSql.Append(" RoleID = @RoleID , ");
+                strSql.Append(" Channels = @Channels , ");
                 strSql.Append(" ParentID = @ParentID , ");
                 strSql.Append(" PassWord = @PassWord , ");
                 strSql.Append(" RealName = @RealName , ");
@@ -245,7 +248,8 @@ namespace Dal
                         new SqlParameter("@QQ", SqlDbType.VarChar,20){Value = model.QQ} ,                                                  
                         new SqlParameter("@IsLock", SqlDbType.Bit,1){Value = model.IsLock} ,            
                         new SqlParameter("@UpdateTime", SqlDbType.DateTime){Value = model.UpdateTime} ,            
-                        new SqlParameter("@RoleID", SqlDbType.VarChar,100){Value = model.RoleId} ,            
+                        new SqlParameter("@RoleID", SqlDbType.VarChar,100){Value = model.RoleId} ,                 
+                        new SqlParameter("@Channels", SqlDbType.VarChar,100){Value = model.Channels} ,   
                         new SqlParameter("@ParentID", SqlDbType.Int,4){Value = model.ParentID} ,                     
                         new SqlParameter("@PassWord", SqlDbType.VarChar,50){Value = model.PassWord} ,                     
                         new SqlParameter("@RealName", SqlDbType.NVarChar,50){Value = model.RealName} , 
@@ -291,7 +295,7 @@ namespace Dal
         public UserModel GetModel(int id)
         {
             var strSql = new StringBuilder();
-            strSql.Append("select [ID], [Email], [QQ], [RegTime], [LastLoginTime], [LastIP], [Times], [IsLock], [UpdateTime], [RoleID], [ParentID], [UserName], [PassWord], [RealName],[AnotherName], [Sex], [Phone], [Mobile]  ");
+            strSql.Append("select [ID], [Email], [QQ], [RegTime], [LastLoginTime], [LastIP], [Times], [IsLock], [UpdateTime], [RoleID], [Channels], [ParentID], [UserName], [PassWord], [RealName],[AnotherName], [Sex], [Phone], [Mobile]  ");
             strSql.Append("  from [User] ");
             strSql.Append(" where ID=@ID");
             SqlParameter[] parameters = {
@@ -337,6 +341,7 @@ namespace Dal
                     model.UpdateTime = DateTime.Parse(ds.Tables[0].Rows[0]["UpdateTime"].ToString());
                 }
                 model.RoleId = ds.Tables[0].Rows[0]["RoleID"].ToString();
+                model.Channels = ds.Tables[0].Rows[0]["Channels"].ToString();
                 if (ds.Tables[0].Rows[0]["ParentID"].ToString() != "")
                 {
                     model.ParentID = int.Parse(ds.Tables[0].Rows[0]["ParentID"].ToString());
@@ -380,13 +385,13 @@ namespace Dal
                 rowsCount = reader["totals"] != DBNull.Value ? Convert.ToInt32(reader["totals"]) : 0;
             }
             reader.Close();
-            var sqlPage = "select (ROW_NUMBER() OVER(ORDER BY " + orderBy + ")) AS rownum, [ID],[UserName],[RealName],[AnotherName],[Mobile],[RegTime],[LastLoginTime],[IsLock],[UpdateTime],[RoleID] from [User]";
+            var sqlPage = "select (ROW_NUMBER() OVER(ORDER BY " + orderBy + ")) AS rownum, [ID],[UserName],[RealName],[AnotherName],[Mobile],[RegTime],[LastLoginTime],[IsLock],[UpdateTime],[RoleID],[Channels] from [User]";
             if (!string.IsNullOrEmpty(whereStr))
             {
                 sqlPage = sqlPage + " where " + whereStr;
             }
             var startIndex = (currentPage - 1) * pageSize + 1;
-            sqlPage = "Select [ID],[UserName],[RealName],[AnotherName],[Mobile],[RegTime],[LastLoginTime],[IsLock],[UpdateTime],[RoleID] from (" + sqlPage + ") tmp where rownum between " + startIndex + " and " + currentPage * pageSize;
+            sqlPage = "Select [ID],[UserName],[RealName],[AnotherName],[Mobile],[RegTime],[LastLoginTime],[IsLock],[UpdateTime],[RoleID],[Channels] from (" + sqlPage + ") tmp where rownum between " + startIndex + " and " + currentPage * pageSize;
             reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionStringLocal, CommandType.Text, sqlPage);
             while (reader.Read())
             {
@@ -410,7 +415,8 @@ namespace Dal
                     LastLoginTime = dr["LastLoginTime"].Equals(DBNull.Value) ? DateTime.Now : ConvertHelper.ToDateTime(dr["LastLoginTime"].ToString()),
                     IsLock = ConvertHelper.ToBool(dr["IsLock"].ToString()),
                     UpdateTime = dr["UpdateTime"].Equals(DBNull.Value) ? DateTime.Now : ConvertHelper.ToDateTime(dr["UpdateTime"].ToString()),
-                    RoleId = dr["RoleID"].Equals(DBNull.Value) ? "" : dr["RoleID"].ToString()
+                    RoleId = dr["RoleID"].Equals(DBNull.Value) ? "" : dr["RoleID"].ToString(),
+                    Channels = dr["Channels"].Equals(DBNull.Value) ? "" : dr["Channels"].ToString()
                 };
             return model;
         }

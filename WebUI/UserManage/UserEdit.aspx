@@ -92,6 +92,13 @@
                 </td>
             </tr>
             <tr>
+                <td style="text-align: right">频道权限：</td>
+                <td style="text-align: left; padding-left: 5px;">
+                    <asp:CheckBoxList ID="ckbChannelList" runat="server" RepeatDirection="Horizontal" BorderColor="White" RepeatLayout="Flow" CssClass="checkList">
+                    </asp:CheckBoxList>
+                </td>
+            </tr>
+            <tr>
                 <td style="text-align: right">联系电话：</td>
                 <td style="text-align: left; padding-left: 5px; padding-top:5px;">
                     <div class="fl">

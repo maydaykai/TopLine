@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.UI.WebControls;
+using APICloud;
 using Common;
 using Bll;
 using Model;
 using System.Web.Security;
+using Newtonsoft.Json;
 
 namespace WebUI.UserManage
 {
@@ -19,6 +22,7 @@ namespace WebUI.UserManage
             if (!IsPostBack)
             {
                 BindRoleList();
+                InitChannel();
                 if (_id > 0)
                 {
                     txtUserName.Disabled = true;
@@ -37,6 +41,7 @@ namespace WebUI.UserManage
                     userModel.RegTime = DateTime.Now;
                     userModel.UpdateTime = DateTime.Now;
                     ControlHelper.SetChecked(ckbRoleList, userModel.RoleId, ",");
+                    ControlHelper.SetChecked(ckbChannelList, userModel.Channels, ",");
                     rblSex.SelectedValue = userModel.Sex.ToString();
                     litRegTime.Text = userModel.RegTime.ToString("yyyy-MM-dd HH:mm:ss");
                     litLastLoginTime.Text = userModel.LastLoginTime.ToString("yyyy-MM-dd HH:mm:ss");
@@ -62,6 +67,16 @@ namespace WebUI.UserManage
             ckbRoleList.DataValueField = "ID";
             ckbRoleList.DataTextField = "Name";
             ckbRoleList.DataBind();
+        }
+        private void InitChannel()
+        {
+            var model = DataConstructor.Factory("channel");
+            var data = model.Query();
+            var list = JsonConvert.DeserializeObject<List<ChannelModel>>(data);
+            ckbChannelList.DataSource = list;
+            ckbChannelList.DataValueField = "id";
+            ckbChannelList.DataTextField = "title";
+            ckbChannelList.DataBind();
         }
 
         protected void Button1_Click(object sender, EventArgs e)
