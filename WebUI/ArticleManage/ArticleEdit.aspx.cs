@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using APICloud;
 using Bll;
@@ -47,8 +48,17 @@ namespace WebUI.ArticleManage
         private void InitChannel()
         {
             var userModel = new UserBll().GetModel(MemberId);
+            if (string.IsNullOrEmpty(userModel.Channels)) return;
+            var str = userModel.Channels.Split(',');
+            var st = new StringBuilder();
+            foreach (var s in str)
+            {
+                st.Append("\"" + s + "\",");
+            }
+            st.Remove(st.Length-1,1);
+            var filter = "{\"where\":{\"id\":{\"inq\":[" + st + "]}}}";
             var model = DataConstructor.Factory("channel");
-            var data = model.Query();
+            var data = model.Query(filter);
             var list = JsonConvert.DeserializeObject<List<ChannelModel>>(data);
             ckbChannelList.DataSource = list;
             ckbChannelList.DataValueField = "id";

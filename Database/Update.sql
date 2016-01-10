@@ -1,0 +1,1 @@
+ALTER TABLE [dbo].[User] ADD [Channels] VARCHAR(500) NOT NULL DEFAULT('')

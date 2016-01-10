@@ -93,6 +93,7 @@
                             <select id="selArticleType" name="selArticleType" runat="server" class="fl">
                                 <option value="txt">文本</option>
                                 <option value="img">带图文本</option>
+                                <option value="imgs">图集</option>
                                 <option value="play">视频</option>
                             </select>
                             <span class="fl" style="margin-left: -5px; cursor: pointer;">

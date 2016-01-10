@@ -95,8 +95,7 @@ namespace WebUI.UserManage
             {
                 ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('密码确认错误','warning', '');", true); return;
             }
-
-            var pwd = FormsAuthentication.HashPasswordForStoringInConfigFile(txtPwd.Value.Trim(), "md5");
+            var pwd = FormsAuthentication.HashPasswordForStoringInConfigFile(string.IsNullOrEmpty(txtPwd.Value.Trim()) ? "123456" : txtPwd.Value.Trim(), "md5");
             if (_id > 0)
             {
                 UserModel userModel = userBll.GetModel(_id);
@@ -113,6 +112,7 @@ namespace WebUI.UserManage
                 userModel.IsLock = chkLock.Checked;
                 userModel.UpdateTime = DateTime.Now;
                 userModel.RoleId = ControlHelper.GetCheckBoxList(ckbRoleList, ",");
+                userModel.Channels = ControlHelper.GetCheckBoxList(ckbChannelList, ",");
                 userModel.ParentID = 0;
                 userModel.Sex = ConvertHelper.ToInt(rblSex.SelectedValue.Trim());
                 ClientScript.RegisterClientScriptBlock(GetType(), "",
@@ -142,6 +142,7 @@ namespace WebUI.UserManage
                         RegTime = DateTime.Now,
                         UpdateTime = DateTime.Now,
                         RoleId = ControlHelper.GetCheckBoxList(ckbRoleList, ","),
+                        Channels = ControlHelper.GetCheckBoxList(ckbChannelList, ","),
                         ParentID = 0,
                         Sex = ConvertHelper.ToInt(rblSex.SelectedValue.Trim()),
                         Times = 0
