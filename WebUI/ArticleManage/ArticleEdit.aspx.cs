@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using APICloud;
 using Bll;
 using Common;
@@ -28,6 +30,9 @@ namespace WebUI.ArticleManage
                     var model = _bll.GetModel(_id);
                     txtTitle.Value = model.Title;
                     selArticleType.Value = model.Type;
+                    imgCoverImg.Attributes["src"] = model.Type.Equals("play") ? model.Imgs : "";
+                    hiCoverImg.Value = model.Type.Equals("play") ? Path.GetFileName(model.Imgs) : "";
+                    cover.Visible = model.Type.Equals("play");
                     ckbChannelList.SelectedValue = model.ChannelID;
                     ckbChannelList.Enabled = false;
                     //txtPubTime.Value = model.PubTime.ToString("yyyy-MM-dd HH:mm:ss");
@@ -86,6 +91,11 @@ namespace WebUI.ArticleManage
             //    ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入发布时间','warning', '');", true);
             //    return;
             //}
+            if (selArticleType.Value.Equals("play") && string.IsNullOrEmpty(hiCoverImg.Value))
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请选择封面图片','warning', '');", true);
+                return;
+            }
             if (string.IsNullOrEmpty(content))
             {
                 ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入文章正文','warning', '');", true);
@@ -102,40 +112,47 @@ namespace WebUI.ArticleManage
                 Type = selArticleType.Value,
                 PubTime = Convert.ToDateTime(pubTime)
             };
-
-            var srcPath = HtmlHelper.GetHtmlImageUrlList(content);
-            var arrayList = new ArrayList();//srcPath中的网络地址
-            var localArrayList = new ArrayList();//srcPath中的本地地址
-            var uploadPath = DateTime.Now.ToString("yyyyMMdd");
-            var virtualPath = ConfigHelper.ImgVirtualPath;
-            if (srcPath.Length > 0)
+            if (selArticleType.Value.Equals("play"))
             {
-                foreach (string str in srcPath)
+                model.Imgs = ConfigHelper.ImgVirtualPath + hiCoverImg.Value;
+            }
+            else
+            {
+                var srcPath = HtmlHelper.GetHtmlImageUrlList(content);
+                var arrayList = new ArrayList(); //srcPath中的网络地址
+                var localArrayList = new ArrayList(); //srcPath中的本地地址
+                var uploadPath = DateTime.Now.ToString("yyyyMMdd");
+                var virtualPath = ConfigHelper.ImgVirtualPath;
+                if (srcPath.Length > 0)
                 {
-                    if (str.IndexOf(virtualPath) == -1)
-                        arrayList.Add(str);
-                    else
-                        localArrayList.Add(str);
-                }
-                if (localArrayList.Count > 0)
-                {
-                    foreach (object str in localArrayList)
+                    foreach (string str in srcPath)
                     {
-                        model.Imgs += (str + ",");
+                        if (str.IndexOf(virtualPath) == -1)
+                            arrayList.Add(str);
+                        else
+                            localArrayList.Add(str);
                     }
-                    model.Imgs = model.Imgs.Substring(0, model.Imgs.Length - 1);
-                }
-                if (arrayList.Count > 0)
-                {
-                    var localPath = ImageHelper.GetSaveImgNames((string[])arrayList.ToArray(typeof(string)), uploadPath, 2);
-                    if (!string.IsNullOrEmpty(model.Imgs))
-                        model.Imgs += ",";
-                    for (var i = 0; i < localPath.Length; i++)
+                    if (localArrayList.Count > 0)
                     {
-                        model.Content = model.Content.Replace(srcPath[i], localPath[i]);
-                        model.Imgs += (localPath[i] + ",");
+                        foreach (object str in localArrayList)
+                        {
+                            model.Imgs += (str + ",");
+                        }
+                        model.Imgs = model.Imgs.Substring(0, model.Imgs.Length - 1);
                     }
-                    model.Imgs = model.Imgs.Substring(0, model.Imgs.Length - 1);
+                    if (arrayList.Count > 0)
+                    {
+                        var localPath = ImageHelper.GetSaveImgNames((string[]) arrayList.ToArray(typeof (string)),
+                            uploadPath, 2);
+                        if (!string.IsNullOrEmpty(model.Imgs))
+                            model.Imgs += ",";
+                        for (var i = 0; i < localPath.Length; i++)
+                        {
+                            model.Content = model.Content.Replace(srcPath[i], localPath[i]);
+                            model.Imgs += (localPath[i] + ",");
+                        }
+                        model.Imgs = model.Imgs.Substring(0, model.Imgs.Length - 1);
+                    }
                 }
             }
             if (_id > 0)
@@ -156,6 +173,18 @@ namespace WebUI.ArticleManage
                     model.AuditRecord += "|";
                 var userName = new UserBll().GetModel(MemberId).UserName;
                 var tipStr = new StringBuilder();
+                var videoMatches = new Regex(
+                    @"<embed\b[^<>]*?\bsrc[\s\t\r\n]*=[\s\t\r\n]*[""']?[\s\t\r\n]*(?<videoUrl>[^\s\t\r\n""'<>]*)[^<>]*?/?[\s\t\r\n]*>",
+                    RegexOptions.IgnoreCase).Matches(content);
+                if (videoMatches.Count > 0)
+                {
+                    var videoContent = "<video  controls=\"controls\" poster=\"" + model.Imgs + "\"> " +
+                                       "<source src=\"" + videoMatches[0].Groups["videoUrl"].Value +
+                                       "\" type=\"video/mp4\">" +
+                                       "</video>";
+                    content = content.Replace(videoMatches[0].Value, videoContent);
+                    model.Content = Server.HtmlEncode(content);
+                }
                 if (oldModel.AuditStatus == 0) //审核
                 {
                     model.AuditRecord += (rdStatusY.Checked ? "审核通过—" : "审核不通过") + userName + "—" +
