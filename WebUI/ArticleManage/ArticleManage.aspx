@@ -130,6 +130,8 @@
                     strHtml += "文本";
                 } else if (value == "img") {
                     strHtml += "图文";
+                } else if (value == "imgs") {
+                    strHtml += "图集";
                 } else {
                     strHtml += "视频";
                 }
