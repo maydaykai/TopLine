@@ -972,6 +972,8 @@
     <Content Include="ManageLogin.aspx" />
     <Content Include="UserManage\RightEdit.aspx" />
     <Content Include="UserManage\RightManage.aspx" />
+    <Content Include="VoteManage\VoteEdit.aspx" />
+    <Content Include="VoteManage\VoteManage.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1074,6 +1076,9 @@
     </Compile>
     <Compile Include="HanderAshx\UserManage\RoleRightHandler.ashx.cs">
       <DependentUpon>RoleRightHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="HanderAshx\VoteManage\VoteHandler.ashx.cs">
+      <DependentUpon>VoteHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="js\Uploadify\UploadifyHandler.ashx.cs">
       <DependentUpon>UploadifyHandler.ashx</DependentUpon>
@@ -1179,6 +1184,20 @@
     <Compile Include="UserManage\UserManage.aspx.designer.cs">
       <DependentUpon>UserManage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VoteManage\VoteEdit.aspx.cs">
+      <DependentUpon>VoteEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VoteManage\VoteEdit.aspx.designer.cs">
+      <DependentUpon>VoteEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VoteManage\VoteManage.aspx.cs">
+      <DependentUpon>VoteManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VoteManage\VoteManage.aspx.designer.cs">
+      <DependentUpon>VoteManage.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="HanderAshx\Basic\ColumnHander.ashx" />
@@ -1203,6 +1222,7 @@
     <Content Include="HanderAshx\MemberManage\MemberHandler.ashx" />
     <Content Include="HanderAshx\ArticleManage\ChannelHandler.ashx" />
     <Content Include="HanderAshx\AdvertManage\AdvertHandler.ashx" />
+    <Content Include="HanderAshx\VoteManage\VoteHandler.ashx" />
     <None Include="Properties\PublishProfiles\topline.pubxml" />
     <None Include="Properties\PublishProfiles\TopLineManage.pubxml" />
     <None Include="Web.Debug.config">

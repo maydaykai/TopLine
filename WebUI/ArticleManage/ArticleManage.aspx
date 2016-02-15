@@ -143,7 +143,7 @@
             $("#jqxgrid").jqxGrid({
                 theme: theme,
                 source: dataadapter,
-                width: 1580,
+                width: 1180,
                 rendergridrows: function (args) {
                     return args.data;
                 },

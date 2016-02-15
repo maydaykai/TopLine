@@ -30,6 +30,7 @@ namespace WebUI.HanderAshx.VoteManage
             var model = DataConstructor.Factory("vote");
             var data = model.Query();
             var list = JsonConvert.DeserializeObject<List<VoteModel>>(data);
+            if(list.Count == 0) return JsonConvert.SerializeObject(new { TotalRows = 0, Rows = new string[] { } });
             var modelData = (from voteModel in list
                              select new
                              {

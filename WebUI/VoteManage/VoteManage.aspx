@@ -27,30 +27,21 @@
     <script src="../js/lhgdialog/lhgdialog.min.js"></script>
     <script src="../js/lhgdialog/ShowDialog.js"></script>
     <script type="text/javascript">
-        var deleteConfirm = function (id) {
-            $.dialog.confirm("您确定要禁用吗？", function () {
-                var obj = new Object();
-                obj.id = id;
-                var jsonobj = JSON.stringify(obj);
-                $.ajax({
-                    type: "POST",
-                    url: "../API/Article.svc/DisableChannel",
-                    contentType: "application/json; charset=utf-8",
-                    data: jsonobj,
-                    dataType: 'json',
-                    beforeSend: function () {
-                        $.dialog.tips('数据加载中...', 6000, 'loading.gif');
-                    },
-                    success: function (result) {
-                        var jsondatas = JSON.parse(result.d);
-                        MessageAlert(jsondatas.message, jsondatas.result, window.location.href);
-                    }
-                });
-            });
-        };
         $(function () {
             //主题
             var theme = "arctic";
+
+            //参数组装
+            function buildQueryString(data) {
+                var str = ''; for (var prop in data) {
+                    if (data.hasOwnProperty(prop)) {
+                        str += prop + '=' + data[prop] + '&';
+                    }
+                }
+                return str.substr(0, str.length - 1);
+            }
+
+            var formatedData = '';
 
             //数据源
             var source = {
@@ -63,6 +54,14 @@
                     { name: 'Title', type: 'string' }
                 ],
                 pagesize: 20,
+                formatdata: function (data) {
+                    data.pagenum = data.pagenum || 0;
+                    data.pagesize = data.pagesize || 20;
+                    data.sortdatafield = data.sortdatafield || 'ID';
+                    data.sortorder = data.sortorder || 'DESC';
+                    formatedData = buildQueryString(data);
+                    return formatedData;
+                },
                 sort: function () { $("#jqxgrid").jqxGrid('updatebounddata', 'sort'); },
                 beforeprocessing: function (data) { source.totalrecords = data.TotalRows; }
             };
@@ -77,19 +76,16 @@
             var linkrenderer = function (row, column, value) {
                 var parm = "/VoteManage/VoteEdit.aspx?" + column + "=" + value + "&columnId=<%=ColumnId%>";
                 var rightEdit = '<%=RightEdit%>' === 'True';
-                var rightDelete = '<%=RightDelete%>' === 'True';
                 var link = "";
                 if (rightEdit)
-                    link += "<a style='text-align:center;margin-left:30px;height:25px; line-height:25px;' href='javascript:void(0)' onclick=\"MessageWindow(270,100,'" + parm + "')\"; target='_self'>修改</a>";
-                if (rightDelete)
-                    link += "<a style='text-align:center;margin-left:15px;height:25px; line-height:25px;' href='javascript:void(0)' onclick=\"deleteConfirm('" + value + "')\"; target='_self'>删除</a>";
+                    link += "<a href='VoteEdit.aspx?" + parm + "'  target='_self' style='margin-left:10px;height:25px;line-height:25px;'>修改</a>";
                 return link;
             };
             //数据绑定
             $("#jqxgrid").jqxGrid({
                 theme: theme,
                 source: dataadapter,
-                width: 1580,
+                width: 1180,
                 rendergridrows: function (args) {
                     return args.data;
                 },
@@ -100,7 +96,7 @@
                     statusbar.append(container);
                     addButton.jqxButton({ width: 60, height: 20 });
                     addButton.click(function (event) {
-                        MessageWindow(270, 100, "/ArticleManage/ChannelEdit.aspx?columnId=<%=ColumnId%>");
+                        window.location.href = "/VoteManage/VoteEdit.aspx?columnId=<%=ColumnId%>";
                     });
                 },
                 showstatusbar: true,
@@ -111,11 +107,8 @@
                 sorttogglestates: 1,
                 pagesizeoptions: ['10', '20', '30'],
                 columns: [
-                        { text: '<b>操作</b>', dataField: 'ID', width: 120, cellsalign: 'center', align: 'center', cellsrenderer: linkrenderer },
-                        { text: '<b>名称</b>', dataField: 'Title', width: 250, cellsalign: 'center', align: 'center' },
-                        { text: '<b>有效期</b>', dataField: 'Title', width: 250, cellsalign: 'center', align: 'center' },
-                        { text: '<b>描述</b>', dataField: 'Title', width: 250, cellsalign: 'center', align: 'center' },
-                        { text: '<b>是否启用</b>', dataField: 'Title', width: 250, cellsalign: 'center', align: 'center' }
+                    { text: '<b>操作</b>', dataField: 'ID', width: 80, cellsalign: 'center', align: 'center', cellsrenderer: linkrenderer },
+                    { text: '<b>文章标题</b>', dataField: 'Title', width: 250, cellsalign: 'center', align: 'center' }
                 ]
             });
 

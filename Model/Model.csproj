@@ -51,6 +51,7 @@
     <Compile Include="RightModel.cs" />
     <Compile Include="RoleModel.cs" />
     <Compile Include="RoleRightModel.cs" />
+    <Compile Include="VoteModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
