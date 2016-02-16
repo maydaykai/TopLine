@@ -156,16 +156,21 @@
                             <span class="fl">
                                 <img src="../images/input_left.png" style="width: 4px; height: 29px;" alt="" />
                             </span>
-                            <input id="txtBeginDate" type="text" value="" class="input_text fl" maxlength="20" style="width: 200px;" runat="server" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                            <input id="txtBeginDate" type="text" value="" class="input_text fl" maxlength="20" style="width: 100px;" disabled="disabled" runat="server" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                             <span class="fl">
                                 <img src="../images/input_right.png" style="width: 4px; height: 29px;" alt="" />
                             </span>
                         </div>
                         <div style="float: left; margin-bottom: -3px;">
                             <span class="fl">
+                                到
+                            </span>
+                        </div>
+                        <div style="float: left; margin-bottom: -3px;">
+                            <span class="fl">
                                 <img src="../images/input_left.png" style="width: 4px; height: 29px;" alt="" />
                             </span>
-                            <input id="txtEndDate" type="text" value="" class="input_text fl" maxlength="20" style="width: 200px;" runat="server" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                            <input id="txtEndDate" type="text" value="" class="input_text fl" maxlength="20" style="width: 100px;" disabled="disabled" runat="server" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                             <span class="fl">
                                 <img src="../images/input_right.png" style="width: 4px; height: 29px;" alt="" />
                             </span>
@@ -187,7 +192,7 @@
                 <tr>
                     <td style="text-align: right; ">操作：</td>
                     <td style="text-align: left; padding-left: 5px;">
-                        <asp:Button ID="Button1" runat="server" Text="提交" CssClass="inputButton" OnClick="Btn_Click" OnClientClick="javascript:$.dialog.tips('数据加载中...',6000,'loading.gif');" />&nbsp;&nbsp;<input type="button" class="inputButton" value="返回" onclick="location.href = 'ArticleManage.aspx?columnId=<%=ColumnId%>    ';" />
+                        <asp:Button ID="Button1" runat="server" Text="提交" CssClass="inputButton" OnClick="Btn_Click" OnClientClick="javascript:$.dialog.tips('数据加载中...',6000,'loading.gif');" />&nbsp;&nbsp;<input type="button" class="inputButton" value="返回" onclick="location.href = 'VoteManage.aspx?columnId=<%=ColumnId%>    ';" />
                     </td>
                 </tr>
             </table>

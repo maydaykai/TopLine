@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="AdvertModel.cs" />
     <Compile Include="ArticleModel.cs" />
+    <Compile Include="BaseModel.cs" />
     <Compile Include="ChannelModel.cs" />
     <Compile Include="ColumnModel.cs" />
     <Compile Include="ColumnRightModel.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="RoleModel.cs" />
     <Compile Include="RoleRightModel.cs" />
     <Compile Include="VoteModel.cs" />
+    <Compile Include="VoteUserModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

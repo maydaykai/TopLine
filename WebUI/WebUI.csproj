@@ -825,7 +825,6 @@
     <Content Include="js\Uploadify\uploadify.css" />
     <Content Include="js\Uploadify\uploadify.swf" />
     <Content Include="MemberManage\MemberManage.aspx" />
-    <Content Include="test.aspx" />
     <Content Include="UserManage\ChanagePwd.aspx" />
     <Content Include="UserManage\RoleEdit.aspx" />
     <Content Include="UserManage\RoleManage.aspx" />
@@ -974,6 +973,7 @@
     <Content Include="UserManage\RightManage.aspx" />
     <Content Include="VoteManage\VoteEdit.aspx" />
     <Content Include="VoteManage\VoteManage.aspx" />
+    <Content Include="VoteManage\VoteUserManage.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1080,6 +1080,9 @@
     <Compile Include="HanderAshx\VoteManage\VoteHandler.ashx.cs">
       <DependentUpon>VoteHandler.ashx</DependentUpon>
     </Compile>
+    <Compile Include="HanderAshx\VoteManage\VoteUserHandler.ashx.cs">
+      <DependentUpon>VoteUserHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="js\Uploadify\UploadifyHandler.ashx.cs">
       <DependentUpon>UploadifyHandler.ashx</DependentUpon>
     </Compile>
@@ -1094,13 +1097,6 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="test.aspx.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="test.aspx.designer.cs">
-      <DependentUpon>test.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserManage\ChanagePwd.aspx.cs">
       <DependentUpon>ChanagePwd.aspx</DependentUpon>
@@ -1198,6 +1194,13 @@
     <Compile Include="VoteManage\VoteManage.aspx.designer.cs">
       <DependentUpon>VoteManage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VoteManage\VoteUserManage.aspx.cs">
+      <DependentUpon>VoteUserManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VoteManage\VoteUserManage.aspx.designer.cs">
+      <DependentUpon>VoteUserManage.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="HanderAshx\Basic\ColumnHander.ashx" />
@@ -1223,6 +1226,7 @@
     <Content Include="HanderAshx\ArticleManage\ChannelHandler.ashx" />
     <Content Include="HanderAshx\AdvertManage\AdvertHandler.ashx" />
     <Content Include="HanderAshx\VoteManage\VoteHandler.ashx" />
+    <Content Include="HanderAshx\VoteManage\VoteUserHandler.ashx" />
     <None Include="Properties\PublishProfiles\topline.pubxml" />
     <None Include="Properties\PublishProfiles\TopLineManage.pubxml" />
     <None Include="Web.Debug.config">
