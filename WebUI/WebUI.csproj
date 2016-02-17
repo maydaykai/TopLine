@@ -999,6 +999,9 @@
     <Compile Include="API\Member.svc.cs">
       <DependentUpon>Member.svc</DependentUpon>
     </Compile>
+    <Compile Include="API\Upload.ashx.cs">
+      <DependentUpon>Upload.ashx</DependentUpon>
+    </Compile>
     <Compile Include="ArticleManage\ArticleEdit.aspx.cs">
       <DependentUpon>ArticleEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1227,6 +1230,7 @@
     <Content Include="HanderAshx\AdvertManage\AdvertHandler.ashx" />
     <Content Include="HanderAshx\VoteManage\VoteHandler.ashx" />
     <Content Include="HanderAshx\VoteManage\VoteUserHandler.ashx" />
+    <Content Include="API\Upload.ashx" />
     <None Include="Properties\PublishProfiles\topline.pubxml" />
     <None Include="Properties\PublishProfiles\TopLineManage.pubxml" />
     <None Include="Web.Debug.config">
