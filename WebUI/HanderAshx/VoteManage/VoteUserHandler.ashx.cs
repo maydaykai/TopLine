@@ -47,7 +47,7 @@ namespace WebUI.HanderAshx.VoteManage
         //获取数据
         public Object GetDataList(string filter)
         {
-            var model = DataConstructor.Factory("vote");
+            var model = DataConstructor.Factory("voteUser");
             var data = model.Query(filter);
             var list = JsonConvert.DeserializeObject<List<VoteUserModel>>(data);
             if (list.Count == 0) return JsonConvert.SerializeObject(new { TotalRows = 0, Rows = new string[] { } });
