@@ -973,6 +973,7 @@
     <Content Include="UserManage\RightManage.aspx" />
     <Content Include="VoteManage\VoteEdit.aspx" />
     <Content Include="VoteManage\VoteManage.aspx" />
+    <Content Include="VoteManage\VoteUserEdit.aspx" />
     <Content Include="VoteManage\VoteUserManage.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1068,6 +1069,7 @@
     <Compile Include="HanderAshx\AdvertManage\AdvertHandler.ashx.cs">
       <DependentUpon>AdvertHandler.ashx</DependentUpon>
     </Compile>
+    <Compile Include="HanderAshx\APICloudHelper.cs" />
     <Compile Include="HanderAshx\ArticleManage\ArticleHandler.ashx.cs">
       <DependentUpon>ArticleHandler.ashx</DependentUpon>
     </Compile>
@@ -1196,6 +1198,13 @@
     </Compile>
     <Compile Include="VoteManage\VoteManage.aspx.designer.cs">
       <DependentUpon>VoteManage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VoteManage\VoteUserEdit.aspx.cs">
+      <DependentUpon>VoteUserEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VoteManage\VoteUserEdit.aspx.designer.cs">
+      <DependentUpon>VoteUserEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="VoteManage\VoteUserManage.aspx.cs">
       <DependentUpon>VoteUserManage.aspx</DependentUpon>

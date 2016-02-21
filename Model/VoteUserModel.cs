@@ -12,5 +12,21 @@ namespace Model
         public string nickName { get; set; }
         public string img { get; set; }
         public string desc { get; set; }
+        public int status { get; set; }
+        public string statusStr{
+            get
+            {
+                switch (status)
+                {
+                    case -1:
+                        return "审核不通过";
+                    case 0:
+                        return "审核中";
+                    case 1:
+                        return "审核通过";
+                }
+                return "审核中";
+            }
+        }
     }
 }

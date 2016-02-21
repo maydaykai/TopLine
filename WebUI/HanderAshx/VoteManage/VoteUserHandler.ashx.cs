@@ -56,6 +56,9 @@ namespace WebUI.HanderAshx.VoteManage
                              {
                                  ID = voteUserModel.id,
                                  UserName = voteUserModel.username,
+                                 NickName = voteUserModel.nickName,
+                                 Status = voteUserModel.status,
+                                 StatusStr = voteUserModel.statusStr,
                                  CreateTime = voteUserModel.createdAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss")
                              });
             var jsonData = new

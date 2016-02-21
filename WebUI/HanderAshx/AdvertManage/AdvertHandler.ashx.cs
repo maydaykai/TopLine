@@ -67,7 +67,6 @@ namespace WebUI.HanderAshx.AdvertManage
             }
             return str.Remove(str.Length - 1, 1).ToString();
         }
-
         public bool IsReusable
         {
             get

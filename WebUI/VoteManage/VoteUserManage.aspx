@@ -60,7 +60,11 @@
                 root: "Rows",
                 datafields: [
                     { name: 'ID', type: 'string' },
-                    { name: 'UserName', type: 'string' }
+                    { name: 'UserName', type: 'string' },
+                    { name: 'NickName', type: 'string' },
+                    { name: 'Status', type: 'int' },
+                    { name: 'StatusStr', type: 'string' },
+                    { name: 'CreateTime', type: 'date' }
                 ],
                 pagesize: 20,
                 formatdata: function (data) {
@@ -83,11 +87,16 @@
                 }
             });
             var linkrenderer = function (row, column, value) {
+                var data = $("#jqxgrid").jqxGrid('getrowdata', row);
                 var parm = column + "=" + value + "&columnId=<%=ColumnId%>";
-                var rightEdit = '<%=RightEdit%>' === 'True';
                 var link = "";
-                if (rightEdit)
-                    link += "<a href='VoteEdit.aspx?" + parm + "'  target='_self' style='margin-left:10px;height:25px;line-height:25px;'>修改</a>";
+                if (data.Status != 0) {
+                    link += "<a href='VoteUserEdit.aspx?" + parm + "'  target='_self' style='margin-left:10px;height:25px;line-height:25px;'>查看</a>";
+                } else {
+                    var rightAudit = '<%=RightAudit%>' === 'True';
+                    if (rightAudit)
+                        link += "<a href='VoteUserEdit.aspx?" + parm + "'  target='_self' style='margin-left:10px;height:25px;line-height:25px;'>审核</a>";
+                }
                 return link;
             };
             //数据绑定
@@ -98,16 +107,6 @@
                 rendergridrows: function (args) {
                     return args.data;
                 },
-                renderstatusbar: function (statusbar) {
-                    var container = $("<div style='overflow: hidden; position: relative; margin: 5px;'></div>");
-                    var addButton = $("<div style='float: left; margin-left: 5px; cursor:pointer;'><img style='position: relative; margin-top: 2px;' src='/js/jqwidgets-ver3.1.0/images/add.png'/><span style='margin-left: 4px; position: relative; top: -3px;'>增加</span></div>");
-                    container.append(addButton);
-                    statusbar.append(container);
-                    addButton.jqxButton({ width: 60, height: 20 });
-                    addButton.click(function (event) {
-                        window.location.href = "/VoteManage/VoteEdit.aspx?columnId=<%=ColumnId%>";
-                    });
-                },
                 showstatusbar: true,
                 sortable: true,
                 pageable: true,
@@ -117,7 +116,10 @@
                 pagesizeoptions: ['10', '20', '30'],
                 columns: [
                     { text: '<b>操作</b>', dataField: 'ID', width: 80, cellsalign: 'center', align: 'center', cellsrenderer: linkrenderer },
-                    { text: '<b>文章标题</b>', dataField: 'Title', width: 250, cellsalign: 'center', align: 'center' }
+                    { text: '<b>用户名</b>', dataField: 'UserName', width: 250, cellsalign: 'center', align: 'center' },
+                    { text: '<b>报名名称</b>', dataField: 'NickName', width: 250, cellsalign: 'center', align: 'center' },
+                    { text: '<b>审核状态</b>', dataField: 'StatusStr', width: 250, cellsalign: 'center', align: 'center' },
+                    { text: '<b>申请时间</b>', dataField: 'CreateTime', cellsformat: "yyyy-MM-dd HH:mm:ss", width: 180, cellsalign: 'center', align: 'center' }
                 ]
             });
 
@@ -125,14 +127,12 @@
     </script>
 </head>
 <body>
-    <div id="searchbar" class="selectDiv" style="min-width: 1000px;">
-        <div class="fl">
+    <div id="searchbar" class="selectDiv fl" style="min-width: 1000px;">
+        <%--<div class="fl">
             <img src="/images/input_left.png" width="4" height="29" alt="" />
         </div>
         <select name="selSUserType" id="selSUserType" class="fl" runat="server">
             <option value="0">会员名</option>
-            <option value="1">真实姓名</option>
-            <option value="2">手机号码</option>
         </select>
         <div class="fl" style="margin-left: -5px; cursor: pointer;">
             <img src="../images/select_right.png" width="31" height="29" alt="" id="img_selSUserType" />
@@ -142,6 +142,9 @@
             <div class="fl">
                 <img src="../images/input_right.png" style="width: 4px; height: 29px;" alt="" />
             </div>
+        </div>--%>
+        <div class="fl">
+            所属投票：
         </div>
         <div class="fl" style="margin-left: 10px;">
             <img src="/images/input_left.png" width="4" height="29" alt="" />

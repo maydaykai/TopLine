@@ -76,6 +76,7 @@
                     { name: 'OID', type: 'string' },
                     { name: 'Title', type: 'string' },
                     { name: 'Content', type: 'string' },
+                    { name: 'ChannelName', type: 'string' },
                     { name: 'IsHot', type: 'bool' },
                     { name: 'Type', type: 'string' }
                 ],
@@ -168,6 +169,7 @@
                     { text: '<b>操作</b>', dataField: 'ID', width: 80, cellsalign: 'center', align: 'center', cellsrenderer: linkrenderer },
                     { text: '<b>文章标题</b>', dataField: 'Title', width: 250, cellsalign: 'center', align: 'center' },
                     { text: '<b>文章类型</b>', dataField: 'Type', width: 120, cellsalign: 'center', align: 'center', cellsrenderer: typerenderer },
+                    { text: '<b>所属频道</b>', dataField: 'ChannelName', width: 120, cellsalign: 'center', align: 'center' },
                     { text: '<b>文章内容</b>', dataField: 'Content', width: 500, cellsalign: 'center', align: 'center' },
                     { text: '<b>是否推荐</b>', dataField: 'IsHot', width: 120, cellsalign: 'center', align: 'center', cellsrenderer: isHotrenderer }
                 ]

@@ -70,7 +70,7 @@ namespace WebUI.VoteManage
                 var pushData = new
                 {
                     title,
-                    img,
+                    img = ConfigHelper.ImgVirtualPath + img,
                     beginDate,
                     endDate,
                     desc,
@@ -91,7 +91,7 @@ namespace WebUI.VoteManage
                 var pushData = new
                 {
                     title,
-                    img,
+                    img = ConfigHelper.ImgVirtualPath + img,
                     beginDate,
                     endDate,
                     desc,

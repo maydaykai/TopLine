@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Web;
+using APICloud;
 using Bll;
 using Common;
 using Model;
@@ -49,7 +51,10 @@ namespace WebUI.HanderAshx.ArticleManage
 
             var pageCount = 0;
             var dt = new ArticleBll().GetList(filter, sortField, pagenum, pagesize, ref pageCount);
-            if (dt == null) return JsonConvert.SerializeObject(new {TotalRows = 0, Rows = new string[] {}});
+            if (dt == null) return JsonConvert.SerializeObject(new { TotalRows = 0, Rows = new string[] { } });
+            var channelModel = DataConstructor.Factory("channel");
+            var channelData = channelModel.Query();
+            var channelList = JsonConvert.DeserializeObject<List<ChannelModel>>(channelData);
             var modelData = (from DataRow dr in dt.Rows
                 select new
                 {
@@ -59,6 +64,7 @@ namespace WebUI.HanderAshx.ArticleManage
                     Content =
                         HtmlHelper.DeleteHtml(HttpContext.Current.Server.HtmlDecode(dr["Content"].ToString()))
                             .GetSubString(0, 36),
+                    ChannelName = GetChannelsName(channelList, dr["ChannelID"].ToString().Split(',')),
                     IsHot = dr["IsHot"],
                     IsBot = dr["IsBot"],
                     Type = dr["Type"]
@@ -70,7 +76,19 @@ namespace WebUI.HanderAshx.ArticleManage
             };
             return JsonConvert.SerializeObject(jsonData);
         }
-
+        private string GetChannelsName(List<ChannelModel> channelList, string[] channels)
+        {
+            var str = new StringBuilder();
+            if (channels.Length == 0) return "";
+            foreach (var model in channelList)
+            {
+                if (string.Join(",", channels).IndexOf(model.id) != -1)
+                {
+                    str.Append(model.title + ",");
+                }
+            }
+            return str.Remove(str.Length - 1, 1).ToString();
+        }
         public bool IsReusable
         {
             get
