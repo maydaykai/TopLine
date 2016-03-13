@@ -114,5 +114,9 @@ namespace Model
         /// 服务器创建时间
         /// </summary>
         public DateTime UpdateTime { get; set; }
+        /// <summary>
+        /// 来源ID
+        /// </summary>
+        public string Source { get; set; }
     }
 }

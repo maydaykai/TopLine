@@ -67,7 +67,9 @@ namespace WebUI.HanderAshx.ArticleManage
                     ChannelName = GetChannelsName(channelList, dr["ChannelID"].ToString().Split(',')),
                     IsHot = dr["IsHot"],
                     IsBot = dr["IsBot"],
-                    Type = dr["Type"]
+                    Type = dr["Type"],
+                    PubTime = Convert.ToDateTime(dr["PubTime"]),
+                    CreateTime = Convert.ToDateTime(dr["CreateTime"])
                 });
             var jsonData = new
             {

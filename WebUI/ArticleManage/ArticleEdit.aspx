@@ -175,7 +175,21 @@
                         </asp:CheckBoxList>
                     </td>
                 </tr>
-                <%--<tr>
+                <tr>
+                    <td style="text-align: right; ">文章来源：</td>
+                    <td style="text-align: left; padding-left: 5px;">
+                        <div style="float: left; margin-bottom: -3px;">
+                            <span class="fl">
+                                <img src="../images/input_left.png" style="width: 4px; height: 29px;" alt="" />
+                            </span>
+                            <input id="txtSource" type="text" value="" class="input_text fl" maxlength="20" style="width: 200px;" runat="server" />
+                            <span class="fl">
+                                <img src="../images/input_right.png" style="width: 4px; height: 29px;" alt="" />
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
                     <td style="text-align: right; ">发布时间：</td>
                     <td style="text-align: left; padding-left: 5px;">
                         <div style="float: left; margin-bottom: -3px;">
@@ -188,7 +202,7 @@
                             </span>
                         </div>
                     </td>
-                </tr>--%>
+                </tr>
                 <tr>
                     <td style="text-align: right; ">资讯正文：</td>
                     <td style="text-align: left; padding-left: 5px;">

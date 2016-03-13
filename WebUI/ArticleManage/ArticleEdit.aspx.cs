@@ -35,7 +35,8 @@ namespace WebUI.ArticleManage
                     cover.Visible = model.Type.Equals("play");
                     ckbChannelList.SelectedValue = model.ChannelID;
                     ckbChannelList.Enabled = false;
-                    //txtPubTime.Value = model.PubTime.ToString("yyyy-MM-dd HH:mm:ss");
+                    txtSource.Value = model.Source;
+                    txtPubTime.Value = model.PubTime.ToString("yyyy-MM-dd HH:mm:ss");
                     txtContent.InnerHtml = model.Content;
                     ckbHot.Checked = model.IsHot;
                     ckbBot.Checked = model.IsBot;
@@ -75,7 +76,8 @@ namespace WebUI.ArticleManage
             var title = txtTitle.Value.Trim();
             var content = txtContent.Value.Trim();
             var channelId = ckbChannelList.SelectedValue;
-            var pubTime = DateTime.Now; //txtPubTime.Value.Trim();
+            var source = txtSource.Value.Trim();
+            var pubTime = txtPubTime.Value.Trim();
             if (string.IsNullOrEmpty(title))
             {
                 ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入文章标题','warning', '');", true);
@@ -86,11 +88,11 @@ namespace WebUI.ArticleManage
                 ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请选择频道','warning', '');", true);
                 return;
             }
-            //if (string.IsNullOrEmpty(pubTime))
-            //{
-            //    ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入发布时间','warning', '');", true);
-            //    return;
-            //}
+            if (string.IsNullOrEmpty(pubTime))
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入发布时间','warning', '');", true);
+                return;
+            }
             if (selArticleType.Value.Equals("play") && string.IsNullOrEmpty(hiCoverImg.Value))
             {
                 ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请选择封面图片','warning', '');", true);
@@ -110,7 +112,8 @@ namespace WebUI.ArticleManage
                 IsHot = ckbHot.Checked,
                 IsBot = ckbBot.Checked,
                 Type = selArticleType.Value,
-                PubTime = Convert.ToDateTime(pubTime)
+                PubTime = Convert.ToDateTime(pubTime),
+                Source = source
             };
             if (selArticleType.Value.Equals("play"))
             {
@@ -218,6 +221,8 @@ namespace WebUI.ArticleManage
                                 rela_chan = channelId,
                                 is_hot = ckbHot.Checked ? "1" : "0",
                                 is_bot = ckbBot.Checked ? "1" : "0",
+                                pubTime,
+                                source
                             };
                         var articleModel = DataConstructor.Factory("article");
                         var resultData = articleModel.Create(pushData);
@@ -260,6 +265,8 @@ namespace WebUI.ArticleManage
                     rela_chan = channelId,
                     is_hot = ckbHot.Checked ? "1" : "0",
                     is_bot = ckbBot.Checked ? "1" : "0",
+                    pubTime,
+                    source
                 };
                 var editModel = DataConstructor.Factory("article");
                 var result = editModel.Edit(oldModel.OID,editData);

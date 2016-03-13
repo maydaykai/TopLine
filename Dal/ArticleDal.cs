@@ -19,9 +19,9 @@ namespace Dal
         {
             var strSql = new StringBuilder();
             strSql.Append("INSERT INTO Article(");
-            strSql.Append("Status,AuditStatus,PubTime,CreateTime,UpdateTime,Title,ChannelID,Content,Imgs,IsHot,IsBot,Type");
+            strSql.Append("Status,AuditStatus,PubTime,CreateTime,UpdateTime,Title,ChannelID,Content,Imgs,IsHot,IsBot,Type,Source");
             strSql.Append(") VALUES (");
-            strSql.Append("@Status,@AuditStatus,@PubTime,@CreateTime,@UpdateTime,@Title,@ChannelID,@Content,@Imgs,@IsHot,@IsBot,@Type");
+            strSql.Append("@Status,@AuditStatus,@PubTime,@CreateTime,@UpdateTime,@Title,@ChannelID,@Content,@Imgs,@IsHot,@IsBot,@Type,@Source");
             strSql.Append(") ");
             strSql.Append(";SELECT @@IDENTITY");
             SqlParameter[] paras = {
@@ -29,7 +29,8 @@ namespace Dal
                         new SqlParameter("@PubTime", SqlDbType.DateTime){Value = DateTime.Now}, 
                         new SqlParameter("@CreateTime", SqlDbType.DateTime){Value = DateTime.Now},            
                         new SqlParameter("@UpdateTime", SqlDbType.DateTime){Value = DateTime.Now},         
-                        new SqlParameter("@Title", SqlDbType.NVarChar,100){Value = model.Title},            
+                        new SqlParameter("@Title", SqlDbType.NVarChar,100){Value = model.Title},           
+                        new SqlParameter("@Source", SqlDbType.NVarChar,50){Value = model.Source},            
                         new SqlParameter("@Content", SqlDbType.NVarChar,-1){Value = model.Content},
                         new SqlParameter("@ChannelID", SqlDbType.VarChar,50){Value= model.ChannelID},
                         new SqlParameter("@Imgs", SqlDbType.VarChar,500){Value = model.Imgs},            
@@ -57,6 +58,7 @@ namespace Dal
             strSql.Append(" Imgs = @Imgs , ");
             strSql.Append(" IsHot = @IsHot , ");
             strSql.Append(" IsBot = @IsBot , ");
+            strSql.Append(" Source = @Source , ");
             strSql.Append(" Type = @Type  ");
             strSql.Append(" WHERE ID=@ID ");
 
@@ -65,7 +67,8 @@ namespace Dal
                         new SqlParameter("@AuditRecord", SqlDbType.NVarChar,100){Value = model.AuditRecord},            
                         new SqlParameter("@PubTime", SqlDbType.DateTime){Value = model.PubTime},            
                         new SqlParameter("@UpdateTime", SqlDbType.DateTime){Value = DateTime.Now},    
-                        new SqlParameter("@Title", SqlDbType.NVarChar,100){Value = model.Title},            
+                        new SqlParameter("@Title", SqlDbType.NVarChar,100){Value = model.Title},          
+                        new SqlParameter("@Source", SqlDbType.NVarChar,50){Value = model.Source},            
                         new SqlParameter("@Content", SqlDbType.NVarChar,-1){Value = model.Content},            
                         new SqlParameter("@Imgs", SqlDbType.VarChar,500){Value = model.Imgs},            
                         new SqlParameter("@IsHot", SqlDbType.Bit,1){Value = model.IsHot},            
@@ -118,7 +121,7 @@ namespace Dal
         {
 
             var strSql = new StringBuilder();
-            strSql.Append("select ID, Status, AuditStatus, AuditRecord, PubTime, CreateTime, UpdateTime, OID, Title, ChannelID, Content, Imgs, IsHot, IsBot, Type  ");
+            strSql.Append("select ID, Status, AuditStatus, AuditRecord, PubTime, CreateTime, UpdateTime, OID, Title, ChannelID, Content, Imgs, IsHot, IsBot, Type, Source  ");
             strSql.Append("  from Article ");
             strSql.Append(" where ID=@ID");
             SqlParameter[] paras = {
@@ -159,6 +162,7 @@ namespace Dal
                 model.OID = ds.Tables[0].Rows[0]["OID"].ToString();
                 model.Title = ds.Tables[0].Rows[0]["Title"].ToString();
                 model.ChannelID = ds.Tables[0].Rows[0]["ChannelID"].ToString();
+                model.Source = ds.Tables[0].Rows[0]["Source"].ToString();
                 model.Content = ds.Tables[0].Rows[0]["Content"].ToString();
                 model.Imgs = ds.Tables[0].Rows[0]["Imgs"].ToString();
                 if (ds.Tables[0].Rows[0]["IsHot"].ToString() != "")
