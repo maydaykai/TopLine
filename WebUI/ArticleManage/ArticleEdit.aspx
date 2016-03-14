@@ -22,6 +22,13 @@
     <script charset="utf-8" src="/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
     <script charset="utf-8" src="/js/kindeditor-4.1.10/plugins/code/prettify.js"></script>
     <script src="../js/juploader-1.0/jquery.jUploader-1.0.js"></script>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="/js/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/js/ueditor/ueditor.all.min.js"> </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="/js/ueditor/lang/zh-cn/zh-cn.js"></script>
     <style type="text/css">
         .selectDiv .select_box {
             width:175px;
@@ -43,7 +50,8 @@
     <script type="text/javascript">  
         $(function () {
             $(':checkbox').tzCheckbox({ labels: ['Enable', 'Disable'] });
-            var editor;
+            var ue = UE.getEditor('txtContent');
+            <%--var editor;
             KindEditor.ready(function (K) {
                 editor = K.create('#<%=txtContent.ClientID%>', {
                     cssPath: '/js/kindeditor-4.1.10/plugins/code/prettify.css',
@@ -61,7 +69,7 @@
                     }
                 });
                 prettyPrint();
-            });
+            });--%>
             $.jUploader.setDefaults({
                 cancelable: true,
                 allowedExtensions: ['jpg', 'png', 'gif','jpeg'],
