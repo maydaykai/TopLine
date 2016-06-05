@@ -20,6 +20,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -89,6 +90,8 @@
     <Content Include="ArticleManage\ArticleManage.aspx" />
     <Content Include="ArticleManage\ChannelEdit.aspx" />
     <Content Include="ArticleManage\ChannelManage.aspx" />
+    <Content Include="ArticleManage\UserArticleEdit.aspx" />
+    <Content Include="ArticleManage\UserArticleManage.aspx" />
     <Content Include="BasePage.aspx" />
     <Content Include="Basic\ColumnEdit.aspx" />
     <Content Include="Basic\ColumnManage.aspx" />
@@ -980,12 +983,6 @@
     <Content Include="js\ueditor\lang\zh-cn\images\music.png" />
     <Content Include="js\ueditor\lang\zh-cn\images\upload.png" />
     <Content Include="js\ueditor\lang\zh-cn\zh-cn.js" />
-    <Content Include="js\ueditor\net\Bin\Newtonsoft.Json.dll" />
-    <Content Include="js\ueditor\net\Bin\Newtonsoft.Json.pdb" />
-    <Content Include="js\ueditor\net\Bin\Newtonsoft.Json.xml" />
-    <Content Include="js\ueditor\net\net.sln" />
-    <Content Include="js\ueditor\net\upload\image\20160314\6359356115015057109648755.jpg" />
-    <Content Include="js\ueditor\net\upload\image\20160314\6359356227394712319656043.jpg" />
     <Content Include="js\ueditor\themes\default\css\ueditor.css" />
     <Content Include="js\ueditor\themes\default\css\ueditor.min.css" />
     <Content Include="js\ueditor\themes\default\dialogbase.css" />
@@ -1303,6 +1300,20 @@
     <Compile Include="ArticleManage\ChannelManage.aspx.designer.cs">
       <DependentUpon>ChannelManage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ArticleManage\UserArticleEdit.aspx.cs">
+      <DependentUpon>UserArticleEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ArticleManage\UserArticleEdit.aspx.designer.cs">
+      <DependentUpon>UserArticleEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ArticleManage\UserArticleManage.aspx.cs">
+      <DependentUpon>UserArticleManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ArticleManage\UserArticleManage.aspx.designer.cs">
+      <DependentUpon>UserArticleManage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BasePage.aspx.cs">
       <DependentUpon>BasePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1347,6 +1358,9 @@
     </Compile>
     <Compile Include="HanderAshx\ArticleManage\ChannelHandler.ashx.cs">
       <DependentUpon>ChannelHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="HanderAshx\ArticleManage\UserArticleHandler.ashx.cs">
+      <DependentUpon>UserArticleHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="HanderAshx\MemberManage\MemberHandler.ashx.cs">
       <DependentUpon>MemberHandler.ashx</DependentUpon>
@@ -1520,18 +1534,15 @@
     <Content Include="HanderAshx\VoteManage\VoteHandler.ashx" />
     <Content Include="HanderAshx\VoteManage\VoteUserHandler.ashx" />
     <Content Include="API\Upload.ashx" />
-    <Content Include="js\ueditor\.DS_Store" />
-    <Content Include="js\ueditor\net\.vs\config\applicationhost.config" />
-    <Content Include="js\ueditor\net\.vs\net\v14\.suo" />
     <Content Include="js\ueditor\net\config.json" />
     <Content Include="js\ueditor\net\controller.ashx" />
     <Content Include="js\ueditor\net\README.md" />
     <Content Include="js\ueditor\net\Web.config" />
-    <Content Include="js\ueditor\third-party\.DS_Store" />
     <Content Include="js\ueditor\third-party\jquery-1.10.2.min.map" />
     <Content Include="js\ueditor\third-party\video-js\font\vjs.eot" />
     <Content Include="js\ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="js\ueditor\third-party\video-js\font\vjs.woff" />
+    <Content Include="HanderAshx\ArticleManage\UserArticleHandler.ashx" />
     <None Include="Properties\PublishProfiles\topline.pubxml" />
     <None Include="Properties\PublishProfiles\TopLineManage.pubxml" />
     <None Include="Web.Debug.config">

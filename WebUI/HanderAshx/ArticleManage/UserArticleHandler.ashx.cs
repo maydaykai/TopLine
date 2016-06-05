@@ -1,21 +1,23 @@
-﻿using System;
+﻿using APICloud;
+using System;
 using System.Collections.Generic;
-using System.Globalization;
+using System.Data;
 using System.Linq;
+using System.Text;
 using System.Web;
-using APICloud;
+using Bll;
 using Common;
 using Model;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
-namespace WebUI.HanderAshx.MemberManage
+namespace WebUI.HanderAshx.ArticleManage
 {
     /// <summary>
-    /// MemberHandler 的摘要说明
+    /// UserArticleHandler 的摘要说明
     /// </summary>
-    public class MemberHandler : IHttpHandler
+    public class UserArticleHandler : IHttpHandler
     {
+
         private int _currentPage = 1;
         private int _pageSize;
         private string _sort = "asc";
@@ -38,38 +40,35 @@ namespace WebUI.HanderAshx.MemberManage
             var filter = "{\"limit\": " + _pageSize + ", \"order\": \"" + sortColumn + "\"";
             if (_currentPage > 0)
                 filter += ",\"skip\":" + _currentPage;
-            if (!string.IsNullOrEmpty(_uName) && _uName != "undefined")
-            {
-                //filter += " and UserName like '%" + _uName + "%'";
-            }
             filter += "}";
-            context.Response.Write(GetMemberList(filter));
-
+            context.Response.Write(GetDataList(filter));
         }
 
         //获取数据
-        public Object GetMemberList(string filter)
+        public Object GetDataList(string filter)
         {
-            var model = DataConstructor.Factory("user");
-            var data = model.Query(filter);
-            var count = model.Count();
-            var list = JsonConvert.DeserializeObject<List<MemberModel>>(data);
-            var modelData = (from memberModel in list
+            var factory = DataConstructor.Factory("userArticle");
+            var data = factory.Query(filter);
+            var count = factory.Count();
+            var list = JsonConvert.DeserializeObject<List<UserArticleModel>>(data);
+            var modelData = (from model in list
                              select new
                              {
-                                 ID = memberModel.id,
-                                 Name = memberModel.username,
-                                 Email = memberModel.email,
-                                 CreateTime = memberModel.createdAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss")
+                                 ID = model.id,
+                                 Title = model.title,
+                                 Content =
+                        HtmlHelper.DeleteHtml(HttpContext.Current.Server.HtmlDecode(model.content))
+                            .GetSubString(0, 36),
+                                 Status = model.status,
+                                 CreateTime = model.createdAt
                              });
             var jsonData = new
             {
-                TotalRows = JsonConvert.DeserializeObject<Dictionary<string,int>>(count)["count"],//记录数
+                TotalRows = JsonConvert.DeserializeObject<Dictionary<string, int>>(count)["count"],//记录数
                 Rows = modelData//实体列表
             };
             return JsonConvert.SerializeObject(jsonData);
         }
-
         public bool IsReusable
         {
             get

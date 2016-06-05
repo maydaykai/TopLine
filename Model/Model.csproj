@@ -46,6 +46,7 @@
     <Compile Include="ColumnModel.cs" />
     <Compile Include="ColumnRightModel.cs" />
     <Compile Include="MemberModel.cs" />
+    <Compile Include="UserArticleModel.cs" />
     <Compile Include="UserModel.cs" />
     <Compile Include="ParameterSetModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

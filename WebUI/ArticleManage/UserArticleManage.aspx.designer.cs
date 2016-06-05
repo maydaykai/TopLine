@@ -7,10 +7,10 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace WebUI.MemberManage {
+namespace WebUI.ArticleManage {
     
     
-    public partial class MemberManage {
+    public partial class UserArticleManage {
         
         /// <summary>
         /// Head1 控件。

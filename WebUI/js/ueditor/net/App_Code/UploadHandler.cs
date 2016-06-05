@@ -63,8 +63,17 @@ public class UploadHandler : Handler
 
         Result.OriginFileName = uploadFileName;
 
-        var savePath = PathFormatter.Format(uploadFileName, UploadConfig.PathFormat);
-        var localPath = Server.MapPath(savePath);
+        //文件保存目录路径
+        var savePath = Common.ConfigHelper.ImgPhysicallPath;
+
+        //文件保存目录URL
+        //var saveUrl = Common.ConfigHelper.ImgVirtualPath;
+
+        //var savePath = PathFormatter.Format(uploadFileName, UploadConfig.PathFormat);
+        //var localPath = Server.MapPath(savePath);
+        var fileExt = Path.GetExtension(uploadFileName).ToLower();
+        var newFileName = Guid.NewGuid() + fileExt;
+        var localPath = savePath + newFileName;
         try
         {
             if (!Directory.Exists(Path.GetDirectoryName(localPath)))
@@ -72,7 +81,7 @@ public class UploadHandler : Handler
                 Directory.CreateDirectory(Path.GetDirectoryName(localPath));
             }
             File.WriteAllBytes(localPath, uploadFileBytes);
-            Result.Url = savePath;
+            Result.Url = newFileName;
             Result.State = UploadState.Success;
         }
         catch (Exception e)

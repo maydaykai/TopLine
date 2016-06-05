@@ -49,7 +49,8 @@ public class ListFileManager : Handler
         var buildingList = new List<String>();
         try
         {
-            var localPath = Server.MapPath(PathToList);
+            //var localPath = Server.MapPath(PathToList);
+            var localPath = Common.ConfigHelper.ImgPhysicallPath;
             buildingList.AddRange(Directory.GetFiles(localPath, "*", SearchOption.AllDirectories)
                 .Where(x => SearchExtensions.Contains(Path.GetExtension(x).ToLower()))
                 .Select(x => PathToList + x.Substring(localPath.Length).Replace("\\", "/")));
