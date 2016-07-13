@@ -60,7 +60,7 @@ namespace WebUI.ArticleManage
                 {
                     id = _id,
                     title,
-                    content = Server.HtmlEncode(content),
+                    content,
                     status = rdStatusY.Checked ? 1 : 2,
                     updatedAt = DateTime.UtcNow
                 };
