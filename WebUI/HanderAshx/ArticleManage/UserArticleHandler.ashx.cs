@@ -37,7 +37,7 @@ namespace WebUI.HanderAshx.ArticleManage
             _sortField = ConvertHelper.QueryString(context.Request, "sortdatafield", "id");
             _uName = ConvertHelper.QueryString(context.Request, "uname", "");
             var sortColumn = _sortField + " " + _sort;
-            var filter = "{\"limit\": " + _pageSize + ", \"order\": \"" + sortColumn + "\"";
+            var filter = "{\"where\":{\"status\":1},\"limit\": " + _pageSize + ", \"order\": \"" + sortColumn + "\"";
             if (_currentPage > 0)
                 filter += ",\"skip\":" + _currentPage;
             filter += "}";
@@ -49,7 +49,7 @@ namespace WebUI.HanderAshx.ArticleManage
         {
             var factory = DataConstructor.Factory("userArticle");
             var data = factory.Query(filter);
-            var count = factory.Count();
+            var count = factory.Count("{\"where\":{\"status\":1}}");
             var list = JsonConvert.DeserializeObject<List<UserArticleModel>>(data);
             var modelData = (from model in list
                              select new

@@ -35,7 +35,7 @@
                 var jsonobj = JSON.stringify(obj);
                 $.ajax({
                     type: "POST",
-                    url: "../API/Article.svc/DeleteArticle",
+                    url: "../API/Article.svc/DeleteUserArticle",
                     contentType: "application/json; charset=utf-8",
                     data: jsonobj,
                     dataType: 'json',
@@ -82,7 +82,7 @@
                 formatdata: function (data) {
                     data.pagenum = data.pagenum || 0;
                     data.pagesize = data.pagesize || 20;
-                    data.sortdatafield = data.sortdatafield || 'ID';
+                    data.sortdatafield = data.sortdatafield || 'createdAt';
                     data.sortorder = data.sortorder || 'DESC';
                     formatedData = buildQueryString(data);
                     return formatedData;
@@ -101,10 +101,11 @@
 
             var linkrenderer = function (row, column, value) {
                 var parm = column + "=" + value + "&columnId=<%=ColumnId%>";
-                var rightAudit = '<%=RightAudit%>' === 'True';
-                var link = "";
-                if (rightAudit)
-                    link += "<a href='UserArticleEdit.aspx?" + parm + "'  target='_self' style='margin-left:10px;height:25px;line-height:25px;'>审核</a>";
+                var data = $("#jqxgrid").jqxGrid('getrowdata', row);
+                var rightDelete = '<%=RightDelete%>' === 'True';
+                var link = "<a href='UserArticleEdit.aspx?" + parm + "'  target='_self' style='margin-left:10px;height:25px;line-height:25px;'>查看</a>";
+                if (rightDelete)
+                    link += "<a style='text-align:center;margin-left:15px;height:25px; line-height:25px;' href='javascript:void(0)' onclick=\"deleteConfirm('" + data.ID + "')\"; target='_self'>删除</a>";
                 return link;
             };
             var statusrenderer = function (row, column, value) {
@@ -138,7 +139,7 @@
                     { text: '<b>操作</b>', dataField: 'ID', width: 80, cellsalign: 'center', align: 'center', cellsrenderer: linkrenderer },
                     { text: '<b>文章标题</b>', dataField: 'Title', width: 300, cellsalign: 'center', align: 'center' },
                     { text: '<b>文章内容</b>', dataField: 'Content', width: 500, cellsalign: 'center', align: 'center' },
-                    { text: '<b>审核状态</b>', dataField: 'Status', width: 100, cellsalign: 'center', align: 'center', cellsrenderer: statusrenderer },
+                    //{ text: '<b>审核状态</b>', dataField: 'Status', width: 100, cellsalign: 'center', align: 'center', cellsrenderer: statusrenderer },
                     { text: '<b>创建时间</b>', dataField: 'CreateTime', width: 180, cellsformat: "yyyy-MM-dd HH:mm:ss", cellsalign: 'center', align: 'center' }
                 ]
             });

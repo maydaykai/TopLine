@@ -118,5 +118,9 @@ namespace Model
         /// 来源ID
         /// </summary>
         public string Source { get; set; }
+        /// <summary>
+        /// 创建人
+        /// </summary>
+        public int CreateUserID{ get; set; }
     }
 }

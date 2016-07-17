@@ -25,6 +25,7 @@ namespace WebUI.ArticleManage
             {
                 InitChannel();
                 trAudit.Visible = false;
+                txtPubTime.Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 if (_id > 0)
                 {
                     var model = _bll.GetModel(_id);
@@ -113,7 +114,8 @@ namespace WebUI.ArticleManage
                 IsBot = ckbBot.Checked,
                 Type = selArticleType.Value,
                 PubTime = Convert.ToDateTime(pubTime),
-                Source = source
+                Source = source,
+                CreateUserID = MemberId
             };
             if (selArticleType.Value.Equals("play"))
             {

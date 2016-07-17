@@ -214,7 +214,7 @@
                 <tr>
                     <td style="text-align: right; ">资讯正文：</td>
                     <td style="text-align: left; padding-left: 5px;">
-                        <textarea id="txtContent" runat="server" style="width:700px;height:400px;" name="content"></textarea>
+                        <textarea id="txtContent" runat="server" style="width:1000px;height:400px;" name="content"></textarea>
                     </td>
                 </tr>
                 <tr>

@@ -19,9 +19,9 @@ namespace Dal
         {
             var strSql = new StringBuilder();
             strSql.Append("INSERT INTO Article(");
-            strSql.Append("Status,AuditStatus,PubTime,CreateTime,UpdateTime,Title,ChannelID,Content,Imgs,IsHot,IsBot,Type,Source");
+            strSql.Append("Status,AuditStatus,PubTime,CreateTime,UpdateTime,Title,ChannelID,Content,Imgs,IsHot,IsBot,Type,Source,CreateUserID");
             strSql.Append(") VALUES (");
-            strSql.Append("@Status,@AuditStatus,@PubTime,@CreateTime,@UpdateTime,@Title,@ChannelID,@Content,@Imgs,@IsHot,@IsBot,@Type,@Source");
+            strSql.Append("@Status,@AuditStatus,@PubTime,@CreateTime,@UpdateTime,@Title,@ChannelID,@Content,@Imgs,@IsHot,@IsBot,@Type,@Source,@CreateUserID");
             strSql.Append(") ");
             strSql.Append(";SELECT @@IDENTITY");
             SqlParameter[] paras = {
@@ -37,7 +37,8 @@ namespace Dal
                         new SqlParameter("@IsHot", SqlDbType.Bit,1){Value = model.IsHot},            
                         new SqlParameter("@IsBot", SqlDbType.Bit,1){Value = model.IsBot},            
                         new SqlParameter("@Type", SqlDbType.VarChar,50){Value = model.Type},            
-                        new SqlParameter("@Status", SqlDbType.SmallInt,2){Value = 1}            
+                        new SqlParameter("@Status", SqlDbType.SmallInt,2){Value = 1},
+                        new SqlParameter("@CreateUserID", SqlDbType.Int,4){Value = model.CreateUserID}
             };
             var obj = SqlHelper.ExecuteScalar(SqlHelper.ConnectionStringLocal, CommandType.Text, strSql.ToString(), paras);
             return obj == null ? 0 : Convert.ToInt32(obj);
@@ -121,7 +122,7 @@ namespace Dal
         {
 
             var strSql = new StringBuilder();
-            strSql.Append("select ID, Status, AuditStatus, AuditRecord, PubTime, CreateTime, UpdateTime, OID, Title, ChannelID, Content, Imgs, IsHot, IsBot, Type, Source  ");
+            strSql.Append("select ID, Status, AuditStatus, AuditRecord, PubTime, CreateTime, UpdateTime, OID, Title, ChannelID, Content, Imgs, IsHot, IsBot, Type, Source, CreateUserID  ");
             strSql.Append("  from Article ");
             strSql.Append(" where ID=@ID");
             SqlParameter[] paras = {
@@ -189,6 +190,10 @@ namespace Dal
                 }
                 model.Type = ds.Tables[0].Rows[0]["Type"].ToString();
 
+                if (ds.Tables[0].Rows[0]["CreateUserID"].ToString() != "")
+                {
+                    model.CreateUserID = int.Parse(ds.Tables[0].Rows[0]["CreateUserID"].ToString());
+                }
                 return model;
             }
             return null;

@@ -80,7 +80,8 @@
                     { name: 'IsHot', type: 'bool' },
                     { name: 'Type', type: 'string' },
                     { name: 'PubTime', type: 'date' },
-                    { name: 'CreateTime', type: 'date' }
+                    { name: 'CreateTime', type: 'date' },
+                    { name: 'CreateUserName', type: 'string' }
                 ],
                 pagesize: 20,
                 formatdata: function (data) {
@@ -146,7 +147,7 @@
             $("#jqxgrid").jqxGrid({
                 theme: theme,
                 source: dataadapter,
-                width: 1180,
+                width: 1320,
                 rendergridrows: function (args) {
                     return args.data;
                 },
@@ -170,10 +171,11 @@
                 columns: [
                     { text: '<b>操作</b>', dataField: 'ID', width: 80, cellsalign: 'center', align: 'center', cellsrenderer: linkrenderer },
                     { text: '<b>文章标题</b>', dataField: 'Title', width: 250, cellsalign: 'center', align: 'center' },
-                    { text: '<b>文章类型</b>', dataField: 'Type', width: 120, cellsalign: 'center', align: 'center', cellsrenderer: typerenderer },
-                    { text: '<b>所属频道</b>', dataField: 'ChannelName', width: 120, cellsalign: 'center', align: 'center' },
+                    { text: '<b>文章类型</b>', dataField: 'Type', width: 80, cellsalign: 'center', align: 'center', cellsrenderer: typerenderer },
+                    { text: '<b>所属频道</b>', dataField: 'ChannelName', width: 80, cellsalign: 'center', align: 'center' },
+                    { text: '<b>创建人</b>', dataField: 'CreateUserName', width: 100, cellsalign: 'center', align: 'center' },
                     { text: '<b>文章内容</b>', dataField: 'Content', width: 500, cellsalign: 'center', align: 'center' },
-                    { text: '<b>是否推荐</b>', dataField: 'IsHot', width: 120, cellsalign: 'center', align: 'center', cellsrenderer: isHotrenderer },
+                    { text: '<b>是否推荐</b>', dataField: 'IsHot', width: 50, cellsalign: 'center', align: 'center', cellsrenderer: isHotrenderer },
                     { text: '<b>发布时间</b>', dataField: 'PubTime', width: 180, cellsformat: "yyyy-MM-dd HH:mm:ss", cellsalign: 'center', align: 'center' },
                     { text: '<b>创建时间</b>', dataField: 'CreateTime', width: 180, cellsformat: "yyyy-MM-dd HH:mm:ss", cellsalign: 'center', align: 'center' }
                 ]

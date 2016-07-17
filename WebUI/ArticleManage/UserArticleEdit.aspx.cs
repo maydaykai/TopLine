@@ -32,52 +32,52 @@ namespace WebUI.ArticleManage
                 {
                     txtTitle.Value = jObj["title"].ToString();
                     txtContent.Value = jObj["content"].ToString();
-                    if (ConvertHelper.ToInt(jObj["content"].ToString()) == 1)
-                        rdStatusY.Checked = true;
-                    if (ConvertHelper.ToInt(jObj["content"].ToString()) == 2)
-                        rdStatusN.Checked = true;
+                    //if (ConvertHelper.ToInt(jObj["status"].ToString()) == 1)
+                    //    rdStatusY.Checked = true;
+                    //if (ConvertHelper.ToInt(jObj["status"].ToString()) == 2)
+                    //    rdStatusN.Checked = true;
                 }
             }
         }
         protected void Btn_Click(object sender, EventArgs e)
         {
-            var title = txtTitle.Value.Trim();
-            var content = txtContent.Value.Trim();
+            //var title = txtTitle.Value.Trim();
+            //var content = txtContent.Value.Trim();
 
-            if (string.IsNullOrEmpty(title))
-            {
-                ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入文章标题','warning', '');", true);
-                return;
-            }
-            if (string.IsNullOrEmpty(content))
-            {
-                ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入文章正文','warning', '');", true);
-                return;
-            }
-            if (!string.IsNullOrEmpty(_id))
-            {
-                var pushData = new
-                {
-                    id = _id,
-                    title,
-                    content,
-                    status = rdStatusY.Checked ? 1 : 2,
-                    updatedAt = DateTime.UtcNow
-                };
-                if (!rdStatusY.Checked && !rdStatusN.Checked)
-                {
-                    ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请审核该文章','warning', '');",
-                        true);
-                    return;
-                }
-                var resultData = _model.Edit(_id, pushData);
-                var jObj = JObject.Parse(resultData);
-                ClientScript.RegisterClientScriptBlock(GetType(), "",
-                    jObj["id"] != null
-                        ? "MessageAlert('审核成功','success', '/ArticleManage/UserArticleManage.aspx?columnId=" + ColumnId +
-                          "');"
-                        : "MessageAlert('审核失败','error', '');", true);
-            }
+            //if (string.IsNullOrEmpty(title))
+            //{
+            //    ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入文章标题','warning', '');", true);
+            //    return;
+            //}
+            //if (string.IsNullOrEmpty(content))
+            //{
+            //    ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请输入文章正文','warning', '');", true);
+            //    return;
+            //}
+            //if (!string.IsNullOrEmpty(_id))
+            //{
+            //    var pushData = new
+            //    {
+            //        id = _id,
+            //        title,
+            //        content,
+            //        status = rdStatusY.Checked ? 1 : 2,
+            //        updatedAt = DateTime.UtcNow
+            //    };
+            //    if (!rdStatusY.Checked && !rdStatusN.Checked)
+            //    {
+            //        ClientScript.RegisterClientScriptBlock(GetType(), "", "MessageAlert('请审核该文章','warning', '');",
+            //            true);
+            //        return;
+            //    }
+            //    var resultData = _model.Edit(_id, pushData);
+            //    var jObj = JObject.Parse(resultData);
+            //    ClientScript.RegisterClientScriptBlock(GetType(), "",
+            //        jObj["id"] != null
+            //            ? "MessageAlert('审核成功','success', '/ArticleManage/UserArticleManage.aspx?columnId=" + ColumnId +
+            //              "');"
+            //            : "MessageAlert('审核失败','error', '');", true);
+            //}
         }
     }
 }

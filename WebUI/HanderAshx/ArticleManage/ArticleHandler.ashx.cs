@@ -69,7 +69,8 @@ namespace WebUI.HanderAshx.ArticleManage
                     IsBot = dr["IsBot"],
                     Type = dr["Type"],
                     PubTime = Convert.ToDateTime(dr["PubTime"]),
-                    CreateTime = Convert.ToDateTime(dr["CreateTime"])
+                    CreateTime = Convert.ToDateTime(dr["CreateTime"]),
+                    CreateUserID = (dr["CreateUserID"].ToString().Equals("") ? "" : new UserBll().GetModel(Convert.ToInt32(dr["CreateUserID"])).RealName)
                 });
             var jsonData = new
             {
@@ -91,6 +92,11 @@ namespace WebUI.HanderAshx.ArticleManage
             }
             return str.Remove(str.Length - 1, 1).ToString();
         }
+        private string GetCreateUserName(int CreateUserID)
+        {
+            return CreateUserID == 0 ? "" : new UserBll().GetModel(CreateUserID).RealName;
+        }
+
         public bool IsReusable
         {
             get

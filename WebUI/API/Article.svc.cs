@@ -72,5 +72,17 @@ namespace WebUI.API
                 ? JsonTipHelper.SuccessMessage("删除成功")
                 : JsonTipHelper.ErrorMessage("删除失败");
         }
+        [OperationContract]
+        [WebInvoke(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, Method = "POST")]
+        public object DeleteUserArticle(string id)
+        {
+            var model = DataConstructor.Factory("userArticle");
+            var resultData = model.Edit(id, new
+            {
+                status = 2
+            });
+            var jObj = JObject.Parse(resultData);
+            return jObj["Error"] == null ? JsonTipHelper.SuccessMessage("删除成功") : JsonTipHelper.ErrorMessage("删除失败");
+        }
     }
 }

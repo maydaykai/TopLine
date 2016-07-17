@@ -142,6 +142,10 @@
     <Content Include="images\select_right.png" />
     <Content Include="images\tip_arrow.gif" />
     <Content Include="images\uploadify-cancel.png" />
+    <Content Include="InformationManage\BannerEdit.aspx" />
+    <Content Include="InformationManage\BannerManage.aspx" />
+    <Content Include="InformationManage\InformationEdit.aspx" />
+    <Content Include="InformationManage\InformationManage.aspx" />
     <Content Include="js\datetime.js" />
     <Content Include="js\FormatDecimal.js" />
     <Content Include="js\jqgrid\css\ellipsis-xbl.xml" />
@@ -1352,6 +1356,9 @@
     <Compile Include="HanderAshx\AdvertManage\AdvertHandler.ashx.cs">
       <DependentUpon>AdvertHandler.ashx</DependentUpon>
     </Compile>
+    <Compile Include="HanderAshx\AdvertManage\BannerHandler.ashx.cs">
+      <DependentUpon>BannerHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="HanderAshx\APICloudHelper.cs" />
     <Compile Include="HanderAshx\ArticleManage\ArticleHandler.ashx.cs">
       <DependentUpon>ArticleHandler.ashx</DependentUpon>
@@ -1373,6 +1380,34 @@
     </Compile>
     <Compile Include="HanderAshx\VoteManage\VoteUserHandler.ashx.cs">
       <DependentUpon>VoteUserHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="InformationManage\BannerEdit.aspx.cs">
+      <DependentUpon>BannerEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InformationManage\BannerEdit.aspx.designer.cs">
+      <DependentUpon>BannerEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InformationManage\BannerManage.aspx.cs">
+      <DependentUpon>BannerManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InformationManage\BannerManage.aspx.designer.cs">
+      <DependentUpon>BannerManage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InformationManage\InformationEdit.aspx.cs">
+      <DependentUpon>InformationEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InformationManage\InformationEdit.aspx.designer.cs">
+      <DependentUpon>InformationEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InformationManage\InformationManage.aspx.cs">
+      <DependentUpon>InformationManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InformationManage\InformationManage.aspx.designer.cs">
+      <DependentUpon>InformationManage.aspx</DependentUpon>
     </Compile>
     <Compile Include="js\ueditor\net\App_Code\Config.cs" />
     <Compile Include="js\ueditor\net\App_Code\ConfigHandler.cs" />
@@ -1543,6 +1578,7 @@
     <Content Include="js\ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="js\ueditor\third-party\video-js\font\vjs.woff" />
     <Content Include="HanderAshx\ArticleManage\UserArticleHandler.ashx" />
+    <Content Include="HanderAshx\AdvertManage\BannerHandler.ashx" />
     <None Include="Properties\PublishProfiles\topline.pubxml" />
     <None Include="Properties\PublishProfiles\TopLineManage.pubxml" />
     <None Include="Web.Debug.config">

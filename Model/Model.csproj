@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="AdvertModel.cs" />
     <Compile Include="ArticleModel.cs" />
+    <Compile Include="BannerModel.cs" />
     <Compile Include="BaseModel.cs" />
     <Compile Include="ChannelModel.cs" />
     <Compile Include="ColumnModel.cs" />

@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArticleDal.cs" />
+    <Compile Include="BannerDal.cs" />
     <Compile Include="BaseClass.cs" />
     <Compile Include="ColumnDal.cs" />
     <Compile Include="ColumnRightDal.cs" />

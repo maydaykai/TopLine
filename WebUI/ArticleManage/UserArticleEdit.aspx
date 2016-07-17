@@ -79,17 +79,18 @@
                         <textarea id="txtContent" runat="server" style="width:1000px;height:500px;" name="content"></textarea>
                     </td>
                 </tr>
-                <tr runat="server" id="trAudit">
+                <%--<tr runat="server" id="trAudit">
                     <td style="text-align: right; ">审核状态：</td>
                     <td style="text-align: left; padding-left: 5px;">
                         <label><input type="radio" value="1" id="rdStatusY" runat="server" name="status" />审核通过</label>
                         <label><input type="radio" value="2" id="rdStatusN" runat="server" name="status" />审核不通过</label>
                     </td>
-                </tr>
+                </tr>--%>
                 <tr>
                     <td style="text-align: right; ">操作：</td>
                     <td style="text-align: left; padding-left: 5px;">
-                        <asp:Button runat="server" Text="提交" CssClass="inputButton" OnClick="Btn_Click" OnClientClick="javascript:$.dialog.tips('数据加载中...',6000,'loading.gif');" />&nbsp;&nbsp;<input type="button" class="inputButton" value="返回" onclick="location.href = 'UserArticleManage.aspx?columnId=<%=ColumnId%>';" />
+                        <%--<asp:Button runat="server" Text="提交" CssClass="inputButton" OnClick="Btn_Click" OnClientClick="javascript:$.dialog.tips('数据加载中...',6000,'loading.gif');" />--%>&nbsp;&nbsp;
+                        <input type="button" class="inputButton" value="返回" onclick="location.href = 'UserArticleManage.aspx?columnId=<%=ColumnId%>';" />
                     </td>
                 </tr>
             </table>
