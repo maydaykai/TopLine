@@ -147,11 +147,11 @@
             var menulist = '';
             menulist += '<ul class="navlist">';
             $.each(n.menus, function (j, o) {
-                menulist += '<li><div ><a ref="' + o.menuid + '" href="#" rel="' + o.url + "?columnId=" + o.menuid + '" ><span class="icon ' + o.icon + '" >&nbsp;</span><span class="nav" style="margin-left:2px;">' + o.menuname + '</span></a></div> ';
+                menulist += '<li><div ><a ref="' + o.menuid + '" href="#" rel="' + o.url + (o.url.indexOf("?") > -1 ? "&" : "?") + "columnId=" + o.menuid + '" ><span class="icon ' + o.icon + '" >&nbsp;</span><span class="nav" style="margin-left:2px;">' + o.menuname + '</span></a></div> ';
                 if (o.menus && o.menus.length > 0) {
                     menulist += '<ul class="third_ul">';
                     $.each(o.menus, function (k, p) {
-                        menulist += '<li><div><a ref="' + p.menuid + '" href="#" rel="' + p.url + "?columnId=" + p.menuid + '" ><span class="icon ' + p.icon + '" >&nbsp;</span><span class="nav" style="margin-left:2px;">' + p.menuname + '</span></a></div> </li>'
+                        menulist += '<li><div><a ref="' + p.menuid + '" href="#" rel="' + p.url + (p.url.indexOf("?") > -1 ? "&" : "?") + "columnId=" + p.menuid + '" ><span class="icon ' + p.icon + '" >&nbsp;</span><span class="nav" style="margin-left:2px;">' + p.menuname + '</span></a></div> </li>'
                     });
                     menulist += '</ul>';
                 }

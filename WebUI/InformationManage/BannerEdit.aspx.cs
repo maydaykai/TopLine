@@ -12,10 +12,11 @@ namespace WebUI.InformationManage
 {
     public partial class BannerEdit : BasePage
     {
-        private int _id;
+        public int _id,_type;
         protected void Page_Load(object sender, EventArgs e)
         {
             _id = ConvertHelper.QueryString(Request, "id", 0);
+            _type = ConvertHelper.QueryString(Request, "type", 0);
             //XmlHelper xmlHelper = new XmlHelper(Server.MapPath("~/Config/upload.xml"));
             //string remoteDomain = xmlHelper.GetText("upload/remoteDomain");
             //string secLevelDomain = xmlHelper.GetText("upload/secLevelDomain");
@@ -123,7 +124,7 @@ namespace WebUI.InformationManage
                 focusFigureModel.Status = status;
                 ClientScript.RegisterClientScriptBlock(GetType(), "",
                                      bannerBll.Update(focusFigureModel)
-                                         ? "MessageAlert('修改成功','success', '/InformationManage/BannerManage.aspx?columnId=" + ColumnId + "');"
+                                         ? "MessageAlert('修改成功','success', '/InformationManage/BannerManage.aspx?columnId=" + ColumnId + "&type="+ _type + "');"
                                          : "MessageAlert('修改失败','error', '');", true);
             }
             else
@@ -140,7 +141,7 @@ namespace WebUI.InformationManage
                 };
                 ClientScript.RegisterClientScriptBlock(GetType(), "",
                                      bannerBll.Add(focusFigureModel) > 0
-                                         ? "MessageAlert('添加成功','success', '/InformationManage/BannerManage.aspx?columnId=" + ColumnId + "');"
+                                         ? "MessageAlert('添加成功','success', '/InformationManage/BannerManage.aspx?columnId=" + ColumnId + "&type=" + _type + "');"
                                          : "MessageAlert('添加失败','error', '');", true);
             }
         }

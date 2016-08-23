@@ -51,10 +51,15 @@
         }
     </style>
     <script type="text/javascript">
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
         $(function () {
             //主题
             var theme = "arctic";
-
+            var type = GetQueryString("type");
             //参数组装
             function buildQueryString(data) {
                 var str = ''; for (var prop in data) {
@@ -89,6 +94,7 @@
                     data.pagesize = data.pagesize || 20;
                     data.sortdatafield = data.sortdatafield || 'ID';
                     data.sortorder = data.sortorder || 'DESC';
+                    data.type = type || 0;
                     data.status = $("#selStatus").val() || "";
                     formatedData = buildQueryString(data);
                     return formatedData;
@@ -115,15 +121,15 @@
                 var temp = parseInt(value);
                 var html = "<div style=\"text-overflow: ellipsis; overflow: hidden; padding-bottom: 2px; text-align: center;\">";
                 switch (temp) {
-                    case 0: html += "禁用"; break;
-                    case 1: html += "启用"; break;
+                case 0: html += "禁用"; break;
+                case 1: html += "启用"; break;
                 }
                 html += "</div>";
                 return html;
             }
 
             var linkrenderer = function (row, column, value) {
-                var parm = "/InformationManage/BannerEdit.aspx?" + column + "=" + value + "&columnId=<%=ColumnId%>";
+                var parm = "/InformationManage/BannerEdit.aspx?" + column + "=" + value + "&columnId=<%=ColumnId%>"+ "&type=" + type;
                 var link = "<div style=\"text-overflow: ellipsis; overflow: hidden; padding-bottom: 2px; text-align: center; \">";
                 link += "<a style='height:25px;line-height:25px;margin-left:5px;' href='" + parm + "' target='_self'>修改</a>";
                 link += "</div>";
@@ -159,17 +165,18 @@
                     { dataField: 'Status', text: '<b>状态</b>', width: 40, cellsalign: 'center', align: 'center', cellsrenderer: statusRender },
                     { dataField: 'UpdateTime', text: '<b>更新时间</b>', cellsformat: "yyyy-MM-dd HH:mm:ss", width: 180, cellsalign: 'center', align: 'center', cellsrenderer: dateatimeRenderer },
                 ],
-              showtoolbar: true,
-              rendertoolbar: function (toolbar) {
-                  var container = $("<div style='margin: 5px;'></div>");
-                  var addButton = $("<div style='float: left; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' src='/js/jqwidgets-ver3.1.0/images/add.png'/><span style='margin-left: 4px; position: relative; top: -3px;'>增加</span></div>");
-                  addButton.jqxButton({ width: 60, height: 20 });
-                  addButton.click(function (event) {
-                      location.href = '/InformationManage/BannerEdit.aspx?columnId=<%=ColumnId%>';
-                  });
-                  container.append(addButton);
-                  toolbar.append(container);
-              }
+                showtoolbar: true,
+                rendertoolbar: function (toolbar) {
+                    if (type > 0) return;
+                    var container = $("<div style='margin: 5px;'></div>");
+                    var addButton = $("<div style='float: left; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' src='/js/jqwidgets-ver3.1.0/images/add.png'/><span style='margin-left: 4px; position: relative; top: -3px;'>增加</span></div>");
+                    addButton.jqxButton({ width: 60, height: 20 });
+                    addButton.click(function (event) {
+                        location.href = '/InformationManage/BannerEdit.aspx?columnId=<%=ColumnId%>';
+                    });
+                    container.append(addButton);
+                    toolbar.append(container);
+                }
             });
             $("#btnSearch").click(function () {
                 $("#jqxgrid").jqxGrid('updatebounddata');

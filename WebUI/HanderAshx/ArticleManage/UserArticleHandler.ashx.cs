@@ -60,7 +60,8 @@ namespace WebUI.HanderAshx.ArticleManage
                         HtmlHelper.DeleteHtml(HttpContext.Current.Server.HtmlDecode(model.content))
                             .GetSubString(0, 36),
                                  Status = model.status,
-                                 CreateTime = model.createdAt
+                                 CreateTime = model.createdAt,
+                                 NickName = string.IsNullOrEmpty(model.user_id) ? "" : APICloudHelper.GetNickName(model.user_id)
                              });
             var jsonData = new
             {

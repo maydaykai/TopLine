@@ -17,6 +17,7 @@ namespace Model
         /// 用户名
         /// </summary>
         public string username { get; set; }
+        public string nickname { get; set; }
 
         /// <summary>
         /// 邮箱

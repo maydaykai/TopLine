@@ -27,5 +27,12 @@ namespace WebUI.HanderAshx
             }
             return str.Remove(str.Length - 1, 1).ToString();
         }
+        public static string GetNickName(string userId)
+        {
+            var model = DataConstructor.Factory("user");
+            var data = model.Get(userId);
+            var userModel = JsonConvert.DeserializeObject<MemberModel>(data);
+            return string.IsNullOrEmpty(userModel.nickname) ? userModel.username : userModel.nickname;
+        }
     }
 }

@@ -35,7 +35,7 @@
                 var jsonobj = JSON.stringify(obj);
                 $.ajax({
                     type: "POST",
-                    url: "../API/Advert.svc/DeleteChannel",
+                    url: "../API/Article.svc/DeleteAdvert",
                     contentType: "application/json; charset=utf-8",
                     data: jsonobj,
                     dataType: 'json',

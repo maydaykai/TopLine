@@ -101,7 +101,7 @@
             <tr>
                 <td style="text-align: right; ">操作：</td>
                 <td style="text-align: left; padding-left: 5px;">
-                    <asp:Button ID="btnSave1" runat="server" Text="提交" CssClass="inputButton" OnClick="btnSave1_Click" />&nbsp;&nbsp;<input type="button" class="inputButton" value="返回" onclick="location.href = 'BannerManage.aspx?columnId=<%=ColumnId%>    ';" />
+                    <asp:Button ID="btnSave1" runat="server" Text="提交" CssClass="inputButton" OnClick="btnSave1_Click" />&nbsp;&nbsp;<input type="button" class="inputButton" value="返回" id="btn_return" />
                 </td>
             </tr>
         </table>
@@ -181,6 +181,14 @@
             showMessage: function (message) {
                 $('#upload2Tip').text(message);
             }
+        });
+        $(function() {
+            var columnId = <%=ColumnId%>;
+            var type = <%=_type%>;
+            var returnUrl = "BannerManage.aspx?columnId=" + columnId + "&type=" + type;
+            $("#btn_return").click(function() {
+                location.href = returnUrl;
+            });
         });
     </script>
 </body>

@@ -76,6 +76,7 @@
                     { name: 'Title', type: 'string' },
                     { name: 'Content', type: 'string' },
                     { name: 'Status', type: 'int' },
+                    { name: 'NickName', type: 'string' },
                     { name: 'CreateTime', type: 'date' }
                 ],
                 pagesize: 20,
@@ -139,7 +140,7 @@
                     { text: '<b>操作</b>', dataField: 'ID', width: 80, cellsalign: 'center', align: 'center', cellsrenderer: linkrenderer },
                     { text: '<b>文章标题</b>', dataField: 'Title', width: 300, cellsalign: 'center', align: 'center' },
                     { text: '<b>文章内容</b>', dataField: 'Content', width: 500, cellsalign: 'center', align: 'center' },
-                    //{ text: '<b>审核状态</b>', dataField: 'Status', width: 100, cellsalign: 'center', align: 'center', cellsrenderer: statusrenderer },
+                    { text: '<b>创建人</b>', dataField: 'NickName', width: 100, cellsalign: 'center', align: 'center' },
                     { text: '<b>创建时间</b>', dataField: 'CreateTime', width: 180, cellsformat: "yyyy-MM-dd HH:mm:ss", cellsalign: 'center', align: 'center' }
                 ]
             });

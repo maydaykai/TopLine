@@ -14,7 +14,7 @@ namespace WebUI.HanderAshx.AdvertManage
     public class BannerHandler : IHttpHandler
     {
         private int _currentPage = 1;
-        private int _pageSize;
+        private int _pageSize, _type;
         private string _sort = "asc";
         private string _sortField = "ID";
         private string _status = "";
@@ -32,8 +32,9 @@ namespace WebUI.HanderAshx.AdvertManage
             _sort = ConvertHelper.QueryString(context.Request, "sortOrder", "DESC");
             _sortField = ConvertHelper.QueryString(context.Request, "sortdatafield", "P.ID");
             _status = ConvertHelper.QueryString(context.Request, "status", "");
+            _type = ConvertHelper.QueryString(context.Request, "type", 0);
 
-            var filter = " 1=1";
+            var filter = _type == 0 ? " type=0" : " type>0";
             if (!string.IsNullOrEmpty(_status))
             {
                 filter += " and Status=" + _status;
