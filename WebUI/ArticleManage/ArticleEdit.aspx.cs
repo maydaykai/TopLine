@@ -234,6 +234,7 @@ namespace WebUI.ArticleManage
                             model.OID = jObj["id"].ToString();
                             model.Status = 3;
                             tipStr.Append("上传成功；");
+                            SeoHelper.PostUrl(new []{ "http://www.aftop.cn/Article/Detail/"+ model.OID });
                         }
                         else
                         {

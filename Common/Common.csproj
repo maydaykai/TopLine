@@ -79,6 +79,7 @@
     <Compile Include="PublicConst.cs" />
     <Compile Include="RegexHelper.cs" />
     <Compile Include="Role.cs" />
+    <Compile Include="SeoHelper.cs" />
     <Compile Include="SessionHelper.cs" />
     <Compile Include="SQLReplace.cs" />
     <Compile Include="StringHelper.cs" />
